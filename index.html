@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vértigo Labs — Crecimiento para clínicas privadas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:   #FAF8F4;
+  --cream2:  #F2EDE5;
+  --cream3:  #E8E1D8;
+  --ink:     #141414;
+  --ink2:    #3D3B38;
+  --ink3:    #767370;
+  --ink4:    #B0ADA9;
+  --white:   #FFFFFF;
+  --border:  #E2DDD6;
+  --serif:   'Bodoni Moda', Georgia, serif;
+  --sans:    'Jost', system-ui, sans-serif;
+  --ease:    cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);background:var(--cream);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── TIGHTROPE PROGRESS ── */
+#rope-bar{position:fixed;top:0;left:0;right:0;height:40px;background:var(--ink);z-index:1001;overflow:visible}
+#rope-line{position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,.15);transform:translateY(-50%)}
+#rope-fill{position:absolute;top:50%;left:0;width:2%;height:1px;background:rgba(255,255,255,.7);transform:translateY(-50%);transition:width .08s linear}
+#rope-walker{position:absolute;top:50%;left:2%;transform:translate(-50%,-88%);color:rgba(255,255,255,.9);transition:left .08s linear}
+@keyframes sway{0%,100%{transform:translate(-50%,-88%) rotate(-1.5deg)}50%{transform:translate(-50%,-88%) rotate(1.5deg)}}
+#rope-walker svg{animation:sway 2.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){#rope-walker svg{animation:none}[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* ── NAV ── */
+#nav{position:fixed;top:40px;left:0;right:0;height:64px;z-index:1000;display:flex;align-items:center;padding:0 5%;gap:2rem;background:var(--cream);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+#nav.scrolled{border-bottom-color:var(--border);background:rgba(250,248,244,.95);backdrop-filter:blur(12px)}
+.nav-logo{height:56px;mix-blend-mode:multiply}
+.nav-links{display:flex;gap:2rem;list-style:none;margin:0 auto}
+.nav-links a{font-size:.8rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{padding:.5rem 1.25rem;border:1px solid var(--ink);color:var(--ink);border-radius:2px;font-size:.8rem;font-weight:500;letter-spacing:.05em;transition:background .2s,color .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--ink);color:var(--white)}
+@media(max-width:768px){.nav-links{display:none}}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--cream);display:flex;align-items:center;padding:calc(104px + 5vw) 5% 5vw;position:relative;overflow:hidden}
+.hero-rule{position:absolute;bottom:0;left:5%;right:5%;height:1px;background:var(--border)}
+.hero-content{width:45%;max-width:560px;position:relative;z-index:2;display:flex;flex-direction:column}
+.hero-wave{position:absolute;right:-3%;top:-4%;bottom:-8%;width:68%;pointer-events:none;will-change:opacity;transform-origin:center right;user-select:none;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 12%,black 24%);
+  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 12%,black 24%)}
+.hero-wave img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block;will-change:transform}
+.hero-wave-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(to bottom,var(--cream),transparent);pointer-events:none;z-index:1}
+.hero-wave-bot{position:absolute;bottom:0;left:0;right:0;height:16%;background:linear-gradient(to top,var(--cream),transparent);pointer-events:none;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.625rem;font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}
+.hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--ink3)}
+.hero-h1{font-family:var(--serif);font-size:clamp(2.75rem,5.5vw,7rem);font-weight:400;line-height:1.02;color:var(--ink);letter-spacing:-.02em}
+.hero-h1 em{font-style:italic;color:var(--ink3)}
+/* Rotating word — fade+slide transition */
+.hero-word-wrap{display:block;position:relative;height:1.04em;overflow:visible}
+#hero-word{position:absolute;left:0;top:0;white-space:nowrap;transition:opacity 280ms cubic-bezier(0.77,0,0.175,1),transform 280ms cubic-bezier(0.23,1,0.32,1)}
+#hero-word.exiting{opacity:0;transform:translateY(-14px)}
+#hero-word.entering{opacity:0;transform:translateY(14px)}
+@media(prefers-reduced-motion:reduce){#hero-word{transition:opacity 200ms linear}}
+.hero-bottom{display:flex;flex-direction:column;align-items:flex-start;gap:1.75rem;margin-top:2.5rem}
+.hero-sub{font-size:1rem;font-weight:300;line-height:1.75;color:var(--ink3);max-width:380px}
+.hero-btns{display:flex;gap:.875rem;flex-wrap:wrap}
+@media(max-width:900px){.hero-content{width:100%}.hero-wave{width:100%;top:auto;bottom:-5%;opacity:.35}}
+.btn-dark{padding:.9rem 1.875rem;background:var(--ink);color:var(--white);border-radius:2px;font-size:.9rem;font-weight:500;letter-spacing:.03em;transition:opacity .2s;display:inline-block}
+.btn-dark:hover{opacity:.82}
+.btn-outline{padding:.9rem 1.875rem;border:1px solid var(--ink);color:var(--ink);border-radius:2px;font-size:.9rem;font-weight:400;transition:background .2s,color .2s;display:inline-block}
+.btn-outline:hover{background:var(--ink);color:var(--white)}
+
+/* ── STATS ── */
+.stats-bar{background:var(--white);border-bottom:1px solid var(--border)}
+.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{padding:3rem 2rem;border-right:1px solid var(--border)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--serif);font-size:clamp(2.25rem,3.5vw,3.25rem);font-weight:400;color:var(--ink);line-height:1;margin-bottom:.375rem}
+.stat-lbl{font-size:.8rem;font-weight:400;color:var(--ink3);letter-spacing:.04em}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-item{border-bottom:1px solid var(--border)}}
+
+/* ── SECTION BASE ── */
+.sec{padding:8rem 5%}
+.sec-inner{max-width:1200px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.5rem}
+.sec-title{font-family:var(--serif);font-size:clamp(2.25rem,4.5vw,4rem);font-weight:400;line-height:1.12;letter-spacing:-.01em}
+.sec-title em{font-style:italic;color:var(--ink3)}
+
+/* ── PROBLEMA ── */
+.sec-problema{background:var(--cream)}
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;margin-top:5rem}
+.prob-text{font-size:1rem;color:var(--ink3);line-height:1.85;margin-bottom:1.25rem}
+.pain-list{list-style:none;margin-top:2rem}
+.pain-list li{display:flex;align-items:flex-start;gap:.75rem;padding:1.25rem 0;border-bottom:1px solid var(--border);font-size:.9375rem;color:var(--ink3)}
+.pain-num{font-family:var(--serif);font-size:.8rem;color:var(--ink4);min-width:1.5rem;margin-top:.15rem}
+.prob-card{background:var(--ink);padding:4rem 3rem;position:sticky;top:120px}
+.big-num{font-family:var(--serif);font-size:clamp(4.5rem,8vw,7.5rem);font-weight:400;color:var(--white);line-height:1;margin-bottom:.625rem}
+.big-desc{font-size:1rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.55)}
+.prob-note{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);font-size:.75rem;color:rgba(255,255,255,.28);font-style:italic;line-height:1.6}
+@media(max-width:900px){.prob-grid{grid-template-columns:1fr;gap:3rem}.prob-card{position:static}}
+
+/* ── MÉTODO ── */
+.sec-metodo{background:var(--white);border-top:1px solid var(--border)}
+.phases{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);margin-top:5rem}
+.phase{padding:3rem 2.5rem;border-right:1px solid var(--border);transition:background .3s}
+.phase:last-child{border-right:none}
+.phase:hover{background:var(--cream)}
+.phase-n{font-family:var(--serif);font-size:5rem;font-weight:400;color:var(--cream3);line-height:1;margin-bottom:1.5rem;transition:color .3s}
+.phase:hover .phase-n{color:var(--cream2)}
+.phase-t{font-family:var(--serif);font-size:1.625rem;font-weight:400;color:var(--ink);margin-bottom:.875rem}
+.phase-d{font-size:.9rem;line-height:1.8;color:var(--ink3)}
+.phase-list{margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border);list-style:none}
+.phase-list li{display:flex;gap:.625rem;font-size:.8125rem;color:var(--ink4);margin-bottom:.625rem;align-items:flex-start}
+.phase-list li::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--ink3);margin-top:.45rem;flex-shrink:0}
+@media(max-width:900px){.phases{grid-template-columns:1fr}.phase{border-right:none;border-bottom:1px solid var(--border)}.phase:last-child{border-bottom:none}}
+
+/* ── DIFERENCIA ── */
+.sec-dif{background:var(--cream);border-top:1px solid var(--border)}
+.dif-table{width:100%;border-collapse:collapse;margin-top:4rem;border:1px solid var(--border)}
+.dif-table th{padding:1.25rem 1.75rem;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-align:left;background:var(--white);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
+.dif-table th:last-child{border-right:none;background:var(--ink);color:var(--white)}
+.dif-table td{padding:1.25rem 1.75rem;border-bottom:1px solid var(--border);border-right:1px solid var(--border);font-size:.9rem;color:var(--ink3);vertical-align:top}
+.dif-table td:first-child{font-weight:500;color:var(--ink);background:var(--white);width:28%}
+.dif-table td:last-child{border-right:none;background:rgba(20,20,20,.03);color:var(--ink);font-weight:500}
+.dif-table tr:last-child td{border-bottom:none}
+.dif-x{color:var(--ink4)}.dif-ok{color:var(--ink2)}
+
+/* ── TESTIMONIOS — SCROLLING COLUMNS ── */
+.sec-test{background:var(--white);border-top:1px solid var(--border);overflow:hidden}
+.test-header{max-width:520px;margin:0 auto 4rem;text-align:center}
+.test-header .sec-title{margin-top:.75rem}
+.test-header p{font-size:1rem;font-weight:300;color:var(--ink3);margin-top:1rem;line-height:1.7}
+/* Columns wrapper: gradient mask top+bottom, fixed height, overflow hidden */
+.test-columns{display:flex;gap:1.5rem;max-height:700px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 14%,black 86%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,black 14%,black 86%,transparent 100%)}
+.test-col{flex:1;overflow:hidden;min-width:0}
+/* Inner track — doubled content for seamless infinite loop */
+.test-col-inner{display:flex;flex-direction:column;gap:1.5rem;will-change:transform}
+@keyframes scrollCol{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+.test-col-inner{animation:scrollCol 15s linear infinite}
+.test-col:nth-child(2) .test-col-inner{animation-duration:19s}
+.test-col:nth-child(3) .test-col-inner{animation-duration:17s}
+/* Pause on hover */
+.test-col:hover .test-col-inner{animation-play-state:paused}
+/* Card style — consistent with web aesthetic */
+.tc{background:var(--cream);border:1px solid var(--border);padding:1.875rem;transition:border-color 200ms}
+.tc:hover{border-color:var(--ink3)}
+.tc-stars{font-size:.7rem;letter-spacing:.15em;color:var(--ink3);margin-bottom:1.125rem}
+.tc-q{font-family:var(--serif);font-size:.9625rem;font-style:italic;font-weight:400;line-height:1.75;color:var(--ink2);margin-bottom:1.5rem}
+.tc-author{display:flex;align-items:center;gap:.875rem}
+.tc-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0;filter:grayscale(20%)}
+.tc-name{font-size:.875rem;font-weight:500;color:var(--ink);line-height:1.3}
+.tc-role{font-size:.75rem;color:var(--ink4);margin-top:.15rem;line-height:1.3}
+/* Responsive: hide 2nd col on tablet, 3rd on mobile */
+@media(max-width:900px){.test-col:nth-child(3){display:none}}
+@media(max-width:600px){.test-col:nth-child(2){display:none}.test-columns{max-height:560px}}
+@media(prefers-reduced-motion:reduce){.test-col-inner{animation:none}}
+
+/* ── FAQs ── */
+.sec-faq{background:var(--cream);border-top:1px solid var(--border)}
+.faq-wrap{max-width:780px;margin-top:4rem;border-top:1px solid var(--border)}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;text-align:left;padding:1.5rem 0;font-size:.9625rem;font-weight:500;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;background:none;border:none;transition:color .2s;font-family:var(--sans)}
+.faq-q:hover{color:var(--ink2)}
+.faq-ico{width:16px;height:16px;flex-shrink:0;color:var(--ink3);transition:transform .3s var(--ease)}
+.faq-item.open .faq-ico{transform:rotate(45deg)}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.faq-ans-in{padding:0 0 1.5rem;font-size:.9rem;line-height:1.85;color:var(--ink3)}
+
+/* ── CTA ── */
+.sec-cta{background:var(--ink);padding:10rem 5%;text-align:center;position:relative;overflow:hidden}
+.cta-t{font-family:var(--serif);font-size:clamp(2.5rem,5.5vw,5rem);font-weight:400;color:var(--white);letter-spacing:-.02em;margin-bottom:1rem;line-height:1.1}
+.cta-t em{font-style:italic;color:rgba(255,255,255,.5)}
+.cta-sub{font-size:1.0625rem;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:3.5rem}
+.cta-form{display:flex;gap:.75rem;justify-content:center;max-width:460px;margin:0 auto}
+.cta-inp{flex:1;padding:1rem 1.375rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:2px;color:var(--white);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color .2s}
+.cta-inp::placeholder{color:rgba(255,255,255,.3)}
+.cta-inp:focus{border-color:rgba(255,255,255,.4)}
+.cta-btn{padding:1rem 1.875rem;background:var(--white);color:var(--ink);border-radius:2px;font-size:.9rem;font-weight:600;white-space:nowrap;border:none;cursor:pointer;font-family:var(--sans);transition:opacity .2s}
+.cta-btn:hover{opacity:.88}
+.cta-note{font-size:.775rem;color:rgba(255,255,255,.25);margin-top:1.25rem}
+@media(max-width:520px){.cta-form{flex-direction:column}}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:3rem 5%}
+.foot-in{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.foot-logo{height:24px;filter:brightness(0) invert(1);opacity:.5}
+.foot-copy{font-size:.775rem;color:rgba(255,255,255,.3)}
+.foot-links{display:flex;gap:2rem;list-style:none}
+.foot-links a{font-size:.775rem;color:rgba(255,255,255,.28);transition:color .2s}
+.foot-links a:hover{color:rgba(255,255,255,.65)}
+
+/* ── SCROLL REVEAL ── */
+[data-reveal]{opacity:0;transform:translateY(32px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+[data-reveal="fade"]{transform:none}
+[data-reveal="left"]{transform:translateX(-32px)}
+[data-reveal="right"]{transform:translateX(32px)}
+[data-reveal].on{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.1s}[data-d="2"]{transition-delay:.2s}
+[data-d="3"]{transition-delay:.3s}[data-d="4"]{transition-delay:.4s}
+[data-d="5"]{transition-delay:.5s}
+</style>
+</head>
+<body>
+
+<!-- ══ TIGHTROPE PROGRESS ══ -->
+<div id="rope-bar" aria-hidden="true">
+  <div id="rope-line"></div>
+  <div id="rope-fill"></div>
+  <div id="rope-walker">
+    <svg width="24" height="38" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="4" r="3" fill="currentColor"/>
+      <path d="M9.5 7 C9.5 7 8.5 13 8.5 18 L14.5 18 C14.5 13 13.5 7 12.5 7Z" fill="currentColor"/>
+      <line x1="0" y1="13.5" x2="24" y2="15" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.5" y1="10" x2="2" y2="13.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="13" y1="10" x2="21" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.5" y1="18" x2="5" y2="30" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="13.5" y1="18" x2="18" y2="29" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="5" y1="30" x2="0" y2="31" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="18" y1="29" x2="23" y2="29" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="nav-logo" height="28">
+  <ul class="nav-links">
+    <li><a href="#metodo">El Método</a></li>
+    <li><a href="#diferencia">Por qué nosotros</a></li>
+    <li><a href="#testimonios">Resultados</a></li>
+    <li><a href="#faqs">FAQ</a></li>
+  </ul>
+  <a href="#auditoria" class="nav-cta">Solicitar auditoría</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow" data-reveal="fade">Método Vértigo</span>
+    <h1 class="hero-h1" data-reveal data-d="1">
+      Tu clínica puede<br>
+      facturar más.<br>
+      <span class="hero-word-wrap"><em id="hero-word">Sin más caos.</em></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub" data-reveal data-d="2">
+        No vendemos marketing. Vendemos un método probado para que tus tratamientos más rentables se vendan solos — con el mismo equipo que ya tienes.
+      </p>
+      <div class="hero-btns" data-reveal data-d="3">
+        <a href="#auditoria" class="btn-dark">Solicitar auditoría gratuita</a>
+        <a href="#metodo" class="btn-outline">Ver el método</a>
+      </div>
+    </div>
+  </div>
+  <!-- Wave parallax image -->
+  <div class="hero-wave" id="heroWave" aria-hidden="true">
+    <img src="wave.jpg" alt="">
+    <div class="hero-wave-top"></div>
+    <div class="hero-wave-bot"></div>
+  </div>
+  <div class="hero-rule" aria-hidden="true"></div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item" data-reveal data-d="1">
+      <div class="stat-num" data-counter data-target="28" data-sfx="+">0+</div>
+      <div class="stat-lbl">Clínicas con el método</div>
+    </div>
+    <div class="stat-item" data-reveal data-d="2">
+      <div class="stat-num" data-counter data-target="52" data-sfx="%">0%</div>
+      <div class="stat-lbl">Incremento medio en ingresos</div>
+    </div>
+    <div class="stat-item" data-reveal data-d="3">
+      <div class="stat-num" data-counter data-target="3" data-sfx="">0</div>
+      <div class="stat-lbl">Fases del método</div>
+    </div>
+    <div class="stat-item" data-reveal data-d="4">
+      <div class="stat-num" data-counter data-target="6" data-sfx=" meses">0 meses</div>
+      <div class="stat-lbl">Para resultados visibles</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EL PROBLEMA ══ -->
+<section class="sec sec-problema" id="problema">
+  <div class="sec-inner">
+    <span class="eyebrow" data-reveal="fade">El diagnóstico</span>
+    <h2 class="sec-title" data-reveal data-d="1">
+      No tienes un problema<br>de pacientes. Tienes un<br>
+      <em>problema de conversión.</em>
+    </h2>
+    <div class="prob-grid">
+      <div>
+        <p class="prob-text" data-reveal data-d="2">
+          La mayoría de clínicas invierten en atraer más tráfico sin resolver el problema real: el proceso interno que convierte un contacto interesado en un tratamiento vendido y cobrado.
+        </p>
+        <p class="prob-text" data-reveal data-d="2">
+          El resultado es siempre el mismo: leads que no responden, presupuestos que se quedan en el aire y campañas que consumen presupuesto sin retorno real.
+        </p>
+        <ul class="pain-list">
+          <li data-reveal data-d="2"><span class="pain-num">01</span><span>Leads que llegan pero nunca concretan cita</span></li>
+          <li data-reveal data-d="3"><span class="pain-num">02</span><span>Presupuestos enviados que quedan sin respuesta</span></li>
+          <li data-reveal data-d="3"><span class="pain-num">03</span><span>Equipo sin proceso claro de seguimiento comercial</span></li>
+          <li data-reveal data-d="4"><span class="pain-num">04</span><span>Campañas activas pero sin estrategia real detrás</span></li>
+          <li data-reveal data-d="4"><span class="pain-num">05</span><span>Tratamientos rentables que no se comunican bien</span></li>
+        </ul>
+      </div>
+      <div data-reveal="right" data-d="2">
+        <div class="prob-card">
+          <div class="big-num">80%</div>
+          <p class="big-desc">
+            de los leads que recibe una clínica nunca se convierten en tratamiento vendido — no por falta de interés, sino por ausencia de proceso.
+          </p>
+          <p class="prob-note">
+            Dato basado en el análisis de las clínicas que han pasado por el Método Vértigo antes de su implementación.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MÉTODO VÉRTIGO ══ -->
+<section class="sec sec-metodo" id="metodo">
+  <div class="sec-inner">
+    <span class="eyebrow" data-reveal="fade">Nuestro método</span>
+    <h2 class="sec-title" data-reveal data-d="1">El Método Vértigo</h2>
+    <p style="color:var(--ink3);font-size:1rem;margin-top:.875rem;max-width:480px" data-reveal data-d="2">
+      Tres fases que actúan sobre todo el proceso de crecimiento — de la estrategia al cierre.
+    </p>
+    <div class="phases">
+      <div class="phase" data-reveal data-d="2">
+        <div class="phase-n">01</div>
+        <h3 class="phase-t">Estrategia</h3>
+        <p class="phase-d">Analizamos tu clínica para identificar qué tratamientos tienen mayor potencial y diseñamos el mapa del crecimiento.</p>
+        <ul class="phase-list">
+          <li>Análisis de tratamientos y márgenes</li>
+          <li>Definición del público objetivo</li>
+          <li>Mapa del proceso de venta actual</li>
+          <li>Posicionamiento y propuesta de valor</li>
+        </ul>
+      </div>
+      <div class="phase" data-reveal data-d="3">
+        <div class="phase-n">02</div>
+        <h3 class="phase-t">Captación</h3>
+        <p class="phase-d">Diseñamos y optimizamos campañas de Meta Ads con estrategia real: mensajes, oferta y creatividades. Tú grabas. Nosotros convertimos.</p>
+        <ul class="phase-list">
+          <li>Estrategia de campañas Meta Ads</li>
+          <li>Diseño de oferta y mensajes</li>
+          <li>Guiones de creatividades para la clínica</li>
+          <li>Optimización y escala de resultados</li>
+        </ul>
+      </div>
+      <div class="phase" data-reveal data-d="4">
+        <div class="phase-n">03</div>
+        <h3 class="phase-t">Conversión</h3>
+        <p class="phase-d">Optimizamos el proceso comercial interno: seguimiento, CRM, tiempos y scripts. No vendemos por ti — hacemos que tu equipo lo haga mejor.</p>
+        <ul class="phase-list">
+          <li>Implementación y configuración de CRM</li>
+          <li>Scripts y guiones de seguimiento</li>
+          <li>Protocolos de respuesta y tiempos</li>
+          <li>Formación al equipo comercial</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DIFERENCIA ══ -->
+<section class="sec sec-dif" id="diferencia">
+  <div class="sec-inner">
+    <span class="eyebrow" data-reveal="fade">Por qué nosotros</span>
+    <h2 class="sec-title" data-reveal data-d="1">
+      No somos una agencia más.<br>
+      <em>Somos tu sistema de crecimiento.</em>
+    </h2>
+    <div style="overflow-x:auto" data-reveal data-d="2">
+      <table class="dif-table">
+        <thead>
+          <tr>
+            <th>Qué valoramos</th>
+            <th style="color:var(--ink3)">Agencia tradicional</th>
+            <th>Método Vértigo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Enfoque principal</td>
+            <td><span class="dif-x">—</span> Más seguidores y alcance</td>
+            <td><span class="dif-ok">✓</span> Más ingresos de tratamientos rentables</td>
+          </tr>
+          <tr>
+            <td>Proceso de venta</td>
+            <td><span class="dif-x">—</span> No lo tocan</td>
+            <td><span class="dif-ok">✓</span> Lo optimizamos de raíz</td>
+          </tr>
+          <tr>
+            <td>Estrategia de negocio</td>
+            <td><span class="dif-x">—</span> Ejecutan lo que les pides</td>
+            <td><span class="dif-ok">✓</span> Definimos qué hacer y por qué</td>
+          </tr>
+          <tr>
+            <td>Gestión de redes sociales</td>
+            <td><span class="dif-x">—</span> Crean contenido recurrente</td>
+            <td><span class="dif-ok">✓</span> No lo hacemos — no es lo que da ROI</td>
+          </tr>
+          <tr>
+            <td>Métricas de éxito</td>
+            <td><span class="dif-x">—</span> Impresiones y CTR</td>
+            <td><span class="dif-ok">✓</span> Tratamientos vendidos y facturación</td>
+          </tr>
+          <tr>
+            <td>Equipo interno</td>
+            <td><span class="dif-x">—</span> Trabajan en paralelo</td>
+            <td><span class="dif-ok">✓</span> Formamos y potenciamos a tu equipo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIOS ══ -->
+<section class="sec sec-test" id="testimonios">
+  <div class="sec-inner">
+    <div class="test-header" data-reveal="fade">
+      <span class="eyebrow">Resultados reales</span>
+      <h2 class="sec-title">Lo que dicen <em>nuestras clínicas</em></h2>
+      <p>Más de 28 clínicas ya tienen un sistema de venta activo para sus tratamientos.</p>
+    </div>
+
+    <div class="test-columns">
+
+      <!-- COLUMNA 1 — velocidad 15s -->
+      <div class="test-col">
+        <div class="test-col-inner">
+          <!-- set A -->
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Llevábamos años invirtiendo en publicidad sin entender por qué los leads no se convertían. En tres meses con Vértigo Labs los ingresos de implantes crecieron un 68%."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dra. Carmen Solís">
+              <div><div class="tc-name">Dra. Carmen Solís</div><div class="tc-role">Directora Médica — Clínica Dental Solís, Madrid</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Pasamos de tener agenda llena con poca rentabilidad a un sistema donde los tratamientos premium se reservan solos. El ticket medio subió un 39% en cuatro meses."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Alejandro Vega">
+              <div><div class="tc-name">Dr. Alejandro Vega</div><div class="tc-role">Fundador — Centro Médico Vega, Valencia</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"El equipo comercial no sabía vender, informaba. Vértigo Labs nos dio los protocolos y ahora cerramos el 58% de las consultas. Antes cerrábamos el 22%."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Isabel Moreno">
+              <div><div class="tc-name">Isabel Moreno</div><div class="tc-role">Gerente — Clínica Derma Moreno, Bilbao</div></div>
+            </div>
+          </div>
+          <!-- set B — duplicado para loop sin corte -->
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Llevábamos años invirtiendo en publicidad sin entender por qué los leads no se convertían. En tres meses con Vértigo Labs los ingresos de implantes crecieron un 68%."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dra. Carmen Solís">
+              <div><div class="tc-name">Dra. Carmen Solís</div><div class="tc-role">Directora Médica — Clínica Dental Solís, Madrid</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Pasamos de tener agenda llena con poca rentabilidad a un sistema donde los tratamientos premium se reservan solos. El ticket medio subió un 39% en cuatro meses."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Alejandro Vega">
+              <div><div class="tc-name">Dr. Alejandro Vega</div><div class="tc-role">Fundador — Centro Médico Vega, Valencia</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"El equipo comercial no sabía vender, informaba. Vértigo Labs nos dio los protocolos y ahora cerramos el 58% de las consultas. Antes cerrábamos el 22%."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Isabel Moreno">
+              <div><div class="tc-name">Isabel Moreno</div><div class="tc-role">Gerente — Clínica Derma Moreno, Bilbao</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMNA 2 — velocidad 19s -->
+      <div class="test-col">
+        <div class="test-col-inner">
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Lo que más valoro es que no nos vendieron humo. Nos dijeron exactamente qué íbamos a hacer y cuándo veríamos resultados. Los tratamientos estéticos subieron un 45% en 5 meses."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/men/52.jpg" alt="Marcos Jiménez">
+              <div><div class="tc-name">Marcos Jiménez</div><div class="tc-role">CEO — Clínica Estética Avant, Barcelona</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Nunca pensé que el problema no era la publicidad sino el proceso de venta interno. Restructuramos la recepción y en dos meses la facturación mensual creció 22.000€."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/29.jpg" alt="Dra. Sofía Ramírez">
+              <div><div class="tc-name">Dra. Sofía Ramírez</div><div class="tc-role">Socia fundadora — Clínica SR Medicina Estética, Málaga</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"El método es sólido y estructurado. No hay improvisación. Cada semana sabemos exactamente qué métricas revisar y qué acciones tomar para seguir creciendo."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/men/61.jpg" alt="Carlos Benedito">
+              <div><div class="tc-name">Carlos Benedito</div><div class="tc-role">Director — Grupo Clínicas Benedito, Valencia</div></div>
+            </div>
+          </div>
+          <!-- duplicado -->
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Lo que más valoro es que no nos vendieron humo. Nos dijeron exactamente qué íbamos a hacer y cuándo veríamos resultados. Los tratamientos estéticos subieron un 45% en 5 meses."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/men/52.jpg" alt="Marcos Jiménez">
+              <div><div class="tc-name">Marcos Jiménez</div><div class="tc-role">CEO — Clínica Estética Avant, Barcelona</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Nunca pensé que el problema no era la publicidad sino el proceso de venta interno. Restructuramos la recepción y en dos meses la facturación mensual creció 22.000€."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/29.jpg" alt="Dra. Sofía Ramírez">
+              <div><div class="tc-name">Dra. Sofía Ramírez</div><div class="tc-role">Socia fundadora — Clínica SR Medicina Estética, Málaga</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"El método es sólido y estructurado. No hay improvisación. Cada semana sabemos exactamente qué métricas revisar y qué acciones tomar para seguir creciendo."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/men/61.jpg" alt="Carlos Benedito">
+              <div><div class="tc-name">Carlos Benedito</div><div class="tc-role">Director — Grupo Clínicas Benedito, Valencia</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMNA 3 — velocidad 17s -->
+      <div class="test-col">
+        <div class="test-col-inner">
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Con el CRM y los protocolos de Vértigo Labs pasamos de cerrar el 20% a cerrar el 51% de las consultas. No cambiamos al equipo, cambiamos el proceso."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/17.jpg" alt="Laura Fernández">
+              <div><div class="tc-name">Laura Fernández</div><div class="tc-role">Gerente — Clínica Capilar Renace, Sevilla</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Empezamos por la auditoría y fue revelador. Teníamos cuellos de botella que ni sabíamos que existían. En 6 meses la clínica funciona sola y yo he recuperado tiempo."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/men/14.jpg" alt="Dr. Iván Puig">
+              <div><div class="tc-name">Dr. Iván Puig</div><div class="tc-role">Propietario — Clínica Dental Puig, Zaragoza</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Teníamos mucho potencial desaprovechado en nuestra base de pacientes. El método de reactivación de Vértigo nos generó 40.000€ en el primer mes sin invertir en publicidad."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/55.jpg" alt="Dra. Nuria Castillo">
+              <div><div class="tc-name">Dra. Nuria Castillo</div><div class="tc-role">Directora — Instituto Médico Castillo, Madrid</div></div>
+            </div>
+          </div>
+          <!-- duplicado -->
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Con el CRM y los protocolos de Vértigo Labs pasamos de cerrar el 20% a cerrar el 51% de las consultas. No cambiamos al equipo, cambiamos el proceso."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/17.jpg" alt="Laura Fernández">
+              <div><div class="tc-name">Laura Fernández</div><div class="tc-role">Gerente — Clínica Capilar Renace, Sevilla</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Empezamos por la auditoría y fue revelador. Teníamos cuellos de botella que ni sabíamos que existían. En 6 meses la clínica funciona sola y yo he recuperado tiempo."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/men/14.jpg" alt="Dr. Iván Puig">
+              <div><div class="tc-name">Dr. Iván Puig</div><div class="tc-role">Propietario — Clínica Dental Puig, Zaragoza</div></div>
+            </div>
+          </div>
+          <div class="tc">
+            <div class="tc-stars">★★★★★</div>
+            <p class="tc-q">"Teníamos mucho potencial desaprovechado en nuestra base de pacientes. El método de reactivación de Vértigo nos generó 40.000€ en el primer mes sin invertir en publicidad."</p>
+            <div class="tc-author">
+              <img class="tc-avatar" src="https://randomuser.me/api/portraits/women/55.jpg" alt="Dra. Nuria Castillo">
+              <div><div class="tc-name">Dra. Nuria Castillo</div><div class="tc-role">Directora — Instituto Médico Castillo, Madrid</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /test-columns -->
+  </div>
+</section>
+
+<!-- ══ FAQs ══ -->
+<section class="sec sec-faq" id="faqs">
+  <div class="sec-inner">
+    <span class="eyebrow" data-reveal="fade">Preguntas frecuentes</span>
+    <h2 class="sec-title" data-reveal data-d="1">Todo lo que necesitas saber</h2>
+    <div class="faq-wrap" data-reveal data-d="2">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿En qué se diferencia del marketing tradicional?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-ans"><div class="faq-ans-in">Una agencia de marketing se centra en generar visibilidad: seguidores, alcance, clics. Nosotros nos centramos en el resultado final: tratamientos vendidos y facturación. Actuamos sobre tres palancas simultáneamente — estrategia, captación y conversión interna — que una agencia tradicional nunca toca todas a la vez.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Gestionáis las redes sociales?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-ans"><div class="faq-ans-in">No. Consideramos que la gestión recurrente de redes sociales no genera el ROI que una clínica necesita. Lo que sí hacemos es diseñar la estrategia de qué comunicar y cómo, para que vuestro equipo pueda ejecutarlo con criterio.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Cuánto tiempo tardamos en ver resultados?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-ans"><div class="faq-ans-in">Los primeros resultados suelen ser visibles entre el mes 2 y el 3. Los resultados consolidados llegan habitualmente a partir del mes 5-6. Nunca prometemos resultados inmediatos porque el crecimiento real no funciona así.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Necesitamos un equipo de ventas grande?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-ans"><div class="faq-ans-in">No. Trabajamos con el equipo que ya tienes. Lo que hacemos es darle un sistema, un protocolo y las herramientas para que convierta más con el mismo esfuerzo.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Qué incluye la auditoría estratégica gratuita?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-ans"><div class="faq-ans-in">Una llamada de 30-45 minutos donde analizamos tu clínica, tus tratamientos más rentables y tu proceso actual. Te damos un diagnóstico honesto del mayor potencial de crecimiento — y si tiene sentido trabajar juntos.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Con qué tipos de clínica trabajáis?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-ans"><div class="faq-ans-in">Nos especializamos en clínicas privadas con tratamientos de alto ticket: dental, estética, capilar, medicina estética y cirugía. No trabajamos con clínicas de atención primaria ni centros de salud pública.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══ -->
+<section class="sec-cta" id="auditoria">
+  <h2 class="cta-t" data-reveal>
+    Solicita tu auditoría<br>
+    <em>estratégica gratuita</em>
+  </h2>
+  <p class="cta-sub" data-reveal data-d="1">30 minutos. Sin compromiso. Con un diagnóstico real de tu clínica.</p>
+  <form class="cta-form" data-reveal data-d="2" onsubmit="handleForm(event)">
+    <input type="email" class="cta-inp" placeholder="tu@email.com" aria-label="Tu correo electrónico" required>
+    <button type="submit" class="cta-btn">Solicitar auditoría →</button>
+  </form>
+  <p class="cta-note" data-reveal data-d="3">Solo contactamos clínicas con las que creemos que podemos ayudar. Sin spam.</p>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-in">
+    <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="foot-logo">
+    <p class="foot-copy">© 2025 Vértigo Labs. Todos los derechos reservados.</p>
+    <ul class="foot-links">
+      <li><a href="#">Privacidad</a></li>
+      <li><a href="#">Aviso legal</a></li>
+      <li><a href="mailto:hola@vertigolabs.es">hola@vertigolabs.es</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+// ── TIGHTROPE ──
+const fill = document.getElementById('rope-fill');
+const walker = document.getElementById('rope-walker');
+function updateRope(){
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const p = max > 0 ? Math.min(Math.max((window.scrollY/max)*100,1.5),96) : 1.5;
+  fill.style.width = p+'%'; walker.style.left = p+'%';
+}
+
+// ── NAV ──
+const nav = document.getElementById('nav');
+function updateNav(){ nav.classList.toggle('scrolled', window.scrollY > 50); }
+
+// ── REVEAL ──
+const revEls = document.querySelectorAll('[data-reveal]');
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target);} });
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+revEls.forEach(el=>revObs.observe(el));
+
+// ── COUNTERS ──
+const cntObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){runCounter(e.target);cntObs.unobserve(e.target);} });
+},{threshold:.5});
+document.querySelectorAll('[data-counter]').forEach(el=>cntObs.observe(el));
+function runCounter(el){
+  const target=+el.dataset.target, sfx=el.dataset.sfx||'', dur=1800, t0=performance.now();
+  const tick=now=>{
+    const p=Math.min((now-t0)/dur,1), eased=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*eased)+sfx;
+    if(p<1) requestAnimationFrame(tick);
+  }; requestAnimationFrame(tick);
+}
+
+// ── FAQ ──
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const btn=item.querySelector('.faq-q'), ans=item.querySelector('.faq-ans');
+  btn.addEventListener('click',()=>{
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-ans').style.maxHeight='0';
+      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if(!open){ item.classList.add('open'); ans.style.maxHeight=ans.scrollHeight+'px'; btn.setAttribute('aria-expanded','true'); }
+  });
+});
+
+// ── FORM ──
+function handleForm(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.cta-btn');
+  btn.textContent='¡Recibido! Te contactamos pronto.';
+  btn.style.opacity='.7'; btn.disabled=true;
+}
+
+// ── HERO WAVE PARALLAX ──
+const heroWave = document.getElementById('heroWave');
+const heroSection = document.querySelector('.hero');
+
+let rafId = null;
+let lastScrollY = -1;
+
+function updateParallax() {
+  rafId = null;
+  const scrollY = window.scrollY;
+  if (scrollY === lastScrollY) return;
+  lastScrollY = scrollY;
+
+  if (!heroWave || !heroSection) return;
+  const heroH = heroSection.offsetHeight;
+  const progress = Math.min(scrollY / heroH, 1);
+
+  // Parallax suave sobre el img interior
+  const img = heroWave.querySelector('img');
+  if (img) {
+    const ty = -(scrollY * 0.22);
+    img.style.transform = `translateY(${ty}px) scale(${1 + progress * 0.08})`;
+  }
+  const fadeStart = 0.7;
+  const op = progress < fadeStart ? 1 : Math.max(1 - ((progress - fadeStart) / 0.3), 0);
+  heroWave.style.opacity = op;
+}
+
+function onScroll() {
+  updateRope();
+  updateNav();
+  if (!rafId) rafId = requestAnimationFrame(updateParallax);
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+updateRope(); updateNav(); updateParallax();
+
+// ── ROTATING HERO WORD ──
+(function(){
+  const words = [
+    'Sin más caos.',
+    'Con los mismos sistemas.',
+    'Sin depender de descuentos.'
+  ];
+  const el = document.getElementById('hero-word');
+  if (!el) return;
+  let idx = 0;
+  setInterval(function() {
+    // Exit: slide up + fade
+    el.classList.add('exiting');
+    setTimeout(function() {
+      idx = (idx + 1) % words.length;
+      el.textContent = words[idx];
+      el.classList.remove('exiting');
+      el.classList.add('entering');
+      // Force reflow so transition fires
+      el.offsetHeight;
+      el.classList.remove('entering');
+    }, 290);
+  }, 2800);
+})();
+</script>
+</body>
+</html>
