@@ -110,17 +110,22 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── MÉTODO ── */
 .sec-metodo{background:var(--white);border-top:1px solid var(--border)}
 .phases{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);margin-top:5rem}
-.phase{padding:3rem 2.5rem;border-right:1px solid var(--border);transition:background .3s}
+.phase{display:flex;flex-direction:column;border-right:1px solid var(--border);transition:background .3s}
 .phase:last-child{border-right:none}
 .phase:hover{background:var(--cream)}
-.phase-n{font-family:var(--serif);font-size:5rem;font-weight:400;color:var(--cream3);line-height:1;margin-bottom:1.5rem;transition:color .3s}
-.phase:hover .phase-n{color:var(--cream2)}
-.phase-t{font-family:var(--serif);font-size:1.625rem;font-weight:400;color:var(--ink);margin-bottom:.875rem}
+.phase-img-wrap{aspect-ratio:4/3;overflow:hidden;border-bottom:1px solid var(--border);background:var(--cream)}
+.phase-img-wrap img{width:100%;height:100%;object-fit:contain;padding:1.5rem;transition:transform .6s var(--ease)}
+.phase:hover .phase-img-wrap img{transform:scale(1.04)}
+.phase-body{padding:2.5rem 2.5rem 3rem;flex:1;display:flex;flex-direction:column}
+.phase-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem}
+.phase-n{font-family:var(--serif);font-size:2.25rem;font-weight:400;color:var(--cream3);line-height:1;transition:color .3s}
+.phase:hover .phase-n{color:var(--ink4)}
+.phase-t{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ink)}
 .phase-d{font-size:.9rem;line-height:1.8;color:var(--ink3)}
-.phase-list{margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border);list-style:none}
+.phase-list{margin-top:auto;padding-top:2rem;border-top:1px solid var(--border);list-style:none}
 .phase-list li{display:flex;gap:.625rem;font-size:.8125rem;color:var(--ink4);margin-bottom:.625rem;align-items:flex-start}
 .phase-list li::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--ink3);margin-top:.45rem;flex-shrink:0}
-@media(max-width:900px){.phases{grid-template-columns:1fr}.phase{border-right:none;border-bottom:1px solid var(--border)}.phase:last-child{border-bottom:none}}
+@media(max-width:900px){.phases{grid-template-columns:1fr}.phase{border-right:none;border-bottom:1px solid var(--border)}.phase:last-child{border-bottom:none}.phase-img-wrap{aspect-ratio:16/7}}
 
 /* ── DIFERENCIA ── */
 .sec-dif{background:var(--cream);border-top:1px solid var(--border)}
@@ -351,37 +356,58 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
     </p>
     <div class="phases">
       <div class="phase" data-reveal data-d="2">
-        <div class="phase-n">01</div>
-        <h3 class="phase-t">Estrategia</h3>
-        <p class="phase-d">Analizamos tu clínica para identificar qué tratamientos tienen mayor potencial y diseñamos el mapa del crecimiento.</p>
-        <ul class="phase-list">
-          <li>Análisis de tratamientos y márgenes</li>
-          <li>Definición del público objetivo</li>
-          <li>Mapa del proceso de venta actual</li>
-          <li>Posicionamiento y propuesta de valor</li>
-        </ul>
+        <div class="phase-img-wrap">
+          <img src="metodo-estrategia.png" alt="Estrategia — Método Vértigo">
+        </div>
+        <div class="phase-body">
+          <div class="phase-header">
+            <span class="phase-n">01</span>
+            <h3 class="phase-t">Estrategia</h3>
+          </div>
+          <p class="phase-d">Analizamos tu clínica para identificar qué tratamientos tienen mayor potencial y diseñamos el mapa del crecimiento.</p>
+          <ul class="phase-list">
+            <li>Análisis de tratamientos y márgenes</li>
+            <li>Definición del público objetivo</li>
+            <li>Mapa del proceso de venta actual</li>
+            <li>Posicionamiento y propuesta de valor</li>
+          </ul>
+        </div>
       </div>
       <div class="phase" data-reveal data-d="3">
-        <div class="phase-n">02</div>
-        <h3 class="phase-t">Captación</h3>
-        <p class="phase-d">Diseñamos y optimizamos campañas de Meta Ads con estrategia real: mensajes, oferta y creatividades. Tú grabas. Nosotros convertimos.</p>
-        <ul class="phase-list">
-          <li>Estrategia de campañas Meta Ads</li>
-          <li>Diseño de oferta y mensajes</li>
-          <li>Guiones de creatividades para la clínica</li>
-          <li>Optimización y escala de resultados</li>
-        </ul>
+        <div class="phase-img-wrap">
+          <img src="metodo-captacion.png" alt="Captación — Método Vértigo">
+        </div>
+        <div class="phase-body">
+          <div class="phase-header">
+            <span class="phase-n">02</span>
+            <h3 class="phase-t">Captación</h3>
+          </div>
+          <p class="phase-d">Diseñamos y optimizamos campañas de Meta Ads con estrategia real: mensajes, oferta y creatividades. Tú grabas. Nosotros convertimos.</p>
+          <ul class="phase-list">
+            <li>Estrategia de campañas Meta Ads</li>
+            <li>Diseño de oferta y mensajes</li>
+            <li>Guiones de creatividades para la clínica</li>
+            <li>Optimización y escala de resultados</li>
+          </ul>
+        </div>
       </div>
       <div class="phase" data-reveal data-d="4">
-        <div class="phase-n">03</div>
-        <h3 class="phase-t">Conversión</h3>
-        <p class="phase-d">Optimizamos el proceso comercial interno: seguimiento, CRM, tiempos y scripts. No vendemos por ti — hacemos que tu equipo lo haga mejor.</p>
-        <ul class="phase-list">
-          <li>Implementación y configuración de CRM</li>
-          <li>Scripts y guiones de seguimiento</li>
-          <li>Protocolos de respuesta y tiempos</li>
-          <li>Formación al equipo comercial</li>
-        </ul>
+        <div class="phase-img-wrap">
+          <img src="metodo-conversion.png" alt="Conversión — Método Vértigo">
+        </div>
+        <div class="phase-body">
+          <div class="phase-header">
+            <span class="phase-n">03</span>
+            <h3 class="phase-t">Conversión</h3>
+          </div>
+          <p class="phase-d">Optimizamos el proceso comercial interno: seguimiento, CRM, tiempos y scripts. No vendemos por ti — hacemos que tu equipo lo haga mejor.</p>
+          <ul class="phase-list">
+            <li>Implementación y configuración de CRM</li>
+            <li>Scripts y guiones de seguimiento</li>
+            <li>Protocolos de respuesta y tiempos</li>
+            <li>Formación al equipo comercial</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
