@@ -109,23 +109,20 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 /* ── MÉTODO ── */
 .sec-metodo{background:var(--white);border-top:1px solid var(--border)}
-.phases{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);margin-top:5rem}
-.phase{display:flex;flex-direction:column;border-right:1px solid var(--border);transition:background .3s}
-.phase:last-child{border-right:none}
-.phase:hover{background:var(--cream)}
-.phase-img-wrap{aspect-ratio:4/3;overflow:hidden;border-bottom:1px solid var(--border);background:var(--cream)}
-.phase-img-wrap img{width:100%;height:100%;object-fit:contain;padding:1.5rem;transition:transform .6s var(--ease)}
-.phase:hover .phase-img-wrap img{transform:scale(1.04)}
-.phase-body{padding:2.5rem 2.5rem 3rem;flex:1;display:flex;flex-direction:column}
-.phase-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem}
-.phase-n{font-family:var(--serif);font-size:2.25rem;font-weight:400;color:var(--cream3);line-height:1;transition:color .3s}
-.phase:hover .phase-n{color:var(--ink4)}
-.phase-t{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ink)}
-.phase-d{font-size:.9rem;line-height:1.8;color:var(--ink3)}
-.phase-list{margin-top:auto;padding-top:2rem;border-top:1px solid var(--border);list-style:none}
-.phase-list li{display:flex;gap:.625rem;font-size:.8125rem;color:var(--ink4);margin-bottom:.625rem;align-items:flex-start}
-.phase-list li::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--ink3);margin-top:.45rem;flex-shrink:0}
-@media(max-width:900px){.phases{grid-template-columns:1fr}.phase{border-right:none;border-bottom:1px solid var(--border)}.phase:last-child{border-bottom:none}.phase-img-wrap{aspect-ratio:16/7}}
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:5rem}
+.phase{display:flex;flex-direction:column;background:#F9F6F1;border:1px solid var(--border);transition:border-color .3s}
+.phase:hover{border-color:var(--ink4)}
+.phase-img-wrap{position:relative;overflow:hidden;background:#F9F6F1}
+.phase-img-wrap img{width:100%;aspect-ratio:3/2;object-fit:contain;padding:1.5rem 2rem 0;display:block;transition:transform .7s var(--ease)}
+.phase:hover .phase-img-wrap img{transform:scale(1.03) translateY(-4px)}
+.phase-n{position:absolute;bottom:-.15em;right:.5rem;font-family:var(--serif);font-size:7rem;font-weight:400;font-style:italic;color:var(--ink);opacity:.07;line-height:1;pointer-events:none;user-select:none}
+.phase-body{padding:.5rem 2.5rem 2.5rem;flex:1;display:flex;flex-direction:column}
+.phase-t{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:.75rem}
+.phase-d{font-size:.875rem;line-height:1.85;color:var(--ink3)}
+.phase-list{margin-top:auto;padding-top:1.75rem;list-style:none}
+.phase-list li{display:flex;gap:.625rem;font-size:.8rem;color:var(--ink4);margin-bottom:.5rem;align-items:flex-start}
+.phase-list li::before{content:'';display:block;width:3px;height:3px;border-radius:50%;background:var(--ink3);margin-top:.5rem;flex-shrink:0}
+@media(max-width:960px){.phases{grid-template-columns:1fr;gap:1rem}.phase-img-wrap img{aspect-ratio:16/7;padding:1.5rem 2rem 0}}
 
 /* ── DIFERENCIA ── */
 .sec-dif{background:var(--cream);border-top:1px solid var(--border)}
@@ -357,13 +354,11 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
     <div class="phases">
       <div class="phase" data-reveal data-d="2">
         <div class="phase-img-wrap">
+          <span class="phase-n">01</span>
           <img src="metodo-estrategia.png" alt="Estrategia — Método Vértigo">
         </div>
         <div class="phase-body">
-          <div class="phase-header">
-            <span class="phase-n">01</span>
-            <h3 class="phase-t">Estrategia</h3>
-          </div>
+          <h3 class="phase-t">Estrategia</h3>
           <p class="phase-d">Analizamos tu clínica para identificar qué tratamientos tienen mayor potencial y diseñamos el mapa del crecimiento.</p>
           <ul class="phase-list">
             <li>Análisis de tratamientos y márgenes</li>
@@ -375,13 +370,11 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
       </div>
       <div class="phase" data-reveal data-d="3">
         <div class="phase-img-wrap">
+          <span class="phase-n">02</span>
           <img src="metodo-captacion.png" alt="Captación — Método Vértigo">
         </div>
         <div class="phase-body">
-          <div class="phase-header">
-            <span class="phase-n">02</span>
-            <h3 class="phase-t">Captación</h3>
-          </div>
+          <h3 class="phase-t">Captación</h3>
           <p class="phase-d">Diseñamos y optimizamos campañas de Meta Ads con estrategia real: mensajes, oferta y creatividades. Tú grabas. Nosotros convertimos.</p>
           <ul class="phase-list">
             <li>Estrategia de campañas Meta Ads</li>
@@ -393,13 +386,11 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
       </div>
       <div class="phase" data-reveal data-d="4">
         <div class="phase-img-wrap">
+          <span class="phase-n">03</span>
           <img src="metodo-conversion.png" alt="Conversión — Método Vértigo">
         </div>
         <div class="phase-body">
-          <div class="phase-header">
-            <span class="phase-n">03</span>
-            <h3 class="phase-t">Conversión</h3>
-          </div>
+          <h3 class="phase-t">Conversión</h3>
           <p class="phase-d">Optimizamos el proceso comercial interno: seguimiento, CRM, tiempos y scripts. No vendemos por ti — hacemos que tu equipo lo haga mejor.</p>
           <ul class="phase-list">
             <li>Implementación y configuración de CRM</li>
@@ -791,7 +782,7 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 // ── FORM ──
 // ── FORMULARIO GHL ──
 // Pega aquí tu webhook URL de GHL (Automatizaciones → Webhook entrante)
-const GHL_WEBHOOK_URL = 'TU_WEBHOOK_URL_AQUI';
+const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/zFjScTfgIl2WotsxzkuS/webhook-trigger/302801c7-74ea-451c-acc2-df30120a1ff3';
 
 async function handleForm(e){
   e.preventDefault();
