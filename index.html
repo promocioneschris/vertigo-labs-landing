@@ -126,14 +126,21 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 /* ── DIFERENCIA ── */
 .sec-dif{background:var(--cream);border-top:1px solid var(--border)}
-.dif-table{width:100%;border-collapse:collapse;margin-top:4rem;border:1px solid var(--border)}
-.dif-table th{padding:1.25rem 1.75rem;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-align:left;background:var(--white);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
-.dif-table th:last-child{border-right:none;background:var(--ink);color:var(--white)}
-.dif-table td{padding:1.25rem 1.75rem;border-bottom:1px solid var(--border);border-right:1px solid var(--border);font-size:.9rem;color:var(--ink3);vertical-align:top}
-.dif-table td:first-child{font-weight:500;color:var(--ink);background:var(--white);width:28%}
-.dif-table td:last-child{border-right:none;background:rgba(20,20,20,.03);color:var(--ink);font-weight:500}
-.dif-table tr:last-child td{border-bottom:none}
-.dif-x{color:var(--ink4)}.dif-ok{color:var(--ink2)}
+.dif-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:4rem}
+.dif-table tbody tr td{border-bottom:1px solid var(--border)}
+.dif-table th{padding:1rem 2rem 1.25rem;font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-align:left}
+.dif-table th:nth-child(2){color:var(--ink4)}
+.dif-table th:last-child{color:var(--white);background:var(--ink);border-radius:12px 12px 0 0;box-shadow:-8px -8px 28px rgba(0,0,0,.1),8px -8px 28px rgba(0,0,0,.1),0 -4px 0 rgba(0,0,0,.05);position:relative;z-index:2}
+.dif-table tbody tr{transition:background .2s}
+.dif-table tbody tr:last-child td{border-bottom:none}
+.dif-table td{padding:1.375rem 2rem;font-size:.9375rem;vertical-align:middle}
+.dif-table td:first-child{font-weight:500;color:var(--ink);width:30%}
+.dif-table td:nth-child(2){color:var(--ink4);font-weight:300}
+.dif-table td:last-child{color:var(--ink);font-weight:500;background:var(--white);box-shadow:-8px 0 28px rgba(0,0,0,.09),8px 0 28px rgba(0,0,0,.09);position:relative;z-index:2}
+.dif-table tr:last-child td:last-child{border-radius:0 0 12px 12px;box-shadow:-8px 8px 28px rgba(0,0,0,.1),8px 8px 28px rgba(0,0,0,.1),0 4px 0 rgba(0,0,0,.05)}
+.dif-x{display:none}
+.dif-ok{display:inline-block;width:18px;height:18px;background:var(--ink);color:var(--white);border-radius:50%;font-size:.6rem;text-align:center;line-height:18px;margin-right:.5rem;flex-shrink:0}
+@media(max-width:680px){.dif-table td:nth-child(2){display:none}.dif-table th:nth-child(2){display:none}}
 
 /* ── TESTIMONIOS — SCROLLING COLUMNS ── */
 .sec-test{background:var(--white);border-top:1px solid var(--border);overflow:hidden}
@@ -436,11 +443,6 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
             <td>Estrategia de negocio</td>
             <td><span class="dif-x">—</span> Ejecutan lo que les pides</td>
             <td><span class="dif-ok">✓</span> Definimos qué hacer y por qué</td>
-          </tr>
-          <tr>
-            <td>Gestión de redes sociales</td>
-            <td><span class="dif-x">—</span> Crean contenido recurrente</td>
-            <td><span class="dif-ok">✓</span> No lo hacemos — no es lo que da ROI</td>
           </tr>
           <tr>
             <td>Métricas de éxito</td>
