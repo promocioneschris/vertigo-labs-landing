@@ -82,11 +82,12 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── STATS ── */
 .stats-bar{background:var(--white);border-bottom:1px solid var(--border)}
 .stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stats-grid-3{grid-template-columns:repeat(3,1fr)}
 .stat-item{padding:3rem 2rem;border-right:1px solid var(--border)}
 .stat-item:last-child{border-right:none}
 .stat-num{font-family:var(--serif);font-size:clamp(2.25rem,3.5vw,3.25rem);font-weight:400;color:var(--ink);line-height:1;margin-bottom:.375rem}
 .stat-lbl{font-size:.8rem;font-weight:400;color:var(--ink3);letter-spacing:.04em}
-@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-item{border-bottom:1px solid var(--border)}}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-item{border-bottom:1px solid var(--border)}.stats-grid-3{grid-template-columns:1fr}.stats-grid-3 .stat-item{border-right:none}}
 
 /* ── SECTION BASE ── */
 .sec{padding:8rem 5%}
@@ -121,11 +122,12 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .phase-n{position:absolute;bottom:-.15em;right:.5rem;font-family:var(--serif);font-size:7rem;font-weight:400;font-style:italic;color:var(--ink);opacity:.07;line-height:1;pointer-events:none;user-select:none}
 .phase-body{padding:.5rem 2.5rem 2.5rem;flex:1;display:flex;flex-direction:column}
 .phase-t{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:.75rem}
-.phase-d{font-size:.875rem;line-height:1.85;color:var(--ink3)}
+.phase-d{font-size:.875rem;line-height:1.85;color:var(--ink2)}
 .phase-list{margin-top:auto;padding-top:1.75rem;list-style:none}
-.phase-list li{display:flex;gap:.625rem;font-size:.8rem;color:var(--ink4);margin-bottom:.5rem;align-items:flex-start}
+.phase-list li{display:flex;gap:.625rem;font-size:.8rem;color:var(--ink2);margin-bottom:.5rem;align-items:flex-start}
 .phase-list li::before{content:'';display:block;width:3px;height:3px;border-radius:50%;background:var(--ink3);margin-top:.5rem;flex-shrink:0}
 @media(max-width:960px){.phases{grid-template-columns:1fr;gap:1rem}.phase-img-wrap img{aspect-ratio:16/7;padding:1.5rem 2rem 0}}
+@media(max-width:600px){.phase-img-wrap img{aspect-ratio:4/3;padding:1.25rem 1.25rem 0}.phase-body{padding:.5rem 1.5rem 2rem}.phase-t{font-size:1.75rem;margin-bottom:1rem}.phase-d{font-size:1rem;line-height:1.75}.phase-list{padding-top:1.5rem}.phase-list li{font-size:.95rem;gap:.75rem;margin-bottom:.75rem}.phase-list li::before{width:4px;height:4px;margin-top:.55em}.phase-n{font-size:5.5rem}}
 
 /* ── DIFERENCIA ── */
 .sec-dif{background:var(--cream);border-top:1px solid var(--border)}
@@ -197,6 +199,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── CTA ── */
 .sec-cta{background:var(--ink);padding:10rem 5%;text-align:center;position:relative;overflow:hidden}
 .cta-t{font-family:var(--serif);font-size:clamp(2.5rem,5.5vw,5rem);font-weight:400;color:var(--white);letter-spacing:-.02em;margin-bottom:1rem;line-height:1.1}
+.cta-t-sentence{font-size:clamp(1.75rem,3.4vw,2.75rem);max-width:640px;margin-left:auto;margin-right:auto;margin-bottom:3rem}
 .cta-t em{font-style:italic;color:rgba(255,255,255,.5)}
 .cta-sub{font-size:1.0625rem;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:3.5rem}
 .cta-form{display:grid;grid-template-columns:1fr 1fr;gap:.875rem;max-width:640px;margin:0 auto;text-align:left}
@@ -299,22 +302,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
 
 <!-- ══ STATS ══ -->
 <div class="stats-bar">
-  <div class="stats-grid">
+  <div class="stats-grid stats-grid-3">
     <div class="stat-item" data-reveal data-d="1">
-      <div class="stat-num" data-counter data-target="28" data-sfx="+">0+</div>
-      <div class="stat-lbl">Clínicas con el método</div>
+      <div class="stat-num" data-counter data-target="3" data-sfx=" fases">0 fases</div>
+      <div class="stat-lbl">Un método para captar, convertir y crecer</div>
     </div>
     <div class="stat-item" data-reveal data-d="2">
-      <div class="stat-num" data-counter data-target="52" data-sfx="%">0%</div>
-      <div class="stat-lbl">Incremento medio en ingresos</div>
+      <div class="stat-num" data-counter data-target="1" data-sfx=" sistema">0 sistema</div>
+      <div class="stat-lbl">Todo el proceso conectado en un mismo lugar</div>
     </div>
     <div class="stat-item" data-reveal data-d="3">
-      <div class="stat-num" data-counter data-target="3" data-sfx="">0</div>
-      <div class="stat-lbl">Fases del método</div>
-    </div>
-    <div class="stat-item" data-reveal data-d="4">
-      <div class="stat-num" data-counter data-target="6" data-sfx=" meses">0 meses</div>
-      <div class="stat-lbl">Para resultados visibles</div>
+      <div class="stat-num" data-counter data-target="100" data-sfx=" % medible">0 % medible</div>
+      <div class="stat-lbl">Desde el primer contacto hasta la venta</div>
     </div>
   </div>
 </div>
@@ -452,17 +451,17 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
           </tr>
           <tr>
             <td>Proceso de venta</td>
-            <td><span class="dif-x">—</span> No lo tocan</td>
+            <td><span class="dif-x">—</span> No trabajan proceso de ventas</td>
             <td><span class="dif-ok">✓</span> Lo optimizamos de raíz</td>
           </tr>
           <tr>
             <td>Estrategia de negocio</td>
-            <td><span class="dif-x">—</span> Ejecutan lo que les pides</td>
+            <td><span class="dif-x">—</span> Solo ejecutan</td>
             <td><span class="dif-ok">✓</span> Definimos qué hacer y por qué</td>
           </tr>
           <tr>
             <td>Métricas de éxito</td>
-            <td><span class="dif-x">—</span> Impresiones y CTR</td>
+            <td><span class="dif-x">—</span> Impresiones y coste por click</td>
             <td><span class="dif-ok">✓</span> Tratamientos vendidos y facturación</td>
           </tr>
           <tr>
@@ -484,19 +483,19 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
         <div class="dif-mobile-label">Proceso de venta</div>
         <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Lo optimizamos de raíz</div>
         <div class="dif-mobile-vs-label">Agencia tradicional</div>
-        <div class="dif-mobile-agencia">No lo tocan</div>
+        <div class="dif-mobile-agencia">No trabajan proceso de ventas</div>
       </div>
       <div class="dif-mobile-item">
         <div class="dif-mobile-label">Estrategia de negocio</div>
         <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Definimos qué hacer y por qué</div>
         <div class="dif-mobile-vs-label">Agencia tradicional</div>
-        <div class="dif-mobile-agencia">Ejecutan lo que les pides</div>
+        <div class="dif-mobile-agencia">Solo ejecutan</div>
       </div>
       <div class="dif-mobile-item">
         <div class="dif-mobile-label">Métricas de éxito</div>
         <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Tratamientos vendidos y facturación</div>
         <div class="dif-mobile-vs-label">Agencia tradicional</div>
-        <div class="dif-mobile-agencia">Impresiones y CTR</div>
+        <div class="dif-mobile-agencia">Impresiones y coste por click</div>
       </div>
       <div class="dif-mobile-item">
         <div class="dif-mobile-label">Equipo interno</div>
@@ -725,11 +724,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
 
 <!-- ══ CTA FINAL ══ -->
 <section class="sec-cta" id="auditoria">
-  <h2 class="cta-t" data-reveal>
-    Solicita tu auditoría<br>
-    <em>estratégica gratuita</em>
-  </h2>
-  <p class="cta-sub" data-reveal data-d="1">30 minutos. Sin compromiso. Con un diagnóstico real de tu clínica.</p>
+  <h2 class="cta-t cta-t-sentence" data-reveal>Si quieres saber más de cómo podemos ayudarte, rellena el siguiente formulario</h2>
   <form class="cta-form" id="ghl-form" data-reveal data-d="2" onsubmit="handleForm(event)">
     <div class="cta-field">
       <label class="cta-label" for="f-nombre">Nombre</label>
@@ -744,21 +739,23 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
       <input class="cta-inp" id="f-email" name="email" type="email" placeholder="maria@tuclinica.com" required>
     </div>
     <div class="cta-field full">
+      <label class="cta-label" for="f-clinica">Nombre de la clínica</label>
+      <input class="cta-inp" id="f-clinica" name="clinicName" type="text" placeholder="Clínica García" required>
+    </div>
+    <div class="cta-field full">
       <label class="cta-label" for="f-tel">Teléfono</label>
       <input class="cta-inp" id="f-tel" name="phone" type="tel" placeholder="+34 600 000 000" required>
     </div>
     <div class="cta-field full">
-      <label class="cta-label" for="f-tipo">¿En qué momento está tu clínica?</label>
-      <select class="cta-select cta-inp" id="f-tipo" name="clinicType" required>
+      <label class="cta-label" for="f-tipo">¿Cuál es tu situación actual?</label>
+      <select class="cta-select cta-inp" id="f-tipo" name="adsStatus" required>
         <option value="" disabled selected>Selecciona una opción</option>
-        <option value="starting">Estoy empezando (menos de 1 año)</option>
-        <option value="growing">Clínica en crecimiento (1–3 años)</option>
-        <option value="established">Clínica consolidada (más de 3 años)</option>
-        <option value="multi">Varios centros o especialidades</option>
-        <option value="franchise">Franquicia o grupo clínico</option>
+        <option value="running-no-sales">Hago campañas pero sin ventas</option>
+        <option value="not-running">No hago campañas</option>
+        <option value="did-in-past">Hice campañas en el pasado pero no actualmente</option>
       </select>
     </div>
-    <button type="submit" class="cta-btn" id="form-btn">Solicitar auditoría gratuita →</button>
+    <button type="submit" class="cta-btn" id="form-btn">Enviar formulario</button>
   </form>
   <div class="cta-success" id="cta-success">
     <h3 style="font-family:var(--serif);font-size:1.75rem;font-weight:400;color:var(--white)">Perfecto, te contactamos pronto.</h3>
