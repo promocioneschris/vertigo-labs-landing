@@ -206,6 +206,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 @media(max-width:900px){.about-v2{grid-template-columns:1fr;grid-template-areas:"title" "photo" "body";gap:0}.about-huge{margin-bottom:1.5rem}.about-visual{padding-top:0;margin-bottom:2rem}.about-circle{width:56%;bottom:-6%;left:-8%}.about-photo{width:78%}.about-signature{width:78%}}
 @media(max-width:600px){.about-huge{font-size:clamp(2.75rem,12vw,3.5rem)}.about-photo{width:88%}.about-signature{width:88%;font-size:1.25rem}.about-circle{width:65%}}
 
+/* ── CTA INTERMEDIA ── */
+.inline-cta{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 5%;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.5rem;text-align:center}
+.inline-cta-text{font-family:var(--serif);font-size:clamp(1.25rem,2.2vw,1.625rem);color:var(--ink);font-style:italic}
+@media(max-width:600px){.inline-cta{padding:2.5rem 5%;flex-direction:column}}
+
 /* ── FAQs ── */
 .sec-faq{background:var(--cream);border-top:1px solid var(--border)}
 .faq-wrap{max-width:780px;margin-top:4rem;border-top:1px solid var(--border)}
@@ -528,6 +533,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
   </div>
 </section>
 
+<!-- ══ CTA INTERMEDIA ══ -->
+<div class="inline-cta" data-reveal="fade">
+  <p class="inline-cta-text">¿Hablamos de tu clínica?</p>
+  <a href="#auditoria" class="btn-dark">Analizamos tu caso</a>
+</div>
+
 <!-- ══ TESTIMONIOS ══ -->
 <section class="sec sec-test" id="testimonios">
   <div class="sec-inner">
@@ -736,6 +747,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:
     </div>
   </div>
 </section>
+
+<!-- ══ CTA INTERMEDIA ══ -->
+<div class="inline-cta" data-reveal="fade">
+  <p class="inline-cta-text">¿Te ayudamos a crecer?</p>
+  <a href="#auditoria" class="btn-dark">Habla con nosotros</a>
+</div>
 
 <!-- ══ FAQs ══ -->
 <section class="sec sec-faq" id="faqs">
