@@ -37,6 +37,9 @@ a{text-decoration:none;color:inherit}
 .hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem;margin-top:3rem}
 .hub-card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:2.1rem 2.1rem 1.9rem;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s;box-shadow:0 1px 2px rgba(20,20,20,.05),0 18px 30px -20px rgba(20,20,20,.16)}
 .hub-card:hover{transform:translateY(-4px);border-color:var(--ink4);box-shadow:0 1px 2px rgba(20,20,20,.06),0 26px 44px -22px rgba(20,20,20,.24)}
+.hub-card--extra{grid-column:1/-1;border-color:var(--gold)}
+.hub-card--extra:hover{border-color:var(--gold)}
+.hub-card--extra .hub-n{color:var(--gold)}
 .hub-card-top{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem}
 .hub-ico{flex:0 0 40px;width:40px;height:40px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold)}
 .hub-ico svg{width:19px;height:19px}
@@ -106,13 +109,13 @@ a{text-decoration:none;color:inherit}
 
     <a class="hub-card" href="#" target="_blank" rel="noopener">
       <div class="hub-card-top">
-        <span class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg></span>
-        <span class="hub-kind">Herramienta</span>
+        <span class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
+        <span class="hub-kind">PDF</span>
         <span class="hub-n">03</span>
       </div>
       <h2 class="hub-t">Los números que importan</h2>
-      <p class="hub-d">Calculadora para saber cuánto te cuesta de verdad generar negocio: coste por cita, coste por asistencia, CAC, conversión y ROAS.</p>
-      <span class="hub-btn">Abrir la calculadora →</span>
+      <p class="hub-d">Deja de medir clics. Empieza a medir negocio: coste por cita, coste por asistencia, CAC, conversión y ROAS.</p>
+      <span class="hub-btn">Abrir el PDF →</span>
     </a>
 
     <a class="hub-card" href="#" target="_blank" rel="noopener">
@@ -124,6 +127,17 @@ a{text-decoration:none;color:inherit}
       <h2 class="hub-t">El proceso que convierte</h2>
       <p class="hub-d">Cómo combinar automatización, seguimiento y atención humana para que ninguna oportunidad se quede sin respuesta.</p>
       <span class="hub-btn">Abrir el PDF →</span>
+    </a>
+
+    <a class="hub-card hub-card--extra" href="calculadora-inversion.html" target="_blank" rel="noopener">
+      <div class="hub-card-top">
+        <span class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><circle cx="8.6" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="12" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="15.4" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="8.6" cy="15" r=".55" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r=".55" fill="currentColor" stroke="none"/><circle cx="15.4" cy="15" r=".55" fill="currentColor" stroke="none"/><path d="M8.3 18.4h7.4"/></svg></span>
+        <span class="hub-kind">Herramienta</span>
+        <span class="hub-n">Extra</span>
+      </div>
+      <h2 class="hub-t">¿Qué necesitas invertir?</h2>
+      <p class="hub-d">Introduce las métricas de tu clínica y calcula qué tendría que ocurrir en cada etapa del embudo para llegar a tu próximo objetivo de facturación.</p>
+      <span class="hub-btn">Abrir la calculadora →</span>
     </a>
 
   </div>
