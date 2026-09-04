@@ -191,9 +191,22 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .cta-btn:hover{opacity:.88}
 .cta-btn:disabled{opacity:.5;cursor:not-allowed}
 .cta-note{font-size:.78rem;color:rgba(255,255,255,.25);margin-top:1.4rem}
-.cta-success{display:none;text-align:center;padding:2.5rem;border:1px solid rgba(255,255,255,.12);border-radius:2px;max-width:440px;margin:0 auto}
-.cta-success h3{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--white)}
-.cta-success p{color:rgba(255,255,255,.55);font-size:.9rem;margin-top:.6rem;line-height:1.6}
+
+/* ── MODAL FORMULARIO ── */
+.modal-ov{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(20,20,20,.55);backdrop-filter:blur(4px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s var(--ease),visibility .3s}
+.modal-ov.open{opacity:1;visibility:visible;pointer-events:auto}
+.modal{position:relative;width:100%;max-width:480px;max-height:calc(100vh - 3rem);overflow-y:auto;background:var(--ink);border-radius:6px;padding:2.9rem 2.4rem 2.5rem;box-shadow:0 40px 90px -20px rgba(0,0,0,.6);transform:translateY(18px) scale(.98);transition:transform .35s var(--ease)}
+.modal-ov.open .modal{transform:none}
+.modal-close{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);background:rgba(255,255,255,.06);border:none;cursor:pointer;transition:color .2s,background .2s}
+.modal-close:hover{color:var(--white);background:rgba(255,255,255,.12)}
+.modal-close svg{width:15px;height:15px}
+.modal-eyebrow{display:block;font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.9rem}
+.modal-t{font-family:var(--serif);font-size:1.7rem;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:.45rem}
+.modal-t em{font-style:italic;color:rgba(255,255,255,.5)}
+.modal-sub{font-size:.92rem;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:1.7rem}
+.modal .cta-form{margin:0}
+.modal .cta-note{text-align:center;margin-top:1.15rem}
+body.modal-lock{overflow:hidden}
 
 /* ── FOOTER ── */
 footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:2.75rem 5%}
@@ -480,50 +493,64 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
   </div>
 </section>
 
-<!-- ══ CTA / FORM ══ -->
+<!-- ══ CTA FINAL ══ -->
 <section class="sec-cta" id="acceder">
   <span class="cta-eyebrow" data-reveal="fade">Acceso gratuito</span>
   <h2 class="cta-t" data-reveal data-d="1">Accede gratis a los <em>4 recursos.</em></h2>
   <p class="cta-sub" data-reveal data-d="2">Te llegan al email. Sin coste.</p>
-  <form class="cta-form" id="rec-form" data-reveal data-d="2" onsubmit="handleForm(event)">
-    <div class="cta-field">
-      <label class="cta-label" for="f-nombre">Nombre</label>
-      <input class="cta-inp" id="f-nombre" name="firstName" type="text" placeholder="Tu nombre" required>
-    </div>
-    <div class="cta-field">
-      <label class="cta-label" for="f-email">Email</label>
-      <input class="cta-inp" id="f-email" name="email" type="email" placeholder="Tu correo electrónico" required>
-    </div>
-    <div class="cta-field">
-      <label class="cta-label" for="f-clinica">Nombre de la clínica</label>
-      <input class="cta-inp" id="f-clinica" name="clinicName" type="text" placeholder="Tu clínica" required>
-    </div>
-    <div class="cta-field">
-      <label class="cta-label" for="f-facturacion">¿Cuánto factura tu clínica al mes?</label>
-      <select class="cta-select" id="f-facturacion" name="billing" required>
-        <option value="" disabled selected>Selecciona una opción</option>
-        <option value="Menos de 25.000 €/mes">Menos de 25.000 €/mes</option>
-        <option value="Entre 25.000 € y 75.000 €/mes">Entre 25.000 € y 75.000 €/mes</option>
-        <option value="Más de 75.000 €/mes">Más de 75.000 €/mes</option>
-      </select>
-    </div>
-    <div class="cta-field">
-      <label class="cta-label" for="f-ads">¿Cuánto inviertes en publicidad (Ads) al mes?</label>
-      <select class="cta-select" id="f-ads" name="adSpend" required>
-        <option value="" disabled selected>Selecciona una opción</option>
-        <option value="Menos de 1.000 €/mes">Menos de 1.000 €/mes</option>
-        <option value="Entre 1.000 € y 3.000 €/mes">Entre 1.000 € y 3.000 €/mes</option>
-        <option value="Más de 3.000 €/mes">Más de 3.000 €/mes</option>
-      </select>
-    </div>
-    <label class="cta-check">
-      <input type="checkbox" id="f-consent" name="consent" required>
-      <span>Acepto que Vértigo Labs trate mis datos para enviarme los recursos e información sobre sus servicios, según la <a href="privacidad.html" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
-    </label>
-    <button type="submit" class="cta-btn" id="form-btn">Acceder gratis →</button>
-  </form>
+  <div data-reveal data-d="2"><button type="button" class="cta-btn js-open-form">Acceder gratis →</button></div>
   <p class="cta-note" data-reveal data-d="3">Recibirás el acceso por email.</p>
 </section>
+
+<!-- ══ MODAL FORMULARIO ══ -->
+<div class="modal-ov" id="formModal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal">
+    <button type="button" class="modal-close" id="modal-close" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <span class="modal-eyebrow">Acceso gratuito</span>
+    <h3 class="modal-t" id="modal-title">Accede gratis a los <em>4 recursos.</em></h3>
+    <p class="modal-sub">Déjanos tus datos y te los enviamos al email.</p>
+    <form class="cta-form" id="rec-form" onsubmit="handleForm(event)">
+      <div class="cta-field">
+        <label class="cta-label" for="f-nombre">Nombre</label>
+        <input class="cta-inp" id="f-nombre" name="firstName" type="text" placeholder="Tu nombre" required>
+      </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-email">Email</label>
+        <input class="cta-inp" id="f-email" name="email" type="email" placeholder="Tu correo electrónico" required>
+      </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-clinica">Nombre de la clínica</label>
+        <input class="cta-inp" id="f-clinica" name="clinicName" type="text" placeholder="Tu clínica" required>
+      </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-facturacion">¿Cuánto factura tu clínica al mes?</label>
+        <select class="cta-select" id="f-facturacion" name="billing" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="Menos de 25.000 €/mes">Menos de 25.000 €/mes</option>
+          <option value="Entre 25.000 € y 75.000 €/mes">Entre 25.000 € y 75.000 €/mes</option>
+          <option value="Más de 75.000 €/mes">Más de 75.000 €/mes</option>
+        </select>
+      </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-ads">¿Cuánto inviertes en publicidad (Ads) al mes?</label>
+        <select class="cta-select" id="f-ads" name="adSpend" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="Menos de 1.000 €/mes">Menos de 1.000 €/mes</option>
+          <option value="Entre 1.000 € y 3.000 €/mes">Entre 1.000 € y 3.000 €/mes</option>
+          <option value="Más de 3.000 €/mes">Más de 3.000 €/mes</option>
+        </select>
+      </div>
+      <label class="cta-check">
+        <input type="checkbox" id="f-consent" name="consent" required>
+        <span>Acepto que Vértigo Labs trate mis datos para enviarme los recursos e información sobre sus servicios, según la <a href="privacidad.html" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
+      </label>
+      <button type="submit" class="cta-btn" id="form-btn">Acceder gratis →</button>
+    </form>
+    <p class="cta-note">Recibirás el acceso por email.</p>
+  </div>
+</div>
 
 <!-- ══ FOOTER ══ -->
 <footer>
@@ -553,6 +580,37 @@ const revObs=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target);}});
 },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('[data-reveal]').forEach(el=>revObs.observe(el));
+
+// ── MODAL FORMULARIO ──
+const fModal=document.getElementById('formModal');
+let modalSeen=false;
+try{modalSeen=!!sessionStorage.getItem('vl_form_seen');}catch(e){}
+function openModal(){
+  if(fModal.classList.contains('open'))return;
+  fModal.classList.add('open');
+  fModal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-lock');
+  modalSeen=true;
+  try{sessionStorage.setItem('vl_form_seen','1');}catch(e){}
+  if(window.fbq)fbq('trackCustom','FormModalOpen');
+  const first=fModal.querySelector('input,select');
+  if(first)setTimeout(()=>first.focus(),350);
+}
+function closeModal(){
+  fModal.classList.remove('open');
+  fModal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-lock');
+}
+document.getElementById('modal-close').addEventListener('click',closeModal);
+fModal.addEventListener('click',e=>{if(e.target===fModal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&fModal.classList.contains('open'))closeModal();});
+document.querySelectorAll('a[href="#acceder"], .js-open-form').forEach(el=>{
+  el.addEventListener('click',e=>{e.preventDefault();openModal();});
+});
+// Auto-apertura una sola vez por sesión, a los 10 s
+if(!modalSeen){
+  setTimeout(()=>{if(!modalSeen)openModal();},10000);
+}
 
 // ── FORM ──
 // Webhook entrante de GHL (mismo que la web principal). El campo `source`
