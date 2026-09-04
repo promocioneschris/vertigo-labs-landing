@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>¿Qué necesitas invertir?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    color-scheme: light;
+    --crema: #f5f2ec;
+    --marfil: #faf8f4;
+    --negro: #151513;
+    --gris: #64635f;
+    --gris-suave: #8b897f;
+    --oliva: #4d5227;
+    --musgo: #747a4c;
+    --oliva-claro: #a4a176;
+    --arena: #c3ae7c;
+    --line: #e3ddd0;
+
+    --bg: var(--crema);
+    --surface: var(--marfil);
+    --surface-2: #ffffff;
+    --text: var(--negro);
+    --text-muted: var(--gris);
+    --accent: var(--oliva);
+    --accent-strong: #3b3f1e;
+    --accent-soft: var(--musgo);
+    --accent-warm: var(--arena);
+    --border: var(--line);
+    --footer-bg: var(--negro);
+    --footer-text: var(--crema);
+    --footer-muted: #b9b6ab;
+    --shadow: 0 1px 2px rgba(21,21,19,0.04), 0 12px 32px -16px rgba(21,21,19,0.18);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #151412;
+      --surface: #1d1c18;
+      --surface-2: #211f1a;
+      --text: #f3f0e8;
+      --text-muted: #b3ae9f;
+      --gris-suave: #8f8a7b;
+      --accent: #b7c17f;
+      --accent-strong: #d3dba0;
+      --accent-soft: #96a06a;
+      --accent-warm: #d7bd85;
+      --border: #322f27;
+      --footer-bg: #0d0c0a;
+      --footer-text: #f3f0e8;
+      --footer-muted: #8f8a7b;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #151412;
+    --surface: #1d1c18;
+    --surface-2: #211f1a;
+    --text: #f3f0e8;
+    --text-muted: #b3ae9f;
+    --gris-suave: #8f8a7b;
+    --accent: #b7c17f;
+    --accent-strong: #d3dba0;
+    --accent-soft: #96a06a;
+    --accent-warm: #d7bd85;
+    --border: #322f27;
+    --footer-bg: #0d0c0a;
+    --footer-text: #f3f0e8;
+    --footer-muted: #8f8a7b;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: "Bodoni Moda", "Times New Roman", serif; text-wrap: balance; margin: 0; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; padding: 72px 0 56px; overflow: hidden; }
+  .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.55; pointer-events: none; }
+  .hero-inner { position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    margin-top: 18px;
+    font-size: clamp(34px, 5.4vw, 56px);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero p { margin-top: 20px; max-width: 50ch; font-size: 17px; line-height: 1.6; color: var(--text-muted); }
+
+  .example-callout {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 22px; padding: 10px 18px;
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600; color: var(--accent-strong);
+  }
+  .example-callout::before { content: "●"; font-size: 8px; color: var(--accent); }
+
+  /* ---------- Calculator ---------- */
+  .calc {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-top: 32px;
+  }
+  @media (max-width: 760px) { .calc { grid-template-columns: 1fr; } }
+
+  .calc-inputs { padding: 40px; border-right: 1px solid var(--border); }
+  @media (max-width: 760px) {
+    .calc-inputs { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
+  .group-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+  }
+  .group-label:not(:first-child) { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--border); }
+
+  .field { margin-bottom: 22px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: block;
+    font-size: 12.5px; font-weight: 600;
+    color: var(--text);
+    margin-bottom: 9px;
+  }
+  .amount-input {
+    display: flex; align-items: baseline; gap: 8px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 7px;
+    transition: border-color 0.15s ease;
+  }
+  .amount-input:focus-within { border-color: var(--accent); }
+  .amount-input .unit { font-size: 18px; color: var(--text-muted); font-weight: 500; order: 2; }
+  .amount-input .unit.prefix { order: 0; }
+  .amount-input input {
+    flex: 1; min-width: 0; order: 1;
+    border: none; background: transparent; outline: none;
+    font-family: "Bodoni Moda", serif;
+    font-size: 26px;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 18px; }
+  .pct-grid .field { margin-bottom: 0; }
+
+  .reset-link {
+    margin-top: 28px;
+    background: none; border: none; padding: 0;
+    font-size: 12px; color: var(--text-muted);
+    text-decoration: underline; text-underline-offset: 2px;
+    cursor: pointer; font-family: inherit;
+  }
+  .reset-link:hover { color: var(--accent); }
+
+  /* ---------- Results ---------- */
+  .calc-results { padding: 40px; background: var(--surface-2); }
+  .funnel {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 36px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .f-step { text-align: center; }
+  .f-value {
+    font-family: "Bodoni Moda", serif;
+    font-size: 38px;
+    font-weight: 500;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.05;
+  }
+  .f-label {
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .f-connector { color: var(--border); font-size: 20px; }
+  @media (max-width: 480px) {
+    .funnel { grid-template-columns: 1fr; gap: 14px; }
+    .f-connector { display: none; }
+  }
+
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .result-card {
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 18px 16px;
+    background: var(--surface);
+  }
+  .result-card.hero-metric { grid-column: 1 / -1; background: var(--accent); border-color: var(--accent); }
+  .result-card .r-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .result-card.hero-metric .r-label { color: color-mix(in srgb, var(--bg) 78%, transparent); }
+  .result-card .r-value {
+    margin-top: 6px;
+    font-family: "Bodoni Moda", serif; font-size: 30px; font-weight: 500;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+  .result-card.hero-metric .r-value { color: var(--bg); font-size: 38px; }
+  .result-card .r-sub { margin-top: 4px; font-size: 12px; color: var(--text-muted); }
+  .result-card.hero-metric .r-sub { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+
+  /* ---------- Trust note ---------- */
+  .note {
+    position: relative; z-index: 1;
+    max-width: 640px; margin: 28px auto 0; padding: 0 4px;
+    font-size: 13px; line-height: 1.6; color: var(--text-muted);
+  }
+  .note strong { color: var(--text); font-weight: 600; }
+
+  /* ---------- CTA footer ---------- */
+  .cta { margin-top: 88px; background: var(--footer-bg); color: var(--footer-text); padding: 76px 0 64px; }
+  .cta .wrap { text-align: center; }
+  .cta .eyebrow { color: var(--accent-warm); }
+  .cta .eyebrow::before { background: var(--accent-warm); }
+  .cta h2 {
+    margin: 18px auto 0; max-width: 17ch;
+    font-size: clamp(28px, 4.4vw, 42px); font-weight: 500; line-height: 1.12;
+  }
+  .cta p { margin: 18px auto 0; max-width: 44ch; color: var(--footer-muted); font-size: 15.5px; line-height: 1.6; }
+  .cta .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 32px; padding: 15px 30px;
+    background: var(--footer-text); color: var(--footer-bg);
+    border-radius: 999px; text-decoration: none;
+    font-weight: 700; font-size: 14.5px; letter-spacing: 0.01em;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .cta .btn:hover { transform: translateY(-1px); background: var(--accent-warm); }
+  .cta .btn:focus-visible { outline: 2px solid var(--accent-warm); outline-offset: 3px; }
+  .cta .btn svg { width: 15px; height: 15px; }
+  .cta .fine { margin-top: 36px; font-size: 11.5px; color: var(--footer-muted); opacity: 0.7; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  @media (max-width: 480px) {
+    .result-grid, .pct-grid { grid-template-columns: 1fr; }
+    .calc-inputs, .calc-results { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <canvas id="motif" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Vertigo Labs · Recurso gratuito</span>
+    <h1>¿Qué necesitas <em>invertir</em> para llegar a tu objetivo?</h1>
+    <p>Calcula tus propios números: introduce las métricas de tu negocio y entiende qué tendría que ocurrir en cada etapa de tu embudo para alcanzar tu próximo objetivo de facturación.</p>
+
+    <p class="example-callout">Los números de abajo son de una clínica de ejemplo — sustitúyelos por los tuyos.</p>
+
+    <div class="calc">
+      <div class="calc-inputs">
+        <p class="group-label">Tu oferta</p>
+        <div class="field">
+          <label for="ticket">Ticket medio</label>
+          <div class="amount-input">
+            <span class="unit prefix">€</span>
+            <input id="ticket" type="number" inputmode="decimal" min="0" step="50" value="900" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="budget">Inversión publicitaria</label>
+          <div class="amount-input">
+            <span class="unit prefix">€</span>
+            <input id="budget" type="number" inputmode="decimal" min="0" step="50" value="1500" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="cpl">Coste por lead</label>
+          <div class="amount-input">
+            <span class="unit prefix">€</span>
+            <input id="cpl" type="number" inputmode="decimal" min="0.1" step="1" value="18" />
+          </div>
+        </div>
+
+        <p class="group-label">Tu embudo</p>
+        <div class="pct-grid">
+          <div class="field">
+            <label for="rQualified">% leads cualificados</label>
+            <div class="amount-input">
+              <input id="rQualified" type="number" inputmode="decimal" min="0" max="100" step="1" value="70" />
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="rBook">% de agenda</label>
+            <div class="amount-input">
+              <input id="rBook" type="number" inputmode="decimal" min="0" max="100" step="1" value="55" />
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="rShow">Show rate</label>
+            <div class="amount-input">
+              <input id="rShow" type="number" inputmode="decimal" min="0" max="100" step="1" value="70" />
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="rClose">Closing rate</label>
+            <div class="amount-input">
+              <input id="rClose" type="number" inputmode="decimal" min="0" max="100" step="1" value="30" />
+              <span class="unit">%</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="reset-link" id="reset" type="button">Restablecer el ejemplo</button>
+      </div>
+
+      <div class="calc-results">
+        <div class="funnel">
+          <div class="f-step">
+            <div class="f-value" id="f-leads">0</div>
+            <div class="f-label">Leads</div>
+          </div>
+          <div class="f-connector">→</div>
+          <div class="f-step">
+            <div class="f-value" id="f-book">0</div>
+            <div class="f-label">Reuniones</div>
+          </div>
+          <div class="f-connector">→</div>
+          <div class="f-step">
+            <div class="f-value" id="f-close">0</div>
+            <div class="f-label">Clientes</div>
+          </div>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-card hero-metric">
+            <div class="r-label">Facturación estimada</div>
+            <div class="r-value" id="r-rev">—</div>
+            <div class="r-sub" id="r-rev-sub">rellena tus datos</div>
+          </div>
+          <div class="result-card">
+            <div class="r-label">CAC</div>
+            <div class="r-value" id="r-cac">—</div>
+          </div>
+          <div class="result-card">
+            <div class="r-label">ROAS</div>
+            <div class="r-value" id="r-roas">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="note"><strong>Cómo lo calculamos:</strong> de tu inversión y tu coste por lead sale cuántos leads puedes generar; aplicamos tu % de cualificados y tu % de agenda para llegar a reuniones, y tu show rate + closing rate para llegar a clientes. Con el ticket medio, eso te da la facturación, el CAC y el ROAS de ese escenario — cambia cualquier número y prueba distintos objetivos.</p>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="wrap">
+    <span class="eyebrow">Siguiente paso</span>
+    <h2>¿Quieres que te ayudemos a escalar?</h2>
+    <p>Podemos ayudarte a llevar esto más lejos. Agenda una reunión y hablamos de tu caso.</p>
+    <a class="btn" href="https://vertigolabs.es" target="_blank" rel="noopener">
+      Agendar una reunión
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3.5 12.5 12.5 3.5M12.5 3.5H5.5M12.5 3.5V10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <p class="fine">Calculadora orientativa · basada en tus propias tasas, no en garantías de resultado</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var ticket = $('ticket'), budget = $('budget'), cpl = $('cpl');
+  var rQualified = $('rQualified'), rBook = $('rBook'), rShow = $('rShow'), rClose = $('rClose');
+  var fLeads = $('f-leads'), fBook = $('f-book'), fClose = $('f-close');
+  var rRev = $('r-rev'), rRevSub = $('r-rev-sub'), rCac = $('r-cac'), rRoas = $('r-roas');
+
+  var DEFAULTS = { ticket: 900, budget: 1500, cpl: 18, rQualified: 70, rBook: 55, rShow: 70, rClose: 30 };
+
+  var eur0 = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+  var num0 = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 });
+
+  function clampInt(n) { return Math.max(0, Math.round(n)); }
+
+  function recalc() {
+    var t = parseFloat(ticket.value);
+    var b = parseFloat(budget.value);
+    var c = parseFloat(cpl.value);
+    var hasBudget = !isNaN(b) && b > 0 && !isNaN(c) && c > 0;
+
+    var leads = hasBudget ? b / c : 0;
+    var qualified = leads * ((parseFloat(rQualified.value) || 0) / 100);
+    var booked = qualified * ((parseFloat(rBook.value) || 0) / 100);
+    var showed = booked * ((parseFloat(rShow.value) || 0) / 100);
+    var closed = showed * ((parseFloat(rClose.value) || 0) / 100);
+
+    fLeads.textContent = num0.format(clampInt(leads));
+    fBook.textContent = num0.format(clampInt(booked));
+    fClose.textContent = num0.format(clampInt(closed));
+
+    if (!hasBudget) {
+      rRev.textContent = '—'; rRevSub.textContent = 'rellena tus datos';
+      rCac.textContent = '—'; rRoas.textContent = '—';
+      return;
+    }
+
+    var hasTicket = !isNaN(t) && t > 0;
+    var revenue = hasTicket ? closed * t : 0;
+
+    rRev.textContent = hasTicket && closed > 0 ? eur0.format(revenue) : '—';
+    rRevSub.textContent = closed > 0
+      ? '≈ ' + num0.format(clampInt(closed)) + ' cliente' + (clampInt(closed) === 1 ? '' : 's') + ' con estos números'
+      : 'ajusta las tasas del embudo';
+    rCac.textContent = closed > 0 ? eur0.format(b / closed) : '—';
+    rRoas.textContent = hasTicket && revenue > 0 ? (revenue / b).toFixed(1) + 'x' : '—';
+  }
+
+  var allInputs = [ticket, budget, cpl, rQualified, rBook, rShow, rClose];
+  allInputs.forEach(function (el) { el.addEventListener('input', recalc); });
+
+  $('reset').addEventListener('click', function () {
+    Object.keys(DEFAULTS).forEach(function (id) { $(id).value = DEFAULTS[id]; });
+    recalc();
+  });
+
+  recalc();
+
+  // ---- Hero growth motif (canvas), same signature motif as the cost calculator ----
+  var canvas = $('motif');
+  var ctx = canvas.getContext('2d');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W, H, points, progress = reduceMotion ? 1 : 0;
+
+  function accentColor() {
+    var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    return v || '#4d5227';
+  }
+  function warmColor() {
+    var v = getComputedStyle(document.documentElement).getPropertyValue('--accent-warm').trim();
+    return v || '#c3ae7c';
+  }
+
+  function buildPoints() {
+    points = [];
+    var n = 22;
+    for (var i = 0; i < n; i++) {
+      var x = (i / (n - 1));
+      var t = Math.pow(x, 1.6);
+      var y = 1 - t * 0.82 - Math.sin(x * 9) * 0.02 * (1 - x);
+      points.push({ x: x, y: y });
+    }
+  }
+
+  function resize() {
+    var rect = canvas.parentElement.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildPoints();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var marginX = W * 0.06, marginTop = H * 0.18, marginBottom = H * 0.12;
+    var plotW = W - marginX * 2, plotH = H - marginTop - marginBottom;
+    var visibleN = Math.max(2, Math.floor(points.length * progress));
+    var accent = accentColor(), warm = warmColor();
+
+    ctx.save();
+    ctx.globalAlpha = 0.5;
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for (var i = 0; i < visibleN; i++) {
+      var p = points[i];
+      var px = marginX + p.x * plotW;
+      var py = marginTop + p.y * plotH;
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    ctx.restore();
+
+    for (var j = 0; j < visibleN; j++) {
+      var pt = points[j];
+      var cx = marginX + pt.x * plotW;
+      var cy = marginTop + pt.y * plotH;
+      var isLast = j === visibleN - 1;
+
+      ctx.save();
+      ctx.globalAlpha = 0.16;
+      ctx.strokeStyle = accent;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx, marginTop + plotH + marginBottom * 0.5);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.beginPath();
+      ctx.fillStyle = isLast ? warm : accent;
+      ctx.globalAlpha = isLast ? 0.9 : 0.55;
+      ctx.arc(cx, cy, isLast ? 4 : 2.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function frame() {
+    if (progress < 1) {
+      progress = Math.min(1, progress + 0.018);
+      draw();
+      requestAnimationFrame(frame);
+    } else {
+      draw();
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  if (reduceMotion) { draw(); } else { requestAnimationFrame(frame); }
+})();
+</script>
+</body>
+</html>
