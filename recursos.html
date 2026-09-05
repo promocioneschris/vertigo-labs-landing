@@ -544,21 +544,16 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
         <input class="cta-inp" id="f-clinica" name="clinicName" type="text" placeholder="Tu clínica" required>
       </div>
       <div class="cta-field">
+        <label class="cta-label" for="f-telefono">Teléfono / WhatsApp</label>
+        <input class="cta-inp" id="f-telefono" name="phone" type="tel" inputmode="tel" placeholder="+34 600 000 000" required>
+      </div>
+      <div class="cta-field">
         <label class="cta-label" for="f-facturacion">¿Cuánto factura tu clínica al mes?</label>
         <select class="cta-select" id="f-facturacion" name="billing" required>
           <option value="" disabled selected>Selecciona una opción</option>
           <option value="Menos de 25.000 €/mes">Menos de 25.000 €/mes</option>
           <option value="Entre 25.000 € y 75.000 €/mes">Entre 25.000 € y 75.000 €/mes</option>
           <option value="Más de 75.000 €/mes">Más de 75.000 €/mes</option>
-        </select>
-      </div>
-      <div class="cta-field">
-        <label class="cta-label" for="f-ads">¿Cuánto inviertes en publicidad (Ads) al mes?</label>
-        <select class="cta-select" id="f-ads" name="adSpend" required>
-          <option value="" disabled selected>Selecciona una opción</option>
-          <option value="Menos de 1.000 €/mes">Menos de 1.000 €/mes</option>
-          <option value="Entre 1.000 € y 3.000 €/mes">Entre 1.000 € y 3.000 €/mes</option>
-          <option value="Más de 3.000 €/mes">Más de 3.000 €/mes</option>
         </select>
       </div>
       <label class="cta-check">
@@ -643,8 +638,8 @@ async function handleForm(e){
     firstName:form.firstName.value.trim(),
     email:form.email.value.trim(),
     clinicName:form.clinicName.value.trim(),
+    phone:form.phone.value.trim(),
     billing:form.billing.value,
-    adSpend:form.adSpend.value,
     source:'Landing Recursos - Ads'
   };
   try{
