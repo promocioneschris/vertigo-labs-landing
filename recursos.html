@@ -548,12 +548,12 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
         <input class="cta-inp" id="f-telefono" name="phone" type="tel" inputmode="tel" placeholder="+34 600 000 000" required>
       </div>
       <div class="cta-field">
-        <label class="cta-label" for="f-facturacion">¿Cuánto factura tu clínica al mes?</label>
-        <select class="cta-select" id="f-facturacion" name="billing" required>
+        <label class="cta-label" for="f-cabinas">¿Cuántas cabinas tiene tu clínica?</label>
+        <select class="cta-select" id="f-cabinas" name="cabins" required>
           <option value="" disabled selected>Selecciona una opción</option>
-          <option value="Menos de 25.000 €/mes">Menos de 25.000 €/mes</option>
-          <option value="Entre 25.000 € y 75.000 €/mes">Entre 25.000 € y 75.000 €/mes</option>
-          <option value="Más de 75.000 €/mes">Más de 75.000 €/mes</option>
+          <option value="1 o 2 cabinas">1 o 2 cabinas</option>
+          <option value="De 3 a 4 cabinas">De 3 a 4 cabinas</option>
+          <option value="Más de 4 cabinas">Más de 4 cabinas</option>
         </select>
       </div>
       <label class="cta-check">
@@ -639,7 +639,7 @@ async function handleForm(e){
     email:form.email.value.trim(),
     clinicName:form.clinicName.value.trim(),
     phone:form.phone.value.trim(),
-    billing:form.billing.value,
+    cabins:form.cabins.value,
     source:'Landing Recursos - Ads'
   };
   try{
