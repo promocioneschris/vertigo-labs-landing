@@ -48,8 +48,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .hero-shot{width:100%;max-width:360px;height:auto;filter:drop-shadow(0 10px 16px rgba(20,20,20,.14)) drop-shadow(0 38px 52px rgba(20,20,20,.22))}
 .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.75rem}
 .eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--ink3)}
-.hero-h1{font-family:var(--serif);font-size:clamp(1.95rem,4.4vw,3.75rem);font-weight:400;line-height:1.12;letter-spacing:-.015em}
-.hero-h1 em{font-style:italic;color:var(--ink3)}
+.hero-h1{font-family:var(--sans);font-size:clamp(1.8rem,4vw,3.3rem);font-weight:600;line-height:1.22;letter-spacing:-.01em}
+.hero-h1 em{font-style:normal;color:var(--gold)}
 .hero-sub{font-size:1.08rem;line-height:1.7;color:var(--ink2);max-width:400px;margin-top:1.5rem}
 .hero-btns{margin-top:2.25rem}
 .hero-micro{margin-top:1.1rem;font-size:.8rem;color:var(--ink3)}
@@ -204,17 +204,29 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── MODAL FORMULARIO ── */
 .modal-ov{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(20,20,20,.55);backdrop-filter:blur(4px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s var(--ease),visibility .3s}
 .modal-ov.open{opacity:1;visibility:visible;pointer-events:auto}
-.modal{position:relative;width:100%;max-width:480px;max-height:calc(100vh - 3rem);overflow-y:auto;background:var(--ink);border-radius:6px;padding:2.9rem 2.4rem 2.5rem;box-shadow:0 40px 90px -20px rgba(0,0,0,.6);transform:translateY(18px) scale(.98);transition:transform .35s var(--ease)}
+.modal{position:relative;width:100%;max-width:480px;max-height:calc(100vh - 3rem);overflow-y:auto;background:var(--white);border-radius:6px;padding:2.9rem 2.4rem 2.5rem;box-shadow:0 40px 90px -20px rgba(0,0,0,.4);transform:translateY(18px) scale(.98);transition:transform .35s var(--ease)}
 .modal-ov.open .modal{transform:none}
-.modal-close{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);background:rgba(255,255,255,.06);border:none;cursor:pointer;transition:color .2s,background .2s}
-.modal-close:hover{color:var(--white);background:rgba(255,255,255,.12)}
+.modal-close{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink3);background:var(--cream);border:none;cursor:pointer;transition:color .2s,background .2s}
+.modal-close:hover{color:var(--ink);background:var(--border)}
 .modal-close svg{width:15px;height:15px}
-.modal-eyebrow{display:block;font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.9rem}
-.modal-t{font-family:var(--serif);font-size:1.7rem;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:.45rem}
-.modal-t em{font-style:italic;color:rgba(255,255,255,.5)}
-.modal-sub{font-size:.92rem;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:1.7rem}
+.modal-eyebrow{display:block;font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink3);margin-bottom:.9rem}
+.modal-t{font-family:var(--serif);font-size:1.7rem;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:.45rem}
+.modal-t em{font-style:italic;color:var(--gold)}
+.modal-sub{font-size:.92rem;font-weight:300;color:var(--ink2);margin-bottom:1.7rem}
 .modal .cta-form{margin:0}
-.modal .cta-note{text-align:center;margin-top:1.15rem}
+.modal .cta-label{color:var(--ink);font-weight:600}
+.modal .cta-inp{background:var(--cream);border-color:var(--border);color:var(--ink)}
+.modal .cta-inp::placeholder{color:var(--ink4)}
+.modal .cta-inp:focus{border-color:var(--ink3);background:var(--white)}
+.modal .cta-select{background:var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(20,20,20,.45)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 1.1rem center;border-color:var(--border);color:var(--ink)}
+.modal .cta-select:focus{border-color:var(--ink3)}
+.modal .cta-select:invalid{color:var(--ink4)}
+.modal .cta-select option{background:var(--white);color:var(--ink)}
+.modal .cta-check input{accent-color:var(--ink)}
+.modal .cta-check span{color:var(--ink3)}
+.modal .cta-check span a{color:var(--ink);text-decoration-color:var(--ink4)}
+.modal .cta-btn{background:var(--ink);color:var(--white)}
+.modal .cta-note{text-align:center;margin-top:1.15rem;color:var(--ink4)}
 body.modal-lock{overflow:hidden}
 
 /* ── FOOTER ── */
@@ -297,10 +309,10 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
     <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="hero-logo" data-reveal="fade">
     <span class="eyebrow" data-reveal="fade">Recursos gratuitos para clínicas</span>
     <h1 class="hero-h1" data-reveal data-d="1">
-      Accede gratis a los recursos para captar, convertir y hacer crecer tu clínica <em>con más control y previsibilidad.</em>
+      Una guía completa para conseguir que más pacientes <em>lleguen a su cita y avancen hasta el tratamiento.</em>
     </h1>
     <p class="hero-sub" data-reveal data-d="2">
-      Una guía completa para mejorar la captación, conversión y decidir con criterio.
+      Guías, plantillas y una calculadora que puedes aplicar esta misma semana.
     </p>
     <div class="hero-btns" data-reveal data-d="3">
       <a href="#acceder" class="btn-dark">Quiero los recursos →</a>
@@ -540,10 +552,6 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
         <input class="cta-inp" id="f-email" name="email" type="email" placeholder="Tu correo electrónico" required>
       </div>
       <div class="cta-field">
-        <label class="cta-label" for="f-clinica">Nombre de la clínica</label>
-        <input class="cta-inp" id="f-clinica" name="clinicName" type="text" placeholder="Tu clínica" required>
-      </div>
-      <div class="cta-field">
         <label class="cta-label" for="f-telefono">Teléfono / WhatsApp</label>
         <input class="cta-inp" id="f-telefono" name="phone" type="tel" inputmode="tel" placeholder="+34 600 000 000" required>
       </div>
@@ -621,9 +629,9 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&fModal.classList.co
 document.querySelectorAll('a[href="#acceder"], .js-open-form').forEach(el=>{
   el.addEventListener('click',e=>{e.preventDefault();openModal();});
 });
-// Auto-apertura una sola vez por sesión, a los 10 s
+// Auto-apertura una sola vez por sesión, a 1 minuto
 if(!modalSeen){
-  setTimeout(()=>{if(!modalSeen)openModal();},10000);
+  setTimeout(()=>{if(!modalSeen)openModal();},60000);
 }
 
 // ── FORM ──
@@ -637,7 +645,6 @@ async function handleForm(e){
   const data={
     firstName:form.firstName.value.trim(),
     email:form.email.value.trim(),
-    clinicName:form.clinicName.value.trim(),
     phone:form.phone.value.trim(),
     cabins:form.cabins.value,
     source:'Landing Recursos - Ads'
