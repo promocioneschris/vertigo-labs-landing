@@ -564,6 +564,15 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
           <option value="Más de 4 cabinas">Más de 4 cabinas</option>
         </select>
       </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-escalar">¿Tu intención es escalar tu clínica?</label>
+        <select class="cta-select" id="f-escalar" name="scaleIntent" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="Sí, y tengo los recursos">Sí, y tengo los recursos</option>
+          <option value="Sí, pero no tengo los recursos">Sí, pero no tengo los recursos</option>
+          <option value="No, estoy bien así">No, estoy bien así</option>
+        </select>
+      </div>
       <label class="cta-check">
         <input type="checkbox" id="f-consent" name="consent" required>
         <span>Acepto que Vértigo Labs trate mis datos para enviarme los recursos e información sobre sus servicios, según la <a href="privacidad.html" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
@@ -647,6 +656,7 @@ async function handleForm(e){
     email:form.email.value.trim(),
     phone:form.phone.value.trim(),
     cabins:form.cabins.value,
+    scaleIntent:form.scaleIntent.value,
     source:'Landing Recursos - Ads'
   };
   try{
