@@ -544,8 +544,8 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
     <p class="modal-sub">Déjanos tus datos y te los enviamos al email.</p>
     <form class="cta-form" id="rec-form" onsubmit="handleForm(event)">
       <div class="cta-field">
-        <label class="cta-label" for="f-nombre">Nombre</label>
-        <input class="cta-inp" id="f-nombre" name="firstName" type="text" placeholder="Tu nombre" required>
+        <label class="cta-label" for="f-nombre">Nombre y apellido</label>
+        <input class="cta-inp" id="f-nombre" name="firstName" type="text" placeholder="Nombre y apellido" pattern="(?=(?:.*[A-Za-zÀ-ÖØ-öø-ÿ]){3,})[A-Za-zÀ-ÖØ-öø-ÿ.\s]+" title="Escribe tu nombre" required>
       </div>
       <div class="cta-field">
         <label class="cta-label" for="f-email">Email</label>
@@ -642,6 +642,13 @@ document.querySelectorAll('a[href="#acceder"], .js-open-form').forEach(el=>{
 if(!modalSeen){
   setTimeout(()=>{if(!modalSeen)openModal();},60000);
 }
+
+// Exige nombre + apellido (evita envíos con una sola letra o palabra)
+const fNombre=document.getElementById('f-nombre');
+fNombre.addEventListener('invalid',()=>{
+  fNombre.setCustomValidity(fNombre.validity.patternMismatch?'Escribe tu nombre':'');
+});
+fNombre.addEventListener('input',()=>fNombre.setCustomValidity(''));
 
 // ── FORM ──
 // Webhook entrante de GHL dedicado a esta landing (distinto al de la web
