@@ -185,6 +185,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .cta-form{display:grid;gap:.875rem;max-width:440px;margin:0 auto;text-align:left}
 .cta-field{display:flex;flex-direction:column;gap:.4rem}
 .cta-label{font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.cta-optional{text-transform:none;letter-spacing:0;font-weight:400;opacity:.65}
 .cta-inp{padding:.9rem 1.25rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:2px;color:var(--white);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none}
 .cta-inp::placeholder{color:rgba(255,255,255,.2)}
 .cta-inp:focus{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.09)}
@@ -548,21 +549,16 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
         <input class="cta-inp" id="f-nombre" name="firstName" type="text" placeholder="Nombre y apellido" pattern="(?=(?:.*[A-Za-zÀ-ÖØ-öø-ÿ]){3,})[A-Za-zÀ-ÖØ-öø-ÿ.\s]+" title="Escribe tu nombre" required>
       </div>
       <div class="cta-field">
+        <label class="cta-label" for="f-clinica">Nombre de la clínica <span class="cta-optional">(opcional)</span></label>
+        <input class="cta-inp" id="f-clinica" name="clinicName" type="text" placeholder="Nombre de tu clínica">
+      </div>
+      <div class="cta-field">
         <label class="cta-label" for="f-email">Email</label>
         <input class="cta-inp" id="f-email" name="email" type="email" placeholder="Tu correo electrónico" required>
       </div>
       <div class="cta-field">
         <label class="cta-label" for="f-telefono">Teléfono / WhatsApp</label>
         <input class="cta-inp" id="f-telefono" name="phone" type="tel" inputmode="tel" placeholder="+34 600 000 000" required>
-      </div>
-      <div class="cta-field">
-        <label class="cta-label" for="f-cabinas">¿Cuántas cabinas tiene tu clínica?</label>
-        <select class="cta-select" id="f-cabinas" name="cabins" required>
-          <option value="" disabled selected>Selecciona una opción</option>
-          <option value="1 o 2 cabinas">1 o 2 cabinas</option>
-          <option value="De 3 a 4 cabinas">De 3 a 4 cabinas</option>
-          <option value="Más de 4 cabinas">Más de 4 cabinas</option>
-        </select>
       </div>
       <div class="cta-field">
         <label class="cta-label" for="f-escalar">¿Tu intención es escalar tu clínica?</label>
@@ -660,9 +656,9 @@ async function handleForm(e){
   btn.textContent='Enviando...';btn.disabled=true;
   const data={
     firstName:form.firstName.value.trim(),
+    clinicName:form.clinicName.value.trim(),
     email:form.email.value.trim(),
     phone:form.phone.value.trim(),
-    cabins:form.cabins.value,
     scaleIntent:form.scaleIntent.value,
     source:'Landing Recursos - Ads'
   };
