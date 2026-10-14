@@ -592,6 +592,17 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
 </footer>
 
 <script>
+// ── CONJUNTO DE ANUNCIOS (A/B) ──
+// Lee ?set=XXX de la URL (lo pones distinto en el destino de cada conjunto
+// de anuncios en Meta) y lo guarda para mandarlo luego con el formulario,
+// así se puede diferenciar en GHL quién vino de cada conjunto.
+let adSet='';
+try{
+  const fromUrl=new URLSearchParams(location.search).get('set');
+  if(fromUrl) sessionStorage.setItem('vl_ad_set',fromUrl);
+  adSet=sessionStorage.getItem('vl_ad_set')||'';
+}catch(e){}
+
 // ── ROPE ──
 const fill=document.getElementById('rope-fill'),walker=document.getElementById('rope-walker');
 function updateRope(){
@@ -660,7 +671,8 @@ async function handleForm(e){
     email:form.email.value.trim(),
     phone:form.phone.value.trim(),
     scaleIntent:form.scaleIntent.value,
-    source:'Landing Recursos - Ads'
+    adSet:adSet,
+    source:'Landing Recursos - Ads'+(adSet?' - '+adSet:'')
   };
   try{
     await fetch(GHL_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true});
