@@ -563,6 +563,18 @@ fNombre.addEventListener('input',()=>fNombre.setCustomValidity(''));
 // Webhook entrante de GHL dedicado a esta landing (distinto al de la web
 // principal). El campo `source` sigue distinguiendo estos leads.
 const GHL_WEBHOOK_URL='https://services.leadconnectorhq.com/hooks/zFjScTfgIl2WotsxzkuS/webhook-trigger/4FzcrxOQ2xChMbDoIoSr';
+// Espera a que el píxel termine de enviar el Lead (máx. ms) antes de redirigir,
+// para que la navegación no cancele la petición.
+function waitForPixel(ms){
+  return new Promise(res=>{
+    let done=false;const fin=()=>{if(!done){done=true;res();}};
+    try{
+      const po=new PerformanceObserver(l=>{if(l.getEntries().some(e=>/facebook\.com\/tr/.test(e.name)&&/ev=Lead/.test(e.name)))fin();});
+      po.observe({type:'resource'});
+    }catch(e){}
+    setTimeout(fin,ms);
+  });
+}
 async function handleForm(e){
   e.preventDefault();
   const form=e.target,btn=document.getElementById('form-btn');
@@ -580,6 +592,7 @@ async function handleForm(e){
     await fetch(GHL_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true});
   }catch(err){console.error('Webhook error:',err);}
   if(window.fbq)fbq('track','Lead',{content_name:'Recursos gratuitos clínicas'});
+  await waitForPixel(800);
   window.location.href='gracias.html?e='+encodeURIComponent(data.email);
 }
 </script>
