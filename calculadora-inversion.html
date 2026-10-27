@@ -6,472 +6,350 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    color-scheme: light;
-    --crema: #f5f2ec;
-    --marfil: #faf8f4;
-    --negro: #151513;
-    --gris: #64635f;
-    --gris-suave: #8b897f;
-    --oliva: #4d5227;
-    --musgo: #747a4c;
-    --oliva-claro: #a4a176;
-    --arena: #c3ae7c;
-    --line: #e3ddd0;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  color-scheme:light;
+  --ink:#141414;--ink2:#262523;--ink3:#4A4845;
+  --white:#FFFFFF;--sand:#F4EEE3;--border:#D9D5CE;
+  --gold:#8C6B3A;--gold-bright:#D2AE72;
+  --olive:#55632F;--olive-bright:#9DAE6A;
+  --sans:'Jost',system-ui,sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html{font-size:112.5%}
+body{font-family:var(--sans);font-size:1rem;line-height:1.6;color:var(--ink);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-    --bg: var(--crema);
-    --surface: var(--marfil);
-    --surface-2: #ffffff;
-    --text: var(--negro);
-    --text-muted: var(--gris);
-    --accent: var(--oliva);
-    --accent-strong: #3b3f1e;
-    --accent-soft: var(--musgo);
-    --accent-warm: var(--arena);
-    --border: var(--line);
-    --footer-bg: var(--negro);
-    --footer-text: var(--crema);
-    --footer-muted: #b9b6ab;
-    --shadow: 0 1px 2px rgba(21,21,19,0.04), 0 12px 32px -16px rgba(21,21,19,0.18);
-  }
+/* ── BARRA DE CUERDA (marca) ── */
+#rope-bar{position:fixed;top:0;left:0;right:0;height:40px;background:var(--ink);z-index:1001;overflow:visible}
+#rope-line{position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,.15);transform:translateY(-50%)}
+#rope-fill{position:absolute;top:50%;left:0;width:2%;height:1px;background:rgba(255,255,255,.7);transform:translateY(-50%);transition:width .08s linear}
+#rope-walker{position:absolute;top:50%;left:2%;transform:translate(-50%,-88%);color:rgba(255,255,255,.9);transition:left .08s linear}
+@keyframes sway{0%,100%{transform:translate(-50%,-88%) rotate(-1.5deg)}50%{transform:translate(-50%,-88%) rotate(1.5deg)}}
+#rope-walker svg{animation:sway 2.6s ease-in-out infinite}
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      color-scheme: dark;
-      --bg: #151412;
-      --surface: #1d1c18;
-      --surface-2: #211f1a;
-      --text: #f3f0e8;
-      --text-muted: #b3ae9f;
-      --gris-suave: #8f8a7b;
-      --accent: #b7c17f;
-      --accent-strong: #d3dba0;
-      --accent-soft: #96a06a;
-      --accent-warm: #d7bd85;
-      --border: #322f27;
-      --footer-bg: #0d0c0a;
-      --footer-text: #f3f0e8;
-      --footer-muted: #8f8a7b;
-      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.5);
-    }
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --bg: #151412;
-    --surface: #1d1c18;
-    --surface-2: #211f1a;
-    --text: #f3f0e8;
-    --text-muted: #b3ae9f;
-    --gris-suave: #8f8a7b;
-    --accent: #b7c17f;
-    --accent-strong: #d3dba0;
-    --accent-soft: #96a06a;
-    --accent-warm: #d7bd85;
-    --border: #322f27;
-    --footer-bg: #0d0c0a;
-    --footer-text: #f3f0e8;
-    --footer-muted: #8f8a7b;
-    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.5);
-  }
+/* ── CABECERA ── */
+.hero{position:relative;overflow:hidden;padding:calc(40px + 2rem) 5% 1.5rem;text-align:center}
+.hero-in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
+.eyebrow{display:block;font-size:.85rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.hero h1{font-size:clamp(2.1rem,9.2vw,3.8rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;max-width:15ch;margin:0 auto}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc-full{display:none;font-size:1.2rem;line-height:1.55;color:var(--ink2);margin:1.1rem auto 0;max-width:620px}
+.hero-desc-short{font-size:1.2rem;line-height:1.55;color:var(--ink2);margin:1.1rem auto 0;max-width:620px}
+.example-callout{display:block;margin:1.4rem auto 0;max-width:560px;padding:.8rem 1.1rem;background:var(--sand);border-radius:14px;font-size:1rem;font-weight:500;line-height:1.45;color:var(--ink2)}
+.hero-wave{display:none}
 
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  h1, h2, h3 { font-family: "Bodoni Moda", "Times New Roman", serif; text-wrap: balance; margin: 0; }
+/* ── CALCULADORA ── */
+.calc-sec{padding:1.5rem 5% 1rem}
+.calc{max-width:1040px;margin:0 auto;display:grid;gap:1rem;grid-template-columns:1fr}
 
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+.calc-inputs{background:var(--white);border:1px solid var(--border);border-radius:24px;padding:1.6rem 1.3rem 1.5rem;min-width:0}
+.group-label{font-size:.85rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 1.1rem}
+.grp-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid var(--border);margin-bottom:1.1rem}
+.grp-row .group-label{margin:0}
 
-  /* ---------- Hero ---------- */
-  .hero { position: relative; padding: 72px 0 56px; overflow: hidden; }
-  .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.55; pointer-events: none; }
-  .hero-inner { position: relative; z-index: 1; }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent);
-  }
-  .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--accent); }
-  .hero h1 {
-    margin-top: 18px;
-    font-size: clamp(34px, 5.4vw, 56px);
-    font-weight: 500;
-    line-height: 1.06;
-    letter-spacing: -0.01em;
-    max-width: 16ch;
-  }
-  .hero h1 em { font-style: italic; color: var(--accent); }
-  .hero p { margin-top: 20px; max-width: 50ch; font-size: 17px; line-height: 1.6; color: var(--text-muted); }
+.field{margin-bottom:1.15rem}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.45rem;line-height:1.25}
+.amount-input{display:flex;align-items:center;gap:.5rem;background:var(--white);border:2px solid var(--border);border-radius:14px;padding:0 1rem;min-height:56px;transition:border-color .2s,box-shadow .2s}
+.amount-input:focus-within{border-color:var(--gold);box-shadow:0 0 0 4px rgba(140,107,58,.16)}
+.amount-input .unit{font-size:1.25rem;font-weight:600;color:var(--ink3);order:2}
+.amount-input .unit.prefix{order:0}
+.amount-input input{flex:1;min-width:0;order:1;border:none;background:transparent;outline:none;font-family:var(--sans);font-size:1.5rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;padding:.5rem 0}
+.amount-input input::-webkit-outer-spin-button,.amount-input input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.amount-input input[type=number]{-moz-appearance:textfield;appearance:textfield}
 
-  .hero .example-callout {
-    display: block;
-    margin-top: 18px;
-    max-width: 46ch;
-    font-size: 13px; font-style: italic; font-weight: 500; line-height: 1.5;
-    color: var(--accent-strong);
-  }
+.pct-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem .8rem}
+.pct-grid .field{margin-bottom:0;display:flex;flex-direction:column;justify-content:flex-end}
+.pct-grid .amount-input{padding:0 .8rem}
 
-  /* ---------- Calculator ---------- */
-  .calc {
-    position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-top: 32px;
-  }
-  @media (max-width: 760px) { .calc { grid-template-columns: 1fr; } }
+.reset-link{background:none;border:none;padding:.4rem 0;font-family:var(--sans);font-size:.95rem;text-align:right;font-weight:500;color:var(--ink3);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.reset-link:hover{color:var(--gold)}
 
-  .calc-inputs { padding: 40px; border-right: 1px solid var(--border); min-width: 0; }
-  .calc-results { min-width: 0; }
-  .f-step, .result-card { min-width: 0; }
-  @media (max-width: 760px) {
-    .calc-inputs { border-right: none; border-bottom: 1px solid var(--border); }
-  }
+/* ── RESULTADOS ── */
+.calc-results{position:relative;overflow:hidden;background:var(--ink);color:var(--white);border-radius:24px;padding:1.8rem 1.3rem 1.5rem;min-width:0;scroll-margin-top:60px}
+.calc-results::before{content:'';position:absolute;width:420px;height:420px;right:-170px;top:-210px;border-radius:50%;background:radial-gradient(circle,rgba(157,174,106,.38),transparent 70%);pointer-events:none}
+.calc-results>*{position:relative}
+.funnel{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:.3rem;margin-bottom:1.5rem;padding-bottom:1.4rem;border-bottom:1px solid rgba(255,255,255,.18)}
+.f-step{text-align:center;min-width:0}
+.f-value{font-size:2.4rem;font-weight:600;color:var(--white);font-variant-numeric:tabular-nums;line-height:1.05;letter-spacing:-.02em}
+.f-label{margin-top:.35rem;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-bright)}
+.f-connector{color:rgba(255,255,255,.4);font-size:1.3rem}
 
-  .group-label {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--text-muted);
-    margin: 0 0 16px;
-  }
-  .group-label:not(:first-child) { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--border); }
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.result-card{border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:1.1rem 1.1rem 1rem;background:rgba(255,255,255,.07);min-width:0}
+.result-card.hero-metric{grid-column:1/-1;background:var(--olive);border-color:var(--olive);padding:1.3rem 1.3rem 1.2rem}
+.r-label{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-bright)}
+.hero-metric .r-label{color:rgba(255,255,255,.88)}
+.r-value{margin-top:.3rem;font-size:2rem;font-weight:600;color:var(--white);font-variant-numeric:tabular-nums;line-height:1.1;letter-spacing:-.01em}
+.hero-metric .r-value{font-size:clamp(2.6rem,12vw,3.4rem);letter-spacing:-.02em}
+.r-sub{margin-top:.3rem;font-size:1rem;color:rgba(255,255,255,.88)}
 
-  .field { margin-bottom: 22px; }
-  .field:last-child { margin-bottom: 0; }
-  .field label {
-    display: block;
-    font-size: 12.5px; font-weight: 600;
-    color: var(--text);
-    margin-bottom: 9px;
-  }
-  .amount-input {
-    display: flex; align-items: baseline; gap: 8px;
-    border-bottom: 2px solid var(--border);
-    padding-bottom: 7px;
-    transition: border-color 0.15s ease;
-  }
-  .amount-input:focus-within { border-color: var(--accent); }
-  .amount-input .unit { font-size: 18px; color: var(--text-muted); font-weight: 500; order: 2; }
-  .amount-input .unit.prefix { order: 0; }
-  .amount-input input {
-    flex: 1; min-width: 0; order: 1;
-    border: none; background: transparent; outline: none;
-    font-family: "Bodoni Moda", serif;
-    font-size: 26px;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-  }
+/* ── NOTA ── */
+.note{max-width:720px;margin:1.6rem auto 0;padding:0 .2rem;font-size:1.05rem;line-height:1.6;color:var(--ink2)}
+.note strong{color:var(--ink);font-weight:600}
 
-  .pct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 18px; }
-  .pct-grid .field { margin-bottom: 0; }
+/* ── LLAMADA FINAL ── */
+.cta-sec{padding:2.5rem 5% 3rem}
+.cta{position:relative;overflow:hidden;max-width:1040px;margin:0 auto;background:var(--olive);color:var(--white);border-radius:28px;padding:3rem 1.6rem;text-align:center}
+.cta::before{content:'';position:absolute;width:420px;height:420px;left:-160px;bottom:-220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.2),transparent 70%);pointer-events:none}
+.cta>*{position:relative}
+.cta .eyebrow{color:var(--white);opacity:.9}
+.cta h2{font-size:clamp(1.8rem,5.4vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;max-width:680px;margin:0 auto}
+.cta p{font-size:1.15rem;color:rgba(255,255,255,.92);margin:1rem auto 0;max-width:520px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;margin-top:1.8rem;padding:.95rem 1.7rem;background:var(--white);color:var(--ink);border-radius:12px;font-size:1rem;font-weight:600;letter-spacing:.02em;border:2px solid var(--white);min-width:240px;transition:transform .2s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:16px;height:16px}
+.cta .fine{margin-top:2rem;font-size:.9rem;color:rgba(255,255,255,.8)}
 
-  .reset-link {
-    margin-top: 28px;
-    background: none; border: none; padding: 0;
-    font-size: 12px; color: var(--text-muted);
-    text-decoration: underline; text-underline-offset: 2px;
-    cursor: pointer; font-family: inherit;
-  }
-  .reset-link:hover { color: var(--accent); }
+/* ── PIE ── */
+.hub-foot{border-top:1px solid var(--border);padding:2rem 5% 2.5rem;text-align:center;font-size:.9rem;color:var(--ink3)}
 
-  /* ---------- Results ---------- */
-  .calc-results { padding: 40px; background: var(--surface-2); }
-  .funnel {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 36px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--border);
-  }
-  .f-step { text-align: center; }
-  .f-value {
-    font-family: "Bodoni Moda", serif;
-    font-size: 38px;
-    font-weight: 500;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-    line-height: 1.05;
-  }
-  .f-label {
-    margin-top: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-  .f-connector { color: var(--border); font-size: 20px; }
-  @media (max-width: 480px) {
-    .funnel { grid-template-columns: 1fr; gap: 14px; }
-    .f-connector { display: none; }
-  }
+/* ── BARRA FIJA MÓVIL: la facturación siempre a la vista ── */
+#sticky{position:fixed;left:0;right:0;bottom:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 5% calc(.8rem + env(safe-area-inset-bottom));background:var(--ink);color:var(--white);border-top:1px solid rgba(255,255,255,.18);transform:translateY(110%);transition:transform .35s var(--ease)}
+#sticky.show{transform:none}
+#sticky .s-label{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-bright);line-height:1.2}
+#sticky .s-value{font-size:1.7rem;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+#sticky .s-go{flex:0 0 auto;font-size:.95rem;font-weight:600;padding:.7rem 1.1rem;border-radius:12px;background:var(--white);color:var(--ink);border:0;font-family:var(--sans);cursor:pointer}
 
-  .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .result-card {
-    border: 1px solid var(--border); border-radius: 12px;
-    padding: 18px 18px 16px;
-    background: var(--surface);
-  }
-  .result-card.hero-metric { grid-column: 1 / -1; background: var(--accent); border-color: var(--accent); }
-  .result-card .r-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--text-muted);
-  }
-  .result-card.hero-metric .r-label { color: color-mix(in srgb, var(--bg) 78%, transparent); }
-  .result-card .r-value {
-    margin-top: 6px;
-    font-family: "Bodoni Moda", serif; font-size: 30px; font-weight: 500;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-    line-height: 1.1;
-  }
-  .result-card.hero-metric .r-value { color: var(--bg); font-size: 38px; }
-  .result-card .r-sub { margin-top: 4px; font-size: 12px; color: var(--text-muted); }
-  .result-card.hero-metric .r-sub { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+/* ── REVEAL ── */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-reveal].on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  #rope-walker svg{animation:none}
+  [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+  #sticky{transition:none}
+}
 
-  /* ---------- Trust note ---------- */
-  .note {
-    position: relative; z-index: 1;
-    max-width: 640px; margin: 28px auto 0; padding: 0 4px;
-    font-size: 13px; line-height: 1.6; color: var(--text-muted);
-  }
-  .note strong { color: var(--text); font-weight: 600; }
+/* ── MÓVIL ESTRECHO ── */
+@media(max-width:380px){
+  .f-value{font-size:2rem}
+  .r-value{font-size:1.7rem}
+}
+@media(max-width:899px){
+  .hub-foot{padding-bottom:5.5rem}
+}
 
-  /* ---------- CTA footer ---------- */
-  .cta { margin-top: 88px; background: var(--footer-bg); color: var(--footer-text); padding: 76px 0 64px; }
-  .cta .wrap { text-align: center; }
-  .cta .eyebrow { color: var(--accent-warm); }
-  .cta .eyebrow::before { background: var(--accent-warm); }
-  .cta h2 {
-    margin: 18px auto 0; max-width: 17ch;
-    font-size: clamp(28px, 4.4vw, 42px); font-weight: 500; line-height: 1.12;
-  }
-  .cta p { margin: 18px auto 0; max-width: 44ch; color: var(--footer-muted); font-size: 15.5px; line-height: 1.6; }
-  .cta .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    margin-top: 32px; padding: 15px 30px;
-    background: var(--footer-text); color: var(--footer-bg);
-    border-radius: 999px; text-decoration: none;
-    font-weight: 700; font-size: 14.5px; letter-spacing: 0.01em;
-    transition: transform 0.15s ease, background 0.15s ease;
-  }
-  .cta .btn:hover { transform: translateY(-1px); background: var(--accent-warm); }
-  .cta .btn:focus-visible { outline: 2px solid var(--accent-warm); outline-offset: 3px; }
-  .cta .btn svg { width: 15px; height: 15px; }
-  .cta .fine { margin-top: 36px; font-size: 11.5px; color: var(--footer-muted); opacity: 0.7; }
+/* ── MÓVIL COMPACTO: calculadora entera en una sola pantalla, sin scroll ── */
+@media(max-width:640px){
+  .hero{padding:calc(40px + .8rem) 5% .5rem}
+  .eyebrow{font-size:.66rem;letter-spacing:.12em;margin-bottom:.35rem}
+  .hero h1{font-size:1.4rem;line-height:1.12;max-width:none}
+  .hero-desc-short{font-size:.9rem;margin-top:.35rem;line-height:1.3}
+  .example-callout{font-size:.74rem;padding:.3rem .6rem;margin-top:.4rem;border-radius:10px;line-height:1.25}
+  .calc-sec{padding:.4rem 4% .4rem}
+  .calc{gap:.5rem}
+  .calc-inputs{padding:.65rem .7rem .55rem;border-radius:16px}
+  .group-label{font-size:.66rem;margin:0 0 .35rem}
+  .grp-row{margin-top:.5rem;padding-top:.45rem;margin-bottom:.35rem;border-top-width:1px}
+  .offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+  .field{min-width:0}
+  .offer-grid .field{display:flex;flex-direction:column;justify-content:flex-end}
+  .field{margin-bottom:0}
+  .field label{font-size:.74rem;margin-bottom:.2rem;line-height:1.12}
+  .amount-input,.pct-grid .amount-input{min-height:40px;padding:0 .45rem;border-radius:10px;border-width:1.5px;gap:.2rem}
+  .amount-input input{font-size:1.1rem;padding:.2rem 0}
+  .amount-input .unit{font-size:1rem}
+  .pct-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:.4rem}
+  .reset-link{font-size:.76rem;padding:.1rem 0}
+  .calc-results{padding:.6rem .7rem;border-radius:16px}
+  .funnel{margin-bottom:.45rem;padding-bottom:.45rem}
+  .f-value{font-size:1.4rem}
+  .f-label{font-size:.62rem;margin-top:.1rem}
+  .f-connector{font-size:1rem}
+  .result-grid{gap:.45rem}
+  .result-card:not(.hero-metric){padding:.4rem .7rem;border-radius:12px;display:flex;align-items:baseline;justify-content:space-between;gap:.4rem}
+  .result-card.hero-metric{padding:.5rem .8rem;border-radius:12px}
+  .r-label{font-size:.64rem}
+  .r-value{font-size:1.3rem;margin-top:0}
+  .hero-metric .r-value{font-size:1.8rem}
+  .r-sub{font-size:.76rem;margin-top:0}
+  .note{display:none}
+  #sticky{display:none}
+  .hub-foot{padding-bottom:2.5rem}
+  .cta-sec{padding:1.5rem 5% 2rem}
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-  }
-
-  @media (max-width: 480px) {
-    .result-grid, .pct-grid { grid-template-columns: 1fr; }
-    .calc-inputs, .calc-results { padding: 28px 22px; }
-  }
-
-  /* ---------- Compact mobile: whole calculator on one screen ---------- */
-  @media (max-width: 640px) {
-    .wrap { padding: 0 14px; }
-
-    .hero { padding: 16px 0 14px; }
-    .eyebrow { font-size: 10px; gap: 6px; }
-    .eyebrow::before { width: 16px; }
-    .hero h1 { margin-top: 8px; font-size: 27px; line-height: 1.12; max-width: 22ch; }
-    .hero-desc-full { display: none; }
-    .hero-desc-short { display: block !important; margin-top: 6px; font-size: 12.5px; line-height: 1.4; color: var(--text-muted); }
-    .hero .example-callout { margin-top: 8px; font-size: 10.5px; max-width: none; }
-
-    .calc { grid-template-columns: 1fr 1fr; border-radius: 14px; margin-top: 12px; }
-    .calc-inputs { padding: 12px; border-right: 1px solid var(--border); border-bottom: none; }
-    .calc-results { padding: 12px; }
-
-    .group-label { font-size: 8.5px; letter-spacing: .04em; margin: 0 0 8px; }
-    .group-label:not(:first-child) { margin-top: 12px; padding-top: 10px; }
-
-    .field { margin-bottom: 8px; }
-    .field label { font-size: 9.5px; margin-bottom: 3px; line-height: 1.2; }
-    .amount-input { padding-bottom: 3px; border-bottom-width: 1.5px; }
-    .amount-input .unit { font-size: 11px; }
-    .amount-input input { font-size: 15px; }
-
-    .pct-grid { grid-template-columns: 1fr 1fr; gap: 8px 8px; }
-
-    .reset-link { margin-top: 10px; font-size: 9.5px; }
-
-    .funnel { grid-template-columns: 1fr auto 1fr auto 1fr !important; gap: 2px; margin-bottom: 12px; padding-bottom: 10px; }
-    .f-value { font-size: 17px; }
-    .f-label { margin-top: 2px; font-size: 7px; }
-    .f-connector { display: inline !important; font-size: 12px; }
-
-    .result-grid { grid-template-columns: 1fr 1fr !important; gap: 6px; }
-    .result-card { padding: 8px 8px 7px; border-radius: 9px; }
-    .result-card .r-label { font-size: 7.5px; }
-    .result-card .r-value { margin-top: 2px; font-size: 15px; }
-    .result-card.hero-metric .r-value { font-size: 19px; }
-    .result-card .r-sub { margin-top: 2px; font-size: 8.5px; }
-
-    .note { display: none; }
-
-    .cta { margin-top: 28px; padding: 32px 0 28px; }
-    .cta h2 { font-size: 20px; }
-    .cta p { margin-top: 10px; font-size: 12.5px; }
-    .cta .btn { margin-top: 18px; padding: 11px 20px; font-size: 12.5px; }
-    .cta .fine { margin-top: 18px; font-size: 10px; }
-  }
-
-  /* Extra squeeze on short phone screens (e.g. iPhone SE) */
-  @media (max-width: 640px) and (max-height: 720px) {
-    .hero { padding: 10px 0 8px; }
-    .hero h1 { margin-top: 6px; font-size: 24px; }
-    .hero-desc-short { margin-top: 4px; font-size: 11.5px; }
-    .hero .example-callout { margin-top: 6px; }
-    .calc { margin-top: 8px; }
-    .calc-inputs, .calc-results { padding: 9px; }
-    .group-label { margin: 0 0 6px; }
-    .group-label:not(:first-child) { margin-top: 8px; padding-top: 7px; }
-    .field { margin-bottom: 6px; }
-    .field label { margin-bottom: 2px; }
-    .pct-grid { gap: 6px 8px; }
-    .reset-link { margin-top: 7px; }
-    .funnel { margin-bottom: 8px; padding-bottom: 7px; }
-  }
+/* ── TABLET / ESCRITORIO ── */
+@media(min-width:760px){
+  .hero-desc-full{display:block}
+  .hero-desc-short{display:none}
+  .calc{grid-template-columns:1fr 1fr;gap:1.25rem;align-items:stretch}
+  .calc-inputs{padding:2.2rem 2rem}
+  .calc-results{padding:2.2rem 2rem;display:flex;flex-direction:column;justify-content:center}
+  .cta{padding:4rem 3rem}
+}
+@media(min-width:900px){
+  .hero{padding-top:calc(40px + 3rem);padding-bottom:7.5rem;text-align:left}
+  .hero h1{margin:0;max-width:16ch}
+  .hero-desc-full{margin-left:0}
+  .example-callout{margin-left:0;max-width:600px}
+  .hero-wave{display:block;position:absolute;right:0;bottom:0;width:100%;height:200px;background:url(wave-hero.jpg) right bottom/cover no-repeat;opacity:.75;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 80%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 80%,transparent)}
+  #sticky{display:none}
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <canvas id="motif" aria-hidden="true"></canvas>
-  <div class="wrap hero-inner">
+<div id="rope-bar" aria-hidden="true">
+  <div id="rope-line"></div>
+  <div id="rope-fill"></div>
+  <div id="rope-walker">
+    <svg width="24" height="38" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="4" r="3" fill="currentColor"/>
+      <path d="M9.5 7 C9.5 7 8.5 13 8.5 18 L14.5 18 C14.5 13 13.5 7 12.5 7Z" fill="currentColor"/>
+      <line x1="0" y1="13.5" x2="24" y2="15" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.5" y1="10" x2="2" y2="13.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="13" y1="10" x2="21" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.5" y1="18" x2="5" y2="30" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="13.5" y1="18" x2="18" y2="29" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="5" y1="30" x2="0" y2="31" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="18" y1="29" x2="23" y2="29" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
     <span class="eyebrow">Vertigo Labs · Recurso gratuito</span>
     <h1>¿Qué necesitas <em>invertir</em> para llegar a tu objetivo?</h1>
     <p class="hero-desc-full">Calcula tus propios números: introduce las métricas de tu negocio y entiende qué tendría que ocurrir en cada etapa de tu embudo para alcanzar tu próximo objetivo de facturación.</p>
-    <p class="hero-desc-short" style="display:none">Introduce tus métricas y calcula tu objetivo.</p>
+    <p class="hero-desc-short">Introduce tus métricas y calcula tu objetivo.</p>
 
     <p class="example-callout">Los números de abajo son de una clínica de ejemplo — sustitúyelos por los tuyos.</p>
+  </div>
+  <div class="hero-wave" aria-hidden="true"></div>
+</header>
 
-    <div class="calc">
-      <div class="calc-inputs">
-        <p class="group-label">Tu oferta</p>
-        <div class="field">
-          <label for="ticket">Ticket medio</label>
-          <div class="amount-input">
-            <span class="unit prefix">€</span>
-            <input id="ticket" type="number" inputmode="decimal" min="0" step="50" value="900" />
-          </div>
+<main class="calc-sec">
+  <div class="calc">
+    <div class="calc-inputs" data-reveal>
+      <p class="group-label">Tu oferta</p>
+      <div class="offer-grid">
+      <div class="field">
+        <label for="ticket">Ticket medio</label>
+        <div class="amount-input">
+          <span class="unit prefix">€</span>
+          <input id="ticket" type="number" inputmode="decimal" min="0" step="50" value="900" />
         </div>
-        <div class="field">
-          <label for="budget">Inversión publicitaria</label>
-          <div class="amount-input">
-            <span class="unit prefix">€</span>
-            <input id="budget" type="number" inputmode="decimal" min="0" step="50" value="1500" />
-          </div>
+      </div>
+      <div class="field">
+        <label for="budget">Inversión publicitaria</label>
+        <div class="amount-input">
+          <span class="unit prefix">€</span>
+          <input id="budget" type="number" inputmode="decimal" min="0" step="50" value="1500" />
         </div>
-        <div class="field">
-          <label for="cpl">Coste por lead</label>
-          <div class="amount-input">
-            <span class="unit prefix">€</span>
-            <input id="cpl" type="number" inputmode="decimal" min="0.1" step="1" value="18" />
-          </div>
+      </div>
+      <div class="field">
+        <label for="cpl">Coste por lead</label>
+        <div class="amount-input">
+          <span class="unit prefix">€</span>
+          <input id="cpl" type="number" inputmode="decimal" min="0.1" step="1" value="18" />
         </div>
-
-        <p class="group-label">Tu embudo</p>
-        <div class="pct-grid">
-          <div class="field">
-            <label for="rQualified">% leads cualificados</label>
-            <div class="amount-input">
-              <input id="rQualified" type="number" inputmode="decimal" min="0" max="100" step="1" value="70" />
-              <span class="unit">%</span>
-            </div>
-          </div>
-          <div class="field">
-            <label for="rBook">% de agenda</label>
-            <div class="amount-input">
-              <input id="rBook" type="number" inputmode="decimal" min="0" max="100" step="1" value="55" />
-              <span class="unit">%</span>
-            </div>
-          </div>
-          <div class="field">
-            <label for="rShow">Show rate</label>
-            <div class="amount-input">
-              <input id="rShow" type="number" inputmode="decimal" min="0" max="100" step="1" value="70" />
-              <span class="unit">%</span>
-            </div>
-          </div>
-          <div class="field">
-            <label for="rClose">Closing rate</label>
-            <div class="amount-input">
-              <input id="rClose" type="number" inputmode="decimal" min="0" max="100" step="1" value="30" />
-              <span class="unit">%</span>
-            </div>
-          </div>
-        </div>
-
-        <button class="reset-link" id="reset" type="button">Restablecer el ejemplo</button>
+      </div>
       </div>
 
-      <div class="calc-results">
-        <div class="funnel">
-          <div class="f-step">
-            <div class="f-value" id="f-leads">0</div>
-            <div class="f-label">Leads</div>
-          </div>
-          <div class="f-connector">→</div>
-          <div class="f-step">
-            <div class="f-value" id="f-book">0</div>
-            <div class="f-label">Reuniones</div>
-          </div>
-          <div class="f-connector">→</div>
-          <div class="f-step">
-            <div class="f-value" id="f-close">0</div>
-            <div class="f-label">Clientes</div>
+      <div class="grp-row">
+        <p class="group-label">Tu embudo</p>
+        <button class="reset-link" id="reset" type="button">Restablecer el ejemplo</button>
+      </div>
+      <div class="pct-grid">
+        <div class="field">
+          <label for="rQualified">% leads cualificados</label>
+          <div class="amount-input">
+            <input id="rQualified" type="number" inputmode="decimal" min="0" max="100" step="1" value="70" />
+            <span class="unit">%</span>
           </div>
         </div>
-
-        <div class="result-grid">
-          <div class="result-card hero-metric">
-            <div class="r-label">Facturación estimada</div>
-            <div class="r-value" id="r-rev">—</div>
-            <div class="r-sub" id="r-rev-sub">rellena tus datos</div>
+        <div class="field">
+          <label for="rBook">% de agenda</label>
+          <div class="amount-input">
+            <input id="rBook" type="number" inputmode="decimal" min="0" max="100" step="1" value="55" />
+            <span class="unit">%</span>
           </div>
-          <div class="result-card">
-            <div class="r-label">CAC</div>
-            <div class="r-value" id="r-cac">—</div>
+        </div>
+        <div class="field">
+          <label for="rShow">Show rate</label>
+          <div class="amount-input">
+            <input id="rShow" type="number" inputmode="decimal" min="0" max="100" step="1" value="70" />
+            <span class="unit">%</span>
           </div>
-          <div class="result-card">
-            <div class="r-label">ROAS</div>
-            <div class="r-value" id="r-roas">—</div>
+        </div>
+        <div class="field">
+          <label for="rClose">Closing rate</label>
+          <div class="amount-input">
+            <input id="rClose" type="number" inputmode="decimal" min="0" max="100" step="1" value="30" />
+            <span class="unit">%</span>
           </div>
         </div>
       </div>
     </div>
 
-    <p class="note"><strong>Cómo lo calculamos:</strong> de tu inversión y tu coste por lead sale cuántos leads puedes generar; aplicamos tu % de cualificados y tu % de agenda para llegar a reuniones, y tu show rate + closing rate para llegar a clientes. Con el ticket medio, eso te da la facturación, el CAC y el ROAS de ese escenario — cambia cualquier número y prueba distintos objetivos.</p>
-  </div>
-</div>
+    <div class="calc-results" id="results" data-reveal data-d="1">
+      <div class="funnel">
+        <div class="f-step">
+          <div class="f-value" id="f-leads">0</div>
+          <div class="f-label">Leads</div>
+        </div>
+        <div class="f-connector">→</div>
+        <div class="f-step">
+          <div class="f-value" id="f-book">0</div>
+          <div class="f-label">Reuniones</div>
+        </div>
+        <div class="f-connector">→</div>
+        <div class="f-step">
+          <div class="f-value" id="f-close">0</div>
+          <div class="f-label">Clientes</div>
+        </div>
+      </div>
 
-<div class="cta">
-  <div class="wrap">
+      <div class="result-grid">
+        <div class="result-card hero-metric">
+          <div class="r-label">Facturación estimada</div>
+          <div class="r-value" id="r-rev">—</div>
+          <div class="r-sub" id="r-rev-sub">rellena tus datos</div>
+        </div>
+        <div class="result-card">
+          <div class="r-label">CAC</div>
+          <div class="r-value" id="r-cac">—</div>
+        </div>
+        <div class="result-card">
+          <div class="r-label">ROAS</div>
+          <div class="r-value" id="r-roas">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="note" data-reveal><strong>Cómo lo calculamos:</strong> de tu inversión y tu coste por lead sale cuántos leads puedes generar; aplicamos tu % de cualificados y tu % de agenda para llegar a reuniones, y tu show rate + closing rate para llegar a clientes. Con el ticket medio, eso te da la facturación, el CAC y el ROAS de ese escenario — cambia cualquier número y prueba distintos objetivos.</p>
+</main>
+
+<section class="cta-sec">
+  <div class="cta" data-reveal>
     <span class="eyebrow">Siguiente paso</span>
     <h2>¿Quieres que te ayudemos a escalar?</h2>
     <p>Podemos ayudarte a llevar esto más lejos. Agenda una reunión y hablamos de tu caso.</p>
     <a class="btn" href="https://vertigolabs.es" target="_blank" rel="noopener">
       Agendar una reunión
-      <svg viewBox="0 0 16 16" fill="none"><path d="M3.5 12.5 12.5 3.5M12.5 3.5H5.5M12.5 3.5V10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3.5 12.5 12.5 3.5M12.5 3.5H5.5M12.5 3.5V10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
     <p class="fine">Calculadora orientativa · basada en tus propias tasas, no en garantías de resultado</p>
   </div>
+</section>
+
+<div class="hub-foot">
+  <span>© 2025 Vértigo Labs</span>
+</div>
+
+<div id="sticky" aria-hidden="true">
+  <div>
+    <div class="s-label">Facturación estimada</div>
+    <div class="s-value" id="s-rev">—</div>
+  </div>
+  <button class="s-go" id="s-go" type="button" tabindex="-1">Ver resultado ↓</button>
 </div>
 
 <script>
@@ -481,11 +359,12 @@
   var rQualified = $('rQualified'), rBook = $('rBook'), rShow = $('rShow'), rClose = $('rClose');
   var fLeads = $('f-leads'), fBook = $('f-book'), fClose = $('f-close');
   var rRev = $('r-rev'), rRevSub = $('r-rev-sub'), rCac = $('r-cac'), rRoas = $('r-roas');
+  var sRev = $('s-rev');
 
   var DEFAULTS = { ticket: 900, budget: 1500, cpl: 18, rQualified: 70, rBook: 55, rShow: 70, rClose: 30 };
 
-  var eur0 = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
-  var num0 = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 });
+  var eur0 = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0, useGrouping: 'always' });
+  var num0 = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0, useGrouping: 'always' });
 
   function clampInt(n) { return Math.max(0, Math.round(n)); }
 
@@ -508,6 +387,7 @@
     if (!hasBudget) {
       rRev.textContent = '—'; rRevSub.textContent = 'rellena tus datos';
       rCac.textContent = '—'; rRoas.textContent = '—';
+      sRev.textContent = rRev.textContent;
       return;
     }
 
@@ -520,10 +400,15 @@
       : 'ajusta las tasas del embudo';
     rCac.textContent = closed > 0 ? eur0.format(b / closed) : '—';
     rRoas.textContent = hasTicket && revenue > 0 ? (revenue / b).toFixed(1) + 'x' : '—';
+    sRev.textContent = rRev.textContent;
   }
 
   var allInputs = [ticket, budget, cpl, rQualified, rBook, rShow, rClose];
-  allInputs.forEach(function (el) { el.addEventListener('input', recalc); });
+  allInputs.forEach(function (el) {
+    el.addEventListener('input', recalc);
+    // Al tocar un campo se selecciona su valor: escribes encima sin tener que borrar.
+    el.addEventListener('focus', function () { setTimeout(function () { try { el.select(); } catch (e) {} }, 0); });
+  });
 
   $('reset').addEventListener('click', function () {
     Object.keys(DEFAULTS).forEach(function (id) { $(id).value = DEFAULTS[id]; });
@@ -532,101 +417,35 @@
 
   recalc();
 
-  // ---- Hero growth motif (canvas), same signature motif as the cost calculator ----
-  var canvas = $('motif');
-  var ctx = canvas.getContext('2d');
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var dpr = Math.min(window.devicePixelRatio || 1, 2);
-  var W, H, points, progress = reduceMotion ? 1 : 0;
-
-  function accentColor() {
-    var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-    return v || '#4d5227';
+  // Barra fija en móvil con la facturación: se oculta cuando ya estás viendo los resultados.
+  var sticky = $('sticky'), results = $('results');
+  if ('IntersectionObserver' in window) {
+    var resVisible = false;
+    new IntersectionObserver(function (es) {
+      resVisible = es[0].isIntersecting;
+      sticky.classList.toggle('show', !resVisible);
+    }, { threshold: 0.35 }).observe(results);
+    sticky.classList.add('show');
   }
-  function warmColor() {
-    var v = getComputedStyle(document.documentElement).getPropertyValue('--accent-warm').trim();
-    return v || '#c3ae7c';
+  $('s-go').addEventListener('click', function () {
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Cuerda de progreso
+  var fill = $('rope-fill'), walker = $('rope-walker');
+  function updateRope() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(Math.max((window.scrollY / max) * 100, 1.5), 96) : 1.5;
+    fill.style.width = p + '%'; walker.style.left = p + '%';
   }
+  window.addEventListener('scroll', updateRope, { passive: true });
+  updateRope();
 
-  function buildPoints() {
-    points = [];
-    var n = 22;
-    for (var i = 0; i < n; i++) {
-      var x = (i / (n - 1));
-      var t = Math.pow(x, 1.6);
-      var y = 1 - t * 0.82 - Math.sin(x * 9) * 0.02 * (1 - x);
-      points.push({ x: x, y: y });
-    }
-  }
-
-  function resize() {
-    var rect = canvas.parentElement.getBoundingClientRect();
-    W = rect.width; H = rect.height;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    buildPoints();
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    var marginX = W * 0.06, marginTop = H * 0.18, marginBottom = H * 0.12;
-    var plotW = W - marginX * 2, plotH = H - marginTop - marginBottom;
-    var visibleN = Math.max(2, Math.floor(points.length * progress));
-    var accent = accentColor(), warm = warmColor();
-
-    ctx.save();
-    ctx.globalAlpha = 0.5;
-    ctx.strokeStyle = accent;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    for (var i = 0; i < visibleN; i++) {
-      var p = points[i];
-      var px = marginX + p.x * plotW;
-      var py = marginTop + p.y * plotH;
-      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-    }
-    ctx.stroke();
-    ctx.restore();
-
-    for (var j = 0; j < visibleN; j++) {
-      var pt = points[j];
-      var cx = marginX + pt.x * plotW;
-      var cy = marginTop + pt.y * plotH;
-      var isLast = j === visibleN - 1;
-
-      ctx.save();
-      ctx.globalAlpha = 0.16;
-      ctx.strokeStyle = accent;
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.lineTo(cx, marginTop + plotH + marginBottom * 0.5);
-      ctx.stroke();
-      ctx.restore();
-
-      ctx.beginPath();
-      ctx.fillStyle = isLast ? warm : accent;
-      ctx.globalAlpha = isLast ? 0.9 : 0.55;
-      ctx.arc(cx, cy, isLast ? 4 : 2.2, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    }
-  }
-
-  function frame() {
-    if (progress < 1) {
-      progress = Math.min(1, progress + 0.018);
-      draw();
-      requestAnimationFrame(frame);
-    } else {
-      draw();
-    }
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  if (reduceMotion) { draw(); } else { requestAnimationFrame(frame); }
+  // Entrada suave al hacer scroll
+  var obs = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: .08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(function (el) { obs.observe(el); });
 })();
 </script>
 </body>

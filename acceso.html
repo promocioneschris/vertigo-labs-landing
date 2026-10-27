@@ -7,73 +7,150 @@
 <title>Tus recursos — Vértigo Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --cream:#FAF8F4;--cream3:#E8E1D8;--ink:#141414;--ink2:#3D3B38;--ink3:#767370;--ink4:#B0ADA9;
-  --white:#FFFFFF;--border:#E2DDD6;--gold:#B7986C;
-  --serif:'Bodoni Moda',Georgia,serif;--sans:'Jost',system-ui,sans-serif;
+  --ink:#141414;--ink2:#262523;--ink3:#4A4845;
+  --white:#FFFFFF;--sand:#F4EEE3;--border:#D9D5CE;
+  --gold:#8C6B3A;--gold-bright:#D2AE72;
+  --olive:#55632F;--olive-bright:#9DAE6A;
+  --sans:'Jost',system-ui,sans-serif;
   --ease:cubic-bezier(0.16,1,0.3,1);
 }
-body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased}
+html{font-size:112.5%}
+body{font-family:var(--sans);font-size:1rem;line-height:1.6;color:var(--ink);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-.wrap{max-width:900px;margin:0 auto;padding:4rem 6vw 6rem}
-.hub-logo{height:78px;width:auto;mix-blend-mode:multiply;margin-bottom:2.75rem}
-.hub-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.66rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink4);margin-bottom:1.2rem}
-.hub-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);opacity:.6}
-.hub-h1{font-family:var(--serif);font-size:clamp(2.1rem,4.6vw,3.2rem);font-weight:400;line-height:1.12;letter-spacing:-.015em}
-.hub-h1 em{font-style:italic;color:var(--ink3)}
-.hub-sub{font-size:1.05rem;line-height:1.7;color:var(--ink2);margin-top:1.1rem;max-width:520px}
+/* ── BARRA DE CUERDA (marca) ── */
+#rope-bar{position:fixed;top:0;left:0;right:0;height:40px;background:var(--ink);z-index:1001;overflow:visible}
+#rope-line{position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,.15);transform:translateY(-50%)}
+#rope-fill{position:absolute;top:50%;left:0;width:2%;height:1px;background:rgba(255,255,255,.7);transform:translateY(-50%);transition:width .08s linear}
+#rope-walker{position:absolute;top:50%;left:2%;transform:translate(-50%,-88%);color:rgba(255,255,255,.9);transition:left .08s linear}
+@keyframes sway{0%,100%{transform:translate(-50%,-88%) rotate(-1.5deg)}50%{transform:translate(-50%,-88%) rotate(1.5deg)}}
+#rope-walker svg{animation:sway 2.6s ease-in-out infinite}
 
-/* Vídeo de presentación (oculto hasta que pegues el embed) */
-.hub-video{margin-top:3rem;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--white);box-shadow:0 1px 2px rgba(20,20,20,.05),0 20px 36px -22px rgba(20,20,20,.2)}
-.hub-video .ratio{position:relative;width:100%;aspect-ratio:16/9;background:#EEE9E1}
+/* ── CABECERA ── */
+.hero{position:relative;overflow:hidden;padding:calc(40px + 2rem) 5% 2.5rem;text-align:center}
+.hero-in{position:relative;z-index:1;max-width:1040px;margin:0 auto}
+.hub-logo{height:62px;width:auto;mix-blend-mode:multiply;margin:0 auto 1.75rem}
+.eyebrow{display:block;font-size:.85rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.hub-h1{font-size:clamp(2.1rem,9.5vw,3.8rem);font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.hub-h1 em{font-style:normal;color:var(--gold)}
+.hub-sub{font-size:1.2rem;line-height:1.55;color:var(--ink2);margin:1.1rem auto 0;max-width:600px}
+.hero-wave{display:none}
+
+/* ── VÍDEO (se muestra solo cuando le pongas un src) ── */
+.hub-video{max-width:760px;margin:1.5rem auto 0;border-radius:22px;overflow:hidden;background:var(--sand);border:1px solid var(--border)}
+.hub-video .ratio{position:relative;width:100%;aspect-ratio:16/9;background:var(--sand)}
 .hub-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.hub-video-cap{padding:1rem 1.4rem;font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink4);border-top:1px solid var(--border)}
+.hub-video-cap{padding:.9rem 1.3rem;font-size:.85rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);border-top:1px solid var(--border);background:var(--white)}
+.vid-wrap{padding:0 5%}
 
-.hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem;margin-top:3rem}
-.hub-card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:2.1rem 2.1rem 1.9rem;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s;box-shadow:0 1px 2px rgba(20,20,20,.05),0 18px 30px -20px rgba(20,20,20,.16)}
-.hub-card:hover{transform:translateY(-4px);border-color:var(--ink4);box-shadow:0 1px 2px rgba(20,20,20,.06),0 26px 44px -22px rgba(20,20,20,.24)}
-.hub-card--extra{grid-column:1/-1;background:linear-gradient(135deg,#FFFDF9 0%,#F8EFDF 100%);border:1.5px solid var(--gold);box-shadow:0 1px 2px rgba(20,20,20,.05),0 34px 60px -28px rgba(183,152,108,.45)}
-.hub-card--extra:hover{border-color:var(--gold);box-shadow:0 1px 2px rgba(20,20,20,.06),0 42px 70px -28px rgba(183,152,108,.55)}
-.hub-card--extra .hub-ico{background:var(--gold);border-color:var(--gold);color:var(--white)}
-.hub-card--extra .hub-n{color:var(--white);background:var(--gold);border-radius:999px;padding:.35rem .85rem;font-family:var(--sans);font-style:normal;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1}
-.hub-card-top{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem}
-.hub-ico{flex:0 0 40px;width:40px;height:40px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold)}
-.hub-ico svg{width:19px;height:19px}
-.hub-kind{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink4)}
-.hub-n{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--ink4);line-height:1;margin-left:auto}
-.hub-t{font-family:var(--serif);font-size:1.45rem;font-weight:400;color:var(--ink);margin-bottom:.5rem}
-.hub-d{font-size:.92rem;line-height:1.6;color:var(--ink2);flex:1}
-.hub-btn{align-self:flex-start;margin-top:1.6rem;padding:.8rem 1.5rem;background:var(--ink);color:var(--white);border-radius:2px;font-size:.78rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s}
-.hub-btn:hover{opacity:.82}
+/* ── RECURSOS ── */
+.sec{padding:1.5rem 5% 2rem}
+.cards{max-width:1040px;margin:0 auto;display:grid;gap:1rem;grid-template-columns:1fr}
+.card{display:flex;flex-direction:column;border-radius:24px;padding:1.6rem 1.5rem 1.7rem;min-height:300px;border:1px solid var(--border);transition:transform .3s var(--ease),box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -22px rgba(20,20,20,.45)}
+.card-top{display:flex;align-items:center;gap:.8rem}
+.ico{flex:0 0 52px;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid currentColor}
+.ico svg{width:24px;height:24px}
+.kind{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid currentColor;border-radius:999px;padding:.3rem .75rem}
+.n{margin-left:auto;font-size:3rem;font-weight:600;line-height:1}
+.n--pill{margin-left:0;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1;border-radius:999px;padding:.45rem .9rem;background:var(--gold);color:var(--white)}
+.card-body{padding:1.4rem 0 1.4rem}
+.card-t{font-size:1.55rem;font-weight:600;line-height:1.15;margin-bottom:.55rem}
+.card-d{font-size:1.05rem;line-height:1.55}
+.card .btn{margin-top:auto;align-self:flex-start}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem 1.7rem;background:var(--ink);color:var(--white);border-radius:12px;font-size:1rem;font-weight:600;letter-spacing:.02em;border:2px solid var(--ink);transition:transform .2s var(--ease),box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
 
-.hub-contact{margin-top:3rem;padding:2.4rem 2.1rem;text-align:center;background:var(--white);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 2px rgba(20,20,20,.05),0 18px 30px -20px rgba(20,20,20,.16)}
-.hub-contact-t{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:.4rem}
-.hub-contact-d{font-size:.92rem;color:var(--ink2);margin-bottom:1.5rem}
-.hub-contact-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:.9rem}
-.hub-contact .hub-btn{display:inline-block}
-.hub-btn--wa{background:var(--white);color:var(--ink);border:1px solid var(--border)}
+.c1{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.c1 .ico{color:var(--gold-bright)} .c1 .card-d{color:rgba(255,255,255,.9)}
+.c1 .btn{background:var(--white);color:var(--ink);border-color:var(--white)}
+.c2{background:var(--sand);color:var(--ink)}
+.c2 .ico{color:var(--gold)} .c2 .card-d{color:var(--ink2)}
+.c3{background:var(--olive);color:var(--white);border-color:var(--olive)}
+.c3 .ico{color:var(--white)} .c3 .card-d{color:rgba(255,255,255,.92)}
+.c3 .btn{background:var(--white);color:var(--ink);border-color:var(--white)}
+.c4{background:var(--white);color:var(--ink)}
+.c4 .ico{color:var(--olive)} .c4 .card-d{color:var(--ink2)}
+.cx{background:var(--sand);color:var(--ink);border:2px solid var(--gold)}
+.cx .ico{color:var(--gold)} .cx .card-d{color:var(--ink2)}
 
-.hub-foot{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:center;font-size:.8rem;color:var(--ink3)}
+/* ── CONTACTO ── */
+.sec-final{padding:1rem 5% 3rem}
+.hub-contact{position:relative;overflow:hidden;max-width:1040px;margin:0 auto;background:var(--ink);color:var(--white);border-radius:28px;padding:3rem 1.6rem;text-align:center}
+.hub-contact::before{content:'';position:absolute;width:420px;height:420px;right:-160px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(157,174,106,.38),transparent 70%);pointer-events:none}
+.hub-contact>*{position:relative}
+.hub-contact-t{font-size:clamp(1.8rem,5.4vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;max-width:680px;margin:0 auto}
+.hub-contact-d{font-size:1.15rem;color:rgba(255,255,255,.9);margin:1rem auto 2rem;max-width:520px}
+.hub-contact-btns{display:flex;flex-direction:column;gap:.9rem;align-items:center}
+.hub-contact .btn{background:var(--white);color:var(--ink);border-color:var(--white);min-width:240px}
+.hub-contact .btn--wa{background:transparent;color:var(--white);border-color:rgba(255,255,255,.85)}
 
-@media(max-width:720px){
-  .wrap{padding:3rem 7vw 4.5rem}
-  .hub-grid{grid-template-columns:1fr}
-  .hub-logo{height:62px}
+/* ── PIE ── */
+.hub-foot{border-top:1px solid var(--border);padding:2rem 5% 2.5rem;text-align:center;font-size:.9rem;color:var(--ink3)}
+
+/* ── REVEAL ── */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-reveal].on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  #rope-walker svg{animation:none}
+  [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* ── TABLET / ESCRITORIO ── */
+@media(min-width:800px){
+  .cards{grid-template-columns:1fr 1fr;gap:1.25rem}
+  .cx{grid-column:1/-1;min-height:0;display:grid;grid-template-columns:1fr auto;column-gap:2rem;align-items:center}
+  .cx .card-top{grid-column:1}
+  .cx .card-body{grid-column:1;padding:1.2rem 0 0}
+  .cx .btn{grid-column:2;grid-row:1/span 2;margin-top:0;align-self:center}
+  .hub-contact{padding:4rem 3rem}
+  .hub-contact-btns{flex-direction:row;justify-content:center}
+}
+@media(min-width:900px){
+  .hero{padding-top:calc(40px + 3rem);padding-bottom:10rem;text-align:left}
+  .hub-logo{margin:0 0 2rem}
+  .hub-sub{margin-left:0}
+  .hero-wave{display:block;position:absolute;right:0;bottom:0;width:100%;height:240px;background:url(wave-hero.jpg) right bottom/cover no-repeat;opacity:.75;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 80%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 80%,transparent)}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="hub-logo">
-  <span class="hub-eyebrow">Tus recursos</span>
-  <h1 class="hub-h1">Los recursos de <em>Vértigo Labs</em></h1>
-  <p class="hub-sub">Todo lo que usamos para entender y mejorar el crecimiento de una clínica. Vuelve aquí siempre que quieras; lo iremos ampliando.</p>
 
+<div id="rope-bar" aria-hidden="true">
+  <div id="rope-line"></div>
+  <div id="rope-fill"></div>
+  <div id="rope-walker">
+    <svg width="24" height="38" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="4" r="3" fill="currentColor"/>
+      <path d="M9.5 7 C9.5 7 8.5 13 8.5 18 L14.5 18 C14.5 13 13.5 7 12.5 7Z" fill="currentColor"/>
+      <line x1="0" y1="13.5" x2="24" y2="15" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.5" y1="10" x2="2" y2="13.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="13" y1="10" x2="21" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.5" y1="18" x2="5" y2="30" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="13.5" y1="18" x2="18" y2="29" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="5" y1="30" x2="0" y2="31" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="18" y1="29" x2="23" y2="29" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="hub-logo">
+    <span class="eyebrow">Tus recursos</span>
+    <h1 class="hub-h1">Los recursos de <em>Vértigo Labs</em></h1>
+    <p class="hub-sub">Todo lo que usamos para entender y mejorar el crecimiento de una clínica. Vuelve aquí siempre que quieras; lo iremos ampliando.</p>
+  </div>
+  <div class="hero-wave" aria-hidden="true"></div>
+</header>
+
+<div class="vid-wrap">
   <!-- ═══ VÍDEO DE PRESENTACIÓN ═══
        Cuando tengas el vídeo (YouTube/Vimeo "no listado"):
        1) quita el atributo `hidden` de la línea de abajo
@@ -84,79 +161,93 @@ a{text-decoration:none;color:inherit}
     </div>
     <div class="hub-video-cap">Empieza por aquí</div>
   </div>
+</div>
 
-  <!-- ═══ RECURSOS ═══ -->
-  <div class="hub-grid">
+<!-- ═══ RECURSOS ═══ -->
+<main class="sec">
+  <div class="cards">
 
-    <a class="hub-card" href="https://drive.google.com/file/d/14K_UvgfPHm6xH8AzOE2E1zQSfjyhzJ88/view?usp=sharing" target="_blank" rel="noopener">
-      <div class="hub-card-top">
-        <span class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
-        <span class="hub-kind">PDF</span>
-        <span class="hub-n">01</span>
+    <a class="card c1" href="https://drive.google.com/file/d/14K_UvgfPHm6xH8AzOE2E1zQSfjyhzJ88/view?usp=sharing" target="_blank" rel="noopener" data-reveal>
+      <div class="card-top">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
+        <span class="kind">PDF</span>
+        <span class="n">01</span>
       </div>
-      <h2 class="hub-t">Por qué tu clínica está estancada</h2>
-      <p class="hub-d">Por qué más publicidad o cambiar de agencia no siempre desatasca el crecimiento, y qué bases deben estar sólidas antes de escalar.</p>
-      <span class="hub-btn">Abrir el PDF →</span>
+      <div class="card-body">
+        <h2 class="card-t">Por qué tu clínica está estancada</h2>
+        <p class="card-d">Por qué más publicidad o cambiar de agencia no siempre desatasca el crecimiento, y qué bases deben estar sólidas antes de escalar.</p>
+      </div>
+      <span class="btn">Abrir el PDF →</span>
     </a>
 
-    <a class="hub-card" href="https://drive.google.com/file/d/118s5mgf33jZ1Pg7QJ7IIbcRnXk2qOEe1/view?usp=drive_link" target="_blank" rel="noopener">
-      <div class="hub-card-top">
-        <span class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
-        <span class="hub-kind">PDF</span>
-        <span class="hub-n">02</span>
+    <a class="card c2" href="https://drive.google.com/file/d/118s5mgf33jZ1Pg7QJ7IIbcRnXk2qOEe1/view?usp=drive_link" target="_blank" rel="noopener" data-reveal>
+      <div class="card-top">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
+        <span class="kind">PDF</span>
+        <span class="n">02</span>
       </div>
-      <h2 class="hub-t">De lead a paciente</h2>
-      <p class="hub-d">El camino completo, del formulario al tratamiento contratado: contacto, seguimiento, citas y decisión.</p>
-      <span class="hub-btn">Abrir el PDF →</span>
+      <div class="card-body">
+        <h2 class="card-t">De lead a paciente</h2>
+        <p class="card-d">El camino completo, del formulario al tratamiento contratado: contacto, seguimiento, citas y decisión.</p>
+      </div>
+      <span class="btn">Abrir el PDF →</span>
     </a>
 
-    <a class="hub-card" href="https://drive.google.com/file/d/1d6p6_ahx_gUfpC6tvdZEey4QOtqeM86Q/view?usp=sharing" target="_blank" rel="noopener">
-      <div class="hub-card-top">
-        <span class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
-        <span class="hub-kind">PDF</span>
-        <span class="hub-n">03</span>
+    <a class="card c3" href="https://drive.google.com/file/d/1d6p6_ahx_gUfpC6tvdZEey4QOtqeM86Q/view?usp=sharing" target="_blank" rel="noopener" data-reveal>
+      <div class="card-top">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
+        <span class="kind">PDF</span>
+        <span class="n">03</span>
       </div>
-      <h2 class="hub-t">Los números que importan</h2>
-      <p class="hub-d">Deja de medir clics. Empieza a medir negocio: coste por cita, coste por asistencia, CAC, conversión y ROAS.</p>
-      <span class="hub-btn">Abrir el PDF →</span>
+      <div class="card-body">
+        <h2 class="card-t">Los números que importan</h2>
+        <p class="card-d">Deja de medir clics. Empieza a medir negocio: coste por cita, coste por asistencia, CAC, conversión y ROAS.</p>
+      </div>
+      <span class="btn">Abrir el PDF →</span>
     </a>
 
-    <a class="hub-card" href="https://drive.google.com/file/d/1clmCtkocVT-q-LjtyAERrB2_pQ9fFX-O/view?usp=sharing" target="_blank" rel="noopener">
-      <div class="hub-card-top">
-        <span class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
-        <span class="hub-kind">PDF</span>
-        <span class="hub-n">04</span>
+    <a class="card c4" href="https://drive.google.com/file/d/1clmCtkocVT-q-LjtyAERrB2_pQ9fFX-O/view?usp=sharing" target="_blank" rel="noopener" data-reveal>
+      <div class="card-top">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></span>
+        <span class="kind">PDF</span>
+        <span class="n">04</span>
       </div>
-      <h2 class="hub-t">El proceso que convierte</h2>
-      <p class="hub-d">Cómo combinar automatización, seguimiento y atención humana para que ninguna oportunidad se quede sin respuesta.</p>
-      <span class="hub-btn">Abrir el PDF →</span>
+      <div class="card-body">
+        <h2 class="card-t">El proceso que convierte</h2>
+        <p class="card-d">Cómo combinar automatización, seguimiento y atención humana para que ninguna oportunidad se quede sin respuesta.</p>
+      </div>
+      <span class="btn">Abrir el PDF →</span>
     </a>
 
-    <a class="hub-card hub-card--extra" href="https://vertigolabs.es/calculadora-inversion.html" target="_blank" rel="noopener">
-      <div class="hub-card-top">
-        <span class="hub-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><circle cx="8.6" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="12" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="15.4" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="8.6" cy="15" r=".55" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r=".55" fill="currentColor" stroke="none"/><circle cx="15.4" cy="15" r=".55" fill="currentColor" stroke="none"/><path d="M8.3 18.4h7.4"/></svg></span>
-        <span class="hub-kind">Herramienta</span>
-        <span class="hub-n">Extra</span>
+    <a class="card cx" href="https://vertigolabs.es/calculadora-inversion.html" target="_blank" rel="noopener" data-reveal>
+      <div class="card-top">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><circle cx="8.6" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="12" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="15.4" cy="11.6" r=".55" fill="currentColor" stroke="none"/><circle cx="8.6" cy="15" r=".55" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r=".55" fill="currentColor" stroke="none"/><circle cx="15.4" cy="15" r=".55" fill="currentColor" stroke="none"/><path d="M8.3 18.4h7.4"/></svg></span>
+        <span class="kind">Herramienta</span>
+        <span class="n n--pill">Extra</span>
       </div>
-      <h2 class="hub-t">¿Qué necesitas invertir?</h2>
-      <p class="hub-d">Introduce las métricas de tu clínica y calcula cuánto necesitas invertir y qué retorno puedes esperar.</p>
-      <span class="hub-btn">Abrir la calculadora →</span>
+      <div class="card-body">
+        <h2 class="card-t">¿Qué necesitas invertir?</h2>
+        <p class="card-d">Introduce las métricas de tu clínica y calcula cuánto necesitas invertir y qué retorno puedes esperar.</p>
+      </div>
+      <span class="btn">Abrir la calculadora →</span>
     </a>
 
   </div>
+</main>
 
-  <div class="hub-contact">
+<section class="sec-final">
+  <div class="hub-contact" data-reveal>
     <h2 class="hub-contact-t">¿Podemos ayudarte con tu clínica?</h2>
     <p class="hub-contact-d">Contacta con nosotros y evaluamos juntos si podemos ayudarte.</p>
     <div class="hub-contact-btns">
-      <a class="hub-btn" href="mailto:hola@vertigolabs.es">Por email →</a>
-      <a class="hub-btn hub-btn--wa" href="https://wa.me/34664464256" target="_blank" rel="noopener">Por WhatsApp →</a>
+      <a class="btn" href="mailto:hola@vertigolabs.es">Por email →</a>
+      <a class="btn btn--wa" href="https://wa.me/34664464256" target="_blank" rel="noopener">Por WhatsApp →</a>
     </div>
   </div>
+</section>
 
-  <div class="hub-foot">
-    <span>© 2025 Vértigo Labs</span>
-  </div>
+<div class="hub-foot">
+  <span>© 2025 Vértigo Labs</span>
 </div>
 
 <script>
@@ -164,6 +255,26 @@ a{text-decoration:none;color:inherit}
 (function(){
   var v=document.getElementById('hub-video');
   if(v && v.querySelector('iframe') && v.querySelector('iframe').getAttribute('src')) v.hidden=false;
+})();
+
+// Cuerda de progreso
+(function(){
+  var fill=document.getElementById('rope-fill'),walker=document.getElementById('rope-walker');
+  function update(){
+    var max=document.documentElement.scrollHeight-window.innerHeight;
+    var p=max>0?Math.min(Math.max((window.scrollY/max)*100,1.5),96):1.5;
+    fill.style.width=p+'%';walker.style.left=p+'%';
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+// Entrada suave al hacer scroll
+(function(){
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(function(el){obs.observe(el);});
 })();
 </script>
 </body>
