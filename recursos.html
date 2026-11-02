@@ -547,10 +547,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&fModal.classList.co
 document.querySelectorAll('a[href="#acceder"], .js-open-form').forEach(el=>{
   el.addEventListener('click',e=>{e.preventDefault();openModal();});
 });
-// Auto-apertura una sola vez por sesión, a los 8 segundos
-if(!modalSeen){
-  setTimeout(()=>{if(!modalSeen)openModal();},8000);
-}
+// Sin auto-apertura: el popup solo sale cuando el usuario pulsa un botón.
 
 // Exige un nombre real (evita envíos con una o dos letras)
 const fNombre=document.getElementById('f-nombre');
