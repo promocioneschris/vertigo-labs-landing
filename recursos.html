@@ -141,7 +141,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── BARRA FIJA MÓVIL ── */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:900;padding:.75rem 5% calc(.75rem + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);transform:translateY(110%);transition:transform .35s var(--ease)}
 .sticky.show{transform:none}
-.sticky .btn{width:100%}
+.sticky .btn{display:flex;width:calc(100% - 2rem);max-width:24rem;margin:0 auto}
 
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);padding:3rem 5% calc(3rem + 72px)}
@@ -216,7 +216,8 @@ body.modal-lock{overflow:hidden}
   .swipe{display:none}
 }
 @media(max-width:600px){
-  .btn.hero-btn{display:flex;width:100%}
+  /* Botones con margen a los lados para que se lean como botón (nunca de borde a borde) */
+  .btn.hero-btn{display:flex;width:calc(100% - 2rem);max-width:24rem;margin-left:auto;margin-right:auto}
 }
 
 /* ── MÓVIL Y TABLET: titular con impacto y todo centrado ── */
@@ -226,7 +227,8 @@ body.modal-lock{overflow:hidden}
   .eyebrow::before{display:none}
   .hero-h1{font-size:clamp(2.25rem,11vw,3.6rem);line-height:1.1;letter-spacing:-.025em}
   .hero-sub{margin-left:auto;margin-right:auto;font-size:1.15rem}
-  .chips{justify-content:center}
+  .chips{display:none}
+  .chart{padding:.9rem .95rem 1rem;width:100%;max-width:30rem;margin-left:auto;margin-right:auto}
   .kicker{text-align:center}
   .sec-h{text-align:center;margin-left:auto;margin-right:auto}
   .sec-sub{text-align:center;margin-left:auto;margin-right:auto}
@@ -312,28 +314,28 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
       </div>
     </div>
     <div class="chart" id="chart" data-reveal data-d="2" aria-hidden="true">
-      <svg viewBox="0 0 360 252" role="img">
+      <svg viewBox="0 0 360 194" role="img">
         <defs>
-          <clipPath id="cb1"><rect x="14" y="44" width="233" height="58" rx="15"/></clipPath>
-          <clipPath id="cb2"><rect x="14" y="176" width="332" height="62" rx="15"/></clipPath>
+          <clipPath id="cb1"><rect x="14" y="32" width="233" height="46" rx="13"/></clipPath>
+          <clipPath id="cb2"><rect x="14" y="128" width="332" height="50" rx="14"/></clipPath>
         </defs>
         <g class="b-before">
-          <text class="b-lbl b-lbl--old" x="14" y="30">Ahora</text>
+          <text class="b-lbl b-lbl--old" x="14" y="22">Ahora</text>
           <g class="b-row b-row--1" clip-path="url(#cb1)">
-            <rect class="b-gasto" x="14" y="44" width="205" height="58"/>
-            <rect class="b-queda" x="219" y="44" width="28" height="58"/>
+            <rect class="b-gasto" x="14" y="32" width="205" height="46"/>
+            <rect class="b-queda" x="219" y="32" width="28" height="46"/>
           </g>
-          <text class="b-in b-txt" x="30" y="79">Gastos</text>
-          <text class="b-side b-txt" x="257" y="79">Beneficio</text>
+          <text class="b-in b-txt" x="30" y="61">Gastos</text>
+          <text class="b-side b-txt" x="257" y="61">Beneficio</text>
         </g>
-        <text class="b-lbl b-lbl--new b-txt b-txt--2" x="14" y="160">Método Vértigo</text>
+        <text class="b-lbl b-lbl--new b-txt b-txt--2" x="14" y="116">Método Vértigo</text>
         <g class="b-row b-row--2" clip-path="url(#cb2)">
-          <rect class="b-gasto" x="14" y="176" width="190" height="62"/>
-          <rect class="b-queda" x="204" y="176" width="142" height="62"/>
+          <rect class="b-gasto" x="14" y="128" width="190" height="50"/>
+          <rect class="b-queda" x="204" y="128" width="142" height="50"/>
         </g>
-        <rect class="b-ring b-txt b-txt--2" x="14" y="176" width="332" height="62" rx="15"/>
-        <text class="b-in b-txt b-txt--2" x="30" y="213">Gastos</text>
-        <text class="b-in b-txt b-txt--2" x="275" y="213" text-anchor="middle">Beneficio</text>
+        <rect class="b-ring b-txt b-txt--2" x="14" y="128" width="332" height="50" rx="14"/>
+        <text class="b-in b-txt b-txt--2" x="30" y="159">Gastos</text>
+        <text class="b-in b-txt b-txt--2" x="275" y="159" text-anchor="middle">Beneficio</text>
       </svg>
     </div>
   </div>
