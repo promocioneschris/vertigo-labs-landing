@@ -435,7 +435,7 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
     <button type="button" class="modal-close" id="modal-close" aria-label="Cerrar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <h3 class="modal-t" id="modal-title">Descubre cómo puedes <em>escalar tu clínica.</em></h3>
+    <h3 class="modal-t" id="modal-title">El método para llevarte <em>más dinero al bolsillo.</em></h3>
     <p class="modal-sub">4 guías y una calculadora, gratis.</p>
     <form class="cta-form" id="rec-form" onsubmit="handleForm(event)">
       <div class="cta-field">
@@ -452,15 +452,6 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
       <div class="cta-field">
         <label class="cta-label" for="f-telefono">Teléfono / WhatsApp</label>
         <input class="cta-inp" id="f-telefono" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+34 600 000 000" required>
-      </div>
-      <div class="cta-field">
-        <label class="cta-label" for="f-escalar">¿Tu intención es escalar tu clínica?</label>
-        <select class="cta-select" id="f-escalar" name="scaleIntent" required>
-          <option value="" disabled selected>Selecciona una opción</option>
-          <option value="Sí, me encantaría poder escalar">Sí, me encantaría poder escalar</option>
-          <option value="No, no tengo en mente escalar">No, no tengo en mente escalar</option>
-          <option value="No tengo ninguna clínica">No tengo ninguna clínica</option>
-        </select>
       </div>
       <label class="cta-check">
         <input type="checkbox" id="f-consent" name="consent" required>
@@ -602,7 +593,6 @@ async function handleForm(e){
     clinicName:form.clinicName.value.trim(),
     email:form.email.value.trim(),
     phone:form.phone.value.trim(),
-    scaleIntent:form.scaleIntent.value,
     adSet:adSet,
     source:'Landing Recursos - Ads'+(adSet?' - '+adSet:'')
   };
