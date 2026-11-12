@@ -37,6 +37,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:1.1rem 2.1rem;background:var(--ink);color:var(--white);border-radius:12px;font-size:1.05rem;font-weight:600;letter-spacing:.02em;transition:transform .2s var(--ease),box-shadow .2s;box-shadow:0 10px 24px -12px rgba(20,20,20,.5)}
 .btn:hover{transform:translateY(-2px);box-shadow:0 16px 28px -12px rgba(20,20,20,.55)}
 .btn--light{background:var(--white);color:var(--ink)}
+.final .btn--light{padding-left:1.2rem;padding-right:1.2rem}
+#hero-cta,#final-cta{text-wrap:balance;line-height:1.3}
 
 /* ── ESTRUCTURA ── */
 .sec{padding:4.5rem 5%}
@@ -54,7 +56,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .eyebrow::before{content:'';flex:0 0 28px;height:2px;background:var(--gold)}
 .hero-h1{font-size:clamp(2rem,6.4vw,3.7rem);font-weight:600;line-height:1.12;letter-spacing:-.02em}
 .hero-h1 em{font-style:normal;color:var(--gold)}
-.hero-h1-note{display:block;margin-top:.6rem;font-size:.5em;font-weight:500;line-height:1.3;letter-spacing:0;color:var(--ink3)}
+.hero-h1-note{display:block;margin-top:.6rem;font-size:.62em;font-weight:600;line-height:1.25;letter-spacing:-.005em;color:var(--ink2)}
 .hero-sub{font-size:1.2rem;line-height:1.6;color:var(--ink);margin-top:1.25rem;max-width:620px}
 .hero-btn{margin-top:1.75rem}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
@@ -128,7 +130,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 /* ── CTA FINAL ── */
 .sec-final{padding:1rem 5% 4.5rem}
-.final{max-width:1120px;margin:0 auto;background:var(--ink);color:var(--white);border-radius:28px;padding:3rem 1.6rem;text-align:center;position:relative;overflow:hidden}
+.final{max-width:1120px;margin:0 auto;background:var(--ink);color:var(--white);border-radius:28px;padding:3rem 1.1rem;text-align:center;position:relative;overflow:hidden}
 .final::before{content:'';position:absolute;width:420px;height:420px;right:-160px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(157,174,106,.38),transparent 70%);pointer-events:none}
 .final>*{position:relative}
 .final h2{font-size:clamp(1.9rem,5.4vw,3.2rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;max-width:720px;margin:0 auto}
@@ -303,9 +305,9 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
     <div>
       <span class="eyebrow" data-reveal="fade">Para clínicas estéticas que quieren escalar su facturación</span>
       <h1 class="hero-h1" data-reveal data-d="1">Descubre cómo aumentar la facturación de tu clínica mejorando tu <em>beneficio neto</em> <span class="hero-h1-note">(lo que te llevas a tu bolsillo)</span></h1>
-      <p class="hero-sub" data-reveal data-d="2">Accede gratis a estos recursos que te ayudarán a atraer más pacientes, diferenciarte de la competencia y aumentar el valor de tus tratamientos. Una clínica que no solo facture más, sino que sea más rentable.</p>
+      <p class="hero-sub" data-reveal data-d="2">Accede gratis a estos recursos para atraer más pacientes, diferenciarte de la competencia y conseguir una clínica que no solo facture más, sino que sea más rentable.</p>
       <div data-reveal data-d="3">
-        <a href="#acceder" class="btn hero-btn" id="hero-cta">Quiero escalar mi clínica →</a>
+        <a href="#acceder" class="btn hero-btn" id="hero-cta">Quiero ganar más dinero con mi clínica →</a>
         <div class="chips"><span>4 guías</span><span>1 calculadora</span><span>100% gratis</span></div>
       </div>
     </div>
@@ -419,13 +421,13 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
   <div class="final" data-reveal>
     <h2>Descubre cómo puedes <em>escalar tu clínica.</em></h2>
     <p>4 guías y una calculadora. Gratis, directo a tu email.</p>
-    <button type="button" class="btn btn--light js-open-form" id="final-cta">Quiero escalar mi clínica →</button>
+    <button type="button" class="btn btn--light js-open-form" id="final-cta">Quiero ganar más dinero con mi clínica →</button>
     <small>Recibirás el acceso por email.</small>
   </div>
 </section>
 
 <!-- ══ BARRA FIJA MÓVIL ══ -->
-<div class="sticky" id="sticky"><button type="button" class="btn js-open-form">Quiero escalar mi clínica →</button></div>
+<div class="sticky" id="sticky"><button type="button" class="btn js-open-form">Quiero ganar más dinero →</button></div>
 
 <!-- ══ POPUP FORMULARIO ══ -->
 <div class="modal-ov" id="formModal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
@@ -464,7 +466,7 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
         <input type="checkbox" id="f-consent" name="consent" required>
         <span>Acepto que Vértigo Labs trate mis datos para enviarme los recursos e información sobre sus servicios, según la <a href="privacidad.html" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
       </label>
-      <button type="submit" class="cta-btn" id="form-btn">Quiero escalar mi clínica →</button>
+      <button type="submit" class="cta-btn" id="form-btn">Quiero ganar más dinero →</button>
     </form>
   </div>
 </div>
