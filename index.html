@@ -6,251 +6,240 @@
 <title>Vértigo Labs — Crecimiento para clínicas privadas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --cream:   #FAF8F4;
-  --cream2:  #F2EDE5;
-  --cream3:  #E8E1D8;
-  --ink:     #141414;
-  --ink2:    #3D3B38;
-  --ink3:    #767370;
-  --ink4:    #B0ADA9;
-  --white:   #FFFFFF;
-  --border:  #E2DDD6;
-  --serif:   'Bodoni Moda', Georgia, serif;
-  --sans:    'Jost', system-ui, sans-serif;
-  --ease:    cubic-bezier(0.16,1,0.3,1);
+  --ink:#141414;--ink2:#262523;--ink3:#4A4845;
+  --white:#FFFFFF;--sand:#F4EEE3;--border:#D9D5CE;
+  --gold:#8C6B3A;--gold-bright:#D2AE72;
+  --olive:#55632F;--olive-bright:#9DAE6A;
+  --sans:'Jost',system-ui,sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);background:var(--cream);overflow-x:hidden}
+html{font-size:112.5%;scroll-behavior:smooth}
+body{font-family:var(--sans);font-size:1rem;line-height:1.6;color:var(--ink);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
-button{cursor:pointer;border:none;background:none;font-family:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+section[id]{scroll-margin-top:110px}
 
-/* ── TIGHTROPE PROGRESS ── */
+/* ── BARRA DE CUERDA (marca) ── */
 #rope-bar{position:fixed;top:0;left:0;right:0;height:40px;background:var(--ink);z-index:1001;overflow:visible}
 #rope-line{position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,.15);transform:translateY(-50%)}
 #rope-fill{position:absolute;top:50%;left:0;width:2%;height:1px;background:rgba(255,255,255,.7);transform:translateY(-50%);transition:width .08s linear}
 #rope-walker{position:absolute;top:50%;left:2%;transform:translate(-50%,-88%);color:rgba(255,255,255,.9);transition:left .08s linear}
 @keyframes sway{0%,100%{transform:translate(-50%,-88%) rotate(-1.5deg)}50%{transform:translate(-50%,-88%) rotate(1.5deg)}}
 #rope-walker svg{animation:sway 2.6s ease-in-out infinite}
-@media(prefers-reduced-motion:reduce){#rope-walker svg{animation:none}[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
 
-/* ── NAV ── */
-#nav{position:fixed;top:40px;left:0;right:0;height:64px;z-index:1000;display:flex;align-items:center;padding:0 5%;gap:2rem;background:var(--cream);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
-#nav.scrolled{border-bottom-color:var(--border);background:rgba(250,248,244,.95);backdrop-filter:blur(12px)}
-.nav-logo{height:72px;mix-blend-mode:multiply}
-.nav-links{display:flex;gap:2rem;list-style:none;margin:0 auto}
-.nav-links a{font-size:.8rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);transition:color .2s}
+/* ── NAVEGACIÓN ── */
+#nav{position:fixed;top:40px;left:0;right:0;height:64px;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0 5%;background:var(--white);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+#nav.scrolled{border-bottom-color:var(--border);box-shadow:0 8px 24px -18px rgba(20,20,20,.35)}
+.nav-logo{height:60px;width:auto;mix-blend-mode:multiply}
+.nav-links{display:none;gap:2rem;list-style:none;margin:0 auto}
+.nav-links a{font-size:.95rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);transition:color .2s}
 .nav-links a:hover{color:var(--ink)}
-.nav-cta{padding:.5rem 1.25rem;border:1px solid var(--ink);color:var(--ink);border-radius:2px;font-size:.8rem;font-weight:500;letter-spacing:.05em;transition:background .2s,color .2s;white-space:nowrap}
-.nav-cta:hover{background:var(--ink);color:var(--white)}
-@media(max-width:768px){.nav-links{display:none}}
+.nav-cta{display:inline-flex;align-items:center;padding:.65rem 1.2rem;background:var(--ink);color:var(--white);border-radius:12px;font-size:.95rem;font-weight:600;letter-spacing:.01em;white-space:nowrap;transition:transform .2s var(--ease)}
+.nav-cta:hover{transform:translateY(-2px)}
 
-/* ── HERO ── */
-.hero{min-height:100vh;background:var(--cream);display:flex;align-items:center;padding:calc(104px + 5vw) 5% 5vw;position:relative;overflow:hidden}
-.hero-rule{position:absolute;bottom:0;left:5%;right:5%;height:1px;background:var(--border)}
-.hero-content{width:45%;max-width:560px;position:relative;z-index:2;display:flex;flex-direction:column}
-.hero-wave{position:absolute;right:-3%;top:-4%;bottom:-8%;width:68%;pointer-events:none;will-change:opacity;transform-origin:center right;user-select:none;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 12%,black 24%);
-  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.6) 12%,black 24%)}
-.hero-wave img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block;will-change:transform}
-.hero-wave-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(to bottom,var(--cream),transparent);pointer-events:none;z-index:1}
-.hero-wave-bot{position:absolute;bottom:0;left:0;right:0;height:16%;background:linear-gradient(to top,var(--cream),transparent);pointer-events:none;z-index:1}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:.625rem;font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}
-.hero-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--ink3)}
-.hero-h1{font-family:var(--serif);font-size:clamp(3.5rem,7vw,9rem);font-weight:400;line-height:1.0;color:var(--ink);letter-spacing:-.03em}
-.hero-h1 em{font-style:italic;color:var(--ink3)}
-/* Rotating word — fade+slide transition */
-.hero-word-wrap{display:block;position:relative;height:1.04em;overflow:visible}
-#hero-word{position:absolute;left:0;top:0;white-space:nowrap;transition:opacity 280ms cubic-bezier(0.77,0,0.175,1),transform 280ms cubic-bezier(0.23,1,0.32,1)}
-#hero-word.exiting{opacity:0;transform:translateY(-14px)}
-#hero-word.entering{opacity:0;transform:translateY(14px)}
-@media(prefers-reduced-motion:reduce){#hero-word{transition:opacity 200ms linear}}
-.hero-bottom{display:flex;flex-direction:column;align-items:flex-start;gap:1.75rem;margin-top:2.5rem}
-.hero-sub{font-size:1.1rem;font-weight:400;line-height:1.8;color:var(--ink2);max-width:400px}
-.hero-btns{display:flex;gap:.875rem;flex-wrap:wrap}
-@media(max-width:900px){.hero{padding-top:calc(104px + 3vw)}.hero-content{width:100%}.hero-wave{width:100%;top:auto;bottom:-5%;opacity:.25}}
-@media(max-width:600px){.hero{min-height:auto;padding:calc(104px + 3.5rem) 5% 3.5rem}.hero-eyebrow{margin-bottom:.75rem}.hero-h1{font-size:clamp(2.75rem,10vw,4rem)}.hero-sub{font-size:1rem}.hero-btns{flex-direction:column;width:100%}.btn-dark,.btn-outline{text-align:center}.hero-word-wrap{height:auto;min-height:1.15em}#hero-word{position:static;white-space:normal}}
-.btn-dark{padding:.9rem 1.875rem;background:var(--ink);color:var(--white);border-radius:2px;font-size:.9rem;font-weight:500;letter-spacing:.03em;transition:opacity .2s;display:inline-block}
-.btn-dark:hover{opacity:.82}
-.btn-outline{padding:.9rem 1.875rem;border:1px solid var(--ink);color:var(--ink);border-radius:2px;font-size:.9rem;font-weight:400;transition:background .2s,color .2s;display:inline-block}
-.btn-outline:hover{background:var(--ink);color:var(--white)}
+/* ── BOTONES ── */
+.btn-dark{display:inline-flex;align-items:center;justify-content:center;padding:1.1rem 2.1rem;background:var(--ink);color:var(--white);border-radius:12px;font-size:1.05rem;font-weight:600;letter-spacing:.02em;border:2px solid var(--ink);transition:transform .2s var(--ease),box-shadow .2s}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 16px 28px -12px rgba(20,20,20,.55)}
 
-/* ── STATS ── */
-.stats-bar{background:var(--white);border-bottom:1px solid var(--border)}
-.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
-.stats-grid-3{grid-template-columns:repeat(3,1fr)}
-.stat-item{padding:3rem 2rem;border-right:1px solid var(--border)}
-.stat-item:last-child{border-right:none}
-.stat-num{font-family:var(--serif);font-size:clamp(2.25rem,3.5vw,3.25rem);font-weight:400;color:var(--ink);line-height:1;margin-bottom:.375rem}
-.stat-lbl{font-size:.8rem;font-weight:400;color:var(--ink3);letter-spacing:.04em}
-@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-item{border-bottom:1px solid var(--border)}.stats-grid-3{grid-template-columns:1fr}.stats-grid-3 .stat-item{border-right:none}}
+/* ── CABECERA ── */
+.hero{position:relative;overflow:hidden;padding:calc(104px + 2.25rem) 5% 3rem;text-align:center}
+.hero-content{position:relative;z-index:2;max-width:1120px;margin:0 auto}
+.hero-eyebrow{display:block;font-size:1.05rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem}
+.hero-h1{font-size:clamp(2.4rem,10.5vw,4.4rem);font-weight:600;line-height:1.08;letter-spacing:-.025em}
+.hero-words{display:grid;margin-top:.1em}
+.hero-words em{grid-area:1/1;font-style:normal;color:var(--gold);opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s var(--ease)}
+.hero-words em.on{opacity:1;transform:none}
+.hero-sub{font-size:1.2rem;line-height:1.6;color:var(--ink);margin:1.5rem auto 0;max-width:34rem}
+.hero-btns{margin-top:1.75rem}
+.hero-wave{display:none}
 
-/* ── SECTION BASE ── */
-.sec{padding:8rem 5%}
-.sec-inner{max-width:1200px;margin:0 auto}
-.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.5rem}
-.sec-title{font-family:var(--serif);font-size:clamp(2.25rem,4.5vw,4rem);font-weight:400;line-height:1.12;letter-spacing:-.01em}
-.sec-title em{font-style:italic;color:var(--ink3)}
+/* ── CIFRAS ── */
+.stats-bar{padding:0 5% 1rem}
+.stats-grid{max-width:1120px;margin:0 auto;display:grid;gap:1rem;grid-template-columns:1fr}
+.stat-item{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:1.6rem 1.5rem;text-align:center}
+.stat-num{font-size:clamp(2.2rem,8vw,2.6rem);font-weight:600;line-height:1.05;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.stat-lbl{margin-top:.5rem;font-size:1.05rem;line-height:1.4;color:var(--ink2)}
+
+/* ── SECCIONES ── */
+.sec{padding:3.5rem 5%}
+.sec-inner{max-width:1120px;margin:0 auto}
+.eyebrow{display:block;font-size:.95rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.sec-title{font-size:clamp(2rem,8vw,3.4rem);font-weight:600;line-height:1.12;letter-spacing:-.02em}
+.sec-title em{font-style:normal;color:var(--gold)}
+.sec-lead{font-size:1.2rem;line-height:1.6;color:var(--ink2);margin-top:1rem;max-width:34rem}
 
 /* ── PROBLEMA ── */
-.sec-problema{background:var(--cream)}
-.prob-top{display:grid;grid-template-columns:55% 1fr;gap:4rem;align-items:start;margin-top:3rem}
-.prob-text{margin-top:2rem}
-.prob-text{font-size:1rem;color:var(--ink3);line-height:1.85;margin-bottom:1.25rem}
-.pain-list{list-style:none}
-.pain-list li{display:flex;align-items:center;gap:1.25rem;padding:1.375rem 0;border-bottom:1px solid var(--border);font-size:1.0625rem;font-weight:500;color:var(--ink)}
-.pain-list li:first-child{border-top:1px solid var(--border)}
-.pain-icon{width:36px;height:36px;flex-shrink:0;color:var(--ink3)}
-.prob-stat{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
-.big-desc{font-family:var(--serif);font-style:italic;font-size:clamp(1.25rem,2vw,1.625rem);font-weight:400;line-height:1.5;color:var(--ink);max-width:420px}
-.prob-note{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);font-size:.75rem;color:rgba(255,255,255,.28);font-style:italic;line-height:1.6}
-@media(max-width:768px){.prob-top{grid-template-columns:1fr;gap:2.5rem}.big-desc{max-width:none}.sec{padding:5rem 5%}}
+.prob-top{display:grid;gap:2rem;margin-top:2rem}
+.prob-text{font-size:1.15rem;line-height:1.65;color:var(--ink2);margin-top:1.1rem}
+.prob-stat{margin-top:1.75rem;padding:1.4rem 1.5rem;background:var(--sand);border-left:5px solid var(--gold);border-radius:6px 20px 20px 6px}
+.big-desc{font-size:1.25rem;font-weight:500;line-height:1.5;color:var(--ink)}
+.pain-list{list-style:none;display:grid;gap:.85rem;align-content:start}
+.pain-list li{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.2rem;background:var(--white);border:1px solid var(--border);border-radius:20px;font-size:1.1rem;font-weight:500;line-height:1.35;color:var(--ink)}
+.pain-icon{flex:0 0 46px;width:46px;height:46px;padding:11px;border-radius:50%;background:var(--sand);color:var(--gold)}
 
 /* ── MÉTODO ── */
-.sec-metodo{background:var(--white);border-top:1px solid var(--border)}
-.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:5rem}
-.phase{display:flex;flex-direction:column;background:#F9F6F1;border:1px solid var(--border);transition:border-color .3s}
-.phase:hover{border-color:var(--ink4)}
-.phase-img-wrap{position:relative;overflow:hidden;background:#F9F6F1}
-.phase-img-wrap img{width:100%;aspect-ratio:3/2;object-fit:contain;padding:1.5rem 2rem 0;display:block;transition:transform .7s var(--ease)}
-.phase:hover .phase-img-wrap img{transform:scale(1.03) translateY(-4px)}
-.phase-n{position:absolute;bottom:-.15em;right:.5rem;font-family:var(--serif);font-size:7rem;font-weight:400;font-style:italic;color:var(--ink);opacity:.07;line-height:1;pointer-events:none;user-select:none}
-.phase-body{padding:.5rem 2.5rem 2.5rem;flex:1;display:flex;flex-direction:column}
-.phase-t{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:.75rem}
-.phase-d{font-size:.875rem;line-height:1.85;color:var(--ink2)}
-.phase-list{margin-top:auto;padding-top:1.75rem;list-style:none}
-.phase-list li{display:flex;gap:.625rem;font-size:.8rem;color:var(--ink2);margin-bottom:.5rem;align-items:flex-start}
-.phase-list li::before{content:'';display:block;width:3px;height:3px;border-radius:50%;background:var(--ink3);margin-top:.5rem;flex-shrink:0}
-@media(max-width:960px){.phases{grid-template-columns:1fr;gap:1rem}.phase-img-wrap img{aspect-ratio:16/7;padding:1.5rem 2rem 0}}
-@media(max-width:600px){.phase-img-wrap img{aspect-ratio:4/3;padding:1.25rem 1.25rem 0}.phase-body{padding:.5rem 1.5rem 2rem}.phase-t{font-size:1.75rem;margin-bottom:1rem}.phase-d{font-size:1rem;line-height:1.75}.phase-list{padding-top:1.5rem}.phase-list li{font-size:.95rem;gap:.75rem;margin-bottom:.75rem}.phase-list li::before{width:4px;height:4px;margin-top:.55em}.phase-n{font-size:5.5rem}}
+.sec-metodo{background:var(--white)}
+.phases{display:grid;gap:1.1rem;margin-top:2rem}
+.phase{display:flex;flex-direction:column;background:var(--sand);border:1px solid var(--border);border-radius:28px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.phase:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px rgba(20,20,20,.45)}
+.phase-img-wrap{position:relative;padding:1.1rem 1.1rem 0}
+.phase-img-wrap img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:18px;mix-blend-mode:multiply}
+.phase-n{position:absolute;top:1.9rem;left:1.9rem;z-index:1;font-size:.95rem;font-weight:600;letter-spacing:.1em;padding:.3rem .8rem;border-radius:999px;background:var(--ink);color:var(--white)}
+.phase-body{padding:1.4rem 1.5rem 1.7rem}
+.phase-t{font-size:1.7rem;font-weight:600;line-height:1.15;margin-bottom:.55rem}
+.phase-d{font-size:1.1rem;line-height:1.55;color:var(--ink2)}
+.phase-list{list-style:none;margin-top:1.1rem;display:grid;gap:.55rem}
+.phase-list li{position:relative;padding-left:1.6rem;font-size:1.05rem;line-height:1.4;color:var(--ink)}
+.phase-list li::before{content:'';position:absolute;left:0;top:.5em;width:.7rem;height:.7rem;border-radius:50%;background:var(--olive)}
 
 /* ── DIFERENCIA ── */
-.sec-dif{background:var(--cream);border-top:1px solid var(--border)}
-.dif-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:4rem}
-.dif-table tbody tr td{border-bottom:1px solid var(--border)}
-.dif-table th{padding:1rem 2rem 1.25rem;font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;text-align:left}
-.dif-table th:nth-child(2){color:var(--ink4)}
-.dif-table th:last-child{color:var(--white);background:var(--ink);border-radius:12px 12px 0 0;box-shadow:-8px -8px 28px rgba(0,0,0,.1),8px -8px 28px rgba(0,0,0,.1),0 -4px 0 rgba(0,0,0,.05);position:relative;z-index:2}
-.dif-table tbody tr{transition:background .2s}
-.dif-table tbody tr:last-child td{border-bottom:none}
-.dif-table td{padding:1.375rem 2rem;font-size:.9375rem;vertical-align:middle}
-.dif-table td:first-child{font-weight:500;color:var(--ink);width:30%}
-.dif-table td:nth-child(2){color:var(--ink4);font-weight:300}
-.dif-table td:last-child{color:var(--ink);font-weight:500;background:var(--white);box-shadow:-8px 0 28px rgba(0,0,0,.09),8px 0 28px rgba(0,0,0,.09);position:relative;z-index:2}
-.dif-table tr:last-child td:last-child{border-radius:0 0 12px 12px;box-shadow:-8px 8px 28px rgba(0,0,0,.1),8px 8px 28px rgba(0,0,0,.1),0 4px 0 rgba(0,0,0,.05)}
-.dif-x{display:none}
-.dif-ok{display:inline-block;width:18px;height:18px;background:var(--ink);color:var(--white);border-radius:50%;font-size:.6rem;text-align:center;line-height:18px;margin-right:.5rem;flex-shrink:0}
-.dif-mobile{display:none;flex-direction:column;gap:1rem;margin-top:3rem}
-@media(max-width:680px){.dif-table{display:none}.dif-mobile{display:flex}}
-.dif-mobile-item{border:1px solid var(--border);padding:1.25rem 1.5rem}
-.dif-mobile-label{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink4);margin-bottom:.75rem}
-.dif-mobile-vertigo{display:flex;align-items:center;gap:.625rem;font-size:.9375rem;font-weight:500;color:var(--ink);margin-bottom:.5rem}
-.dif-mobile-vs-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink4);margin-top:1rem;margin-bottom:.25rem;padding-left:1.625rem}
-.dif-mobile-agencia{font-size:.9rem;font-weight:400;color:var(--ink2);padding-left:1.625rem}
+.sec-dif{background:var(--sand)}
+.dif-wrap{margin-top:2rem}
+.dif-table{display:none;width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border:1px solid var(--border);border-radius:24px;overflow:hidden}
+.dif-table th{padding:1.2rem 1.4rem;font-size:.95rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-align:left;color:var(--ink3);border-bottom:1px solid var(--border)}
+.dif-table th:last-child{background:var(--ink);color:var(--white)}
+.dif-table td{padding:1.15rem 1.4rem;font-size:1.1rem;line-height:1.4;color:var(--ink2);border-bottom:1px solid var(--border);vertical-align:top}
+.dif-table td:first-child{font-weight:600;color:var(--ink)}
+.dif-table td:last-child{background:#FBF8F2;color:var(--ink);font-weight:500}
+.dif-table tr:last-child td{border-bottom:none}
+.dif-x{color:var(--ink3);margin-right:.35rem}
+.dif-ok{color:var(--olive);font-weight:700;margin-right:.35rem}
+.dif-mobile{display:grid;gap:.9rem}
+.dif-mobile-item{background:var(--white);border:1px solid var(--border);border-radius:22px;padding:1.2rem 1.3rem}
+.dif-mobile-label{font-size:.9rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.dif-mobile-vertigo{font-size:1.15rem;font-weight:600;line-height:1.4;color:var(--ink)}
+.dif-mobile-vs-label{margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border);font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.dif-mobile-agencia{font-size:1.05rem;line-height:1.4;color:var(--ink3);margin-top:.15rem}
 
-/* ── TESTIMONIOS ── */
-.sec-test{background:var(--white);border-top:1px solid var(--border)}
-.test-header{max-width:520px;margin:0 auto 3rem;text-align:center}
-.test-header .sec-title{margin-top:.75rem}
-.test-header p{font-size:1rem;font-weight:300;color:var(--ink3);margin-top:1rem;line-height:1.7}
-.tc-single{max-width:640px;margin:0 auto;background:var(--cream);border:1px solid var(--border);padding:3rem}
-.tc-stars{font-size:.7rem;letter-spacing:.15em;color:var(--ink3);margin-bottom:1.125rem}
-.tc-q{font-family:var(--serif);font-size:1.125rem;font-style:italic;font-weight:400;line-height:1.8;color:var(--ink2);margin-bottom:1.75rem}
-.tc-author{display:flex;align-items:center;gap:.875rem}
-.tc-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;filter:grayscale(20%)}
-.tc-name{font-size:.875rem;font-weight:500;color:var(--ink);line-height:1.3}
-.tc-role{font-size:.75rem;color:var(--ink4);margin-top:.15rem;line-height:1.3}
-@media(max-width:600px){.tc-single{padding:2rem 1.5rem}.tc-q{font-size:1rem}}
+/* ── LLAMADAS INTERMEDIAS ── */
+.inline-cta{padding:1rem 5% 0;text-align:center}
+.inline-cta-in{max-width:1120px;margin:0 auto;background:var(--sand);border:1px solid var(--border);border-radius:28px;padding:2rem 1.4rem}
+.inline-cta-text{font-size:clamp(1.6rem,6vw,2.2rem);font-weight:600;line-height:1.2;letter-spacing:-.015em;margin-bottom:1.3rem}
+.inline-cta--first{padding-top:2rem}
+
+/* ── TESTIMONIO ── */
+.sec-test{background:var(--white)}
+.test-header{text-align:center}
+.tc-single{max-width:46rem;margin:2rem auto 0;background:var(--sand);border:1px solid var(--border);border-radius:28px;padding:1.8rem 1.5rem}
+.tc-stars{font-size:1.4rem;letter-spacing:.2em;color:var(--gold)}
+.tc-q{font-size:1.2rem;line-height:1.6;color:var(--ink);margin-top:1rem}
+.tc-author{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;padding-top:1.3rem;border-top:1px solid var(--border)}
+.tc-avatar{width:60px;height:60px;border-radius:50%;object-fit:cover;flex:0 0 60px}
+.tc-name{font-size:1.15rem;font-weight:600}
+.tc-role{font-size:1rem;color:var(--ink3);line-height:1.35}
 
 /* ── QUIÉNES SOMOS ── */
-.sec-about{background:var(--cream);overflow:hidden}
-.about-v2{display:grid;grid-template-columns:1.5fr .75fr;grid-template-areas:"title photo" "body photo";gap:1rem 3rem;align-items:start;margin-top:1rem}
-.about-pill{display:inline-flex;align-items:center;padding:.5rem 1.125rem;border:1px solid var(--ink4);border-radius:999px;font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}
-.about-huge{grid-area:title;font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,5.5vw,4.25rem);line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin-bottom:.625rem}
-.about-huge em{font-style:italic;color:var(--ink3)}
-.about-role{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);margin-bottom:2rem}
-.about-visual{grid-area:photo;position:relative;padding-top:2.5rem;max-width:260px;margin-left:auto}
-.about-circle{position:absolute;width:62%;aspect-ratio:1/1;border-radius:50%;background:linear-gradient(135deg,#B8B296,#8C8768);opacity:.35;bottom:-8%;left:-12%;z-index:0}
-.about-photo{position:relative;z-index:1;aspect-ratio:3/4;width:82%;margin-left:auto;background:#F0ECE4;overflow:hidden;border-radius:58% 42% 47% 53%/45% 48% 52% 55%;box-shadow:0 24px 50px -20px rgba(20,20,20,.25);transform:rotate(-1.5deg)}
-.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.about-photo-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--ink4);font-size:.8rem;text-align:center;padding:2rem}
-.about-signature{position:relative;z-index:1;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--ink);margin-top:1.5rem;text-align:right;width:82%;margin-left:auto}
-.about-signature em{color:var(--ink3)}
-.about-body{grid-area:body}
-.about-lead{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,1.8vw,1.5rem);color:var(--ink3);margin-bottom:1.75rem;max-width:520px}
-.about-text p{font-size:1rem;color:var(--ink2);line-height:1.85;margin-bottom:1.25rem}
+.sec-about{background:var(--sand)}
+.about-v2{display:grid;gap:1.6rem}
+.about-pill{display:block;font-size:.95rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.about-huge{font-size:clamp(2.4rem,11vw,4.4rem);font-weight:600;line-height:1.05;letter-spacing:-.025em}
+.about-huge em{font-style:normal;color:var(--gold)}
+.about-role{font-size:1.2rem;color:var(--ink2);margin-top:.6rem}
+.about-photo{border-radius:28px;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/5;max-height:34rem}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 72%}
+.about-lead{font-size:1.5rem;font-weight:600;line-height:1.25;letter-spacing:-.01em;margin-bottom:1rem}
+.about-text p{font-size:1.15rem;line-height:1.65;color:var(--ink2);margin-bottom:1.1rem}
 .about-text p:last-child{margin-bottom:0}
-@media(max-width:900px){.about-v2{grid-template-columns:1fr;grid-template-areas:"title" "photo" "body";gap:0}.about-huge{margin-bottom:1.5rem}.about-visual{padding-top:0;margin-bottom:2rem}.about-circle{width:56%;bottom:-6%;left:-8%}.about-photo{width:78%}.about-signature{width:78%}}
-@media(max-width:600px){.about-huge{font-size:clamp(2.75rem,12vw,3.5rem)}.about-photo{width:88%}.about-signature{width:88%;font-size:1.25rem}.about-circle{width:65%}}
 
-/* ── CTA INTERMEDIA ── */
-.inline-cta{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 5%;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.5rem;text-align:center}
-.inline-cta-text{font-family:var(--serif);font-size:clamp(1.25rem,2.2vw,1.625rem);color:var(--ink);font-style:italic}
-@media(max-width:600px){.inline-cta{padding:2.5rem 5%;flex-direction:column}}
-
-/* ── FAQs ── */
-.sec-faq{background:var(--cream);border-top:1px solid var(--border)}
-.faq-wrap{max-width:780px;margin-top:4rem;border-top:1px solid var(--border)}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-q{width:100%;text-align:left;padding:1.5rem 0;font-size:.9625rem;font-weight:500;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;background:none;border:none;transition:color .2s;font-family:var(--sans)}
-.faq-q:hover{color:var(--ink2)}
-.faq-ico{width:16px;height:16px;flex-shrink:0;color:var(--ink3);transition:transform .3s var(--ease)}
+/* ── PREGUNTAS FRECUENTES ── */
+.sec-faq{background:var(--white)}
+.faq-wrap{display:grid;gap:.8rem;margin-top:2rem;max-width:52rem}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:20px;transition:border-color .3s,background .3s}
+.faq-item.open{background:var(--sand);border-color:var(--gold)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem 1.3rem;text-align:left;font-size:1.15rem;font-weight:600;line-height:1.35;color:var(--ink)}
+.faq-ico{flex:0 0 26px;width:26px;height:26px;color:var(--gold);transition:transform .35s var(--ease)}
 .faq-item.open .faq-ico{transform:rotate(45deg)}
 .faq-ans{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
-.faq-ans-in{padding:0 0 1.5rem;font-size:.9rem;line-height:1.85;color:var(--ink3)}
+.faq-ans-in{padding:0 1.3rem 1.3rem;font-size:1.1rem;line-height:1.65;color:var(--ink2)}
 
-/* ── CTA ── */
-.sec-cta{background:var(--ink);padding:10rem 5%;text-align:center;position:relative;overflow:hidden}
-.cta-t{font-family:var(--serif);font-size:clamp(2.5rem,5.5vw,5rem);font-weight:400;color:var(--white);letter-spacing:-.02em;margin-bottom:1rem;line-height:1.1}
-.cta-t-sentence{font-size:clamp(1.75rem,3.4vw,2.75rem);max-width:640px;margin-left:auto;margin-right:auto;margin-bottom:3rem}
-.cta-t em{font-style:italic;color:rgba(255,255,255,.5)}
-.cta-sub{font-size:1.0625rem;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:3.5rem}
-.cta-form{display:grid;grid-template-columns:1fr 1fr;gap:.875rem;max-width:640px;margin:0 auto;text-align:left}
-.cta-form .full{grid-column:1/-1}
-.cta-field{display:flex;flex-direction:column;gap:.4rem}
-.cta-label{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)}
-.cta-inp{padding:.9rem 1.25rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:2px;color:var(--white);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none}
-.cta-inp::placeholder{color:rgba(255,255,255,.2)}
-.cta-inp:focus{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.09)}
-.cta-select{padding:.9rem 2.5rem .9rem 1.25rem;background:rgba(255,255,255,.06) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 1.1rem center;border:1px solid rgba(255,255,255,.12);border-radius:2px;color:var(--white);font-family:var(--sans);font-size:.9rem;outline:none;cursor:pointer;transition:border-color .2s;-webkit-appearance:none;appearance:none}
-.cta-select:focus{border-color:rgba(255,255,255,.35)}
-.cta-select option{background:#141414;color:var(--white)}
-.cta-consent{margin-top:.25rem}
-.cta-check{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer}
-.cta-check input{margin-top:.2rem;width:16px;height:16px;flex-shrink:0;accent-color:var(--white);cursor:pointer}
-.cta-check span{font-size:.75rem;line-height:1.6;color:rgba(255,255,255,.45)}
-.cta-check span a{color:rgba(255,255,255,.75);text-decoration:underline;text-underline-offset:2px}
-.cta-check span a:hover{color:var(--white)}
-.cta-btn{grid-column:1/-1;padding:1.1rem 1.875rem;background:var(--white);color:var(--ink);border-radius:2px;font-size:.9rem;font-weight:600;border:none;cursor:pointer;font-family:var(--sans);transition:opacity .2s;margin-top:.5rem}
-.cta-btn:hover{opacity:.88}
-.cta-btn:disabled{opacity:.5;cursor:not-allowed}
-.cta-note{font-size:.775rem;color:rgba(255,255,255,.2);margin-top:1.5rem;text-align:center}
-.cta-success{display:none;text-align:center;padding:2.5rem;border:1px solid rgba(255,255,255,.12);border-radius:2px;max-width:640px;margin:0 auto}
-.cta-success p{color:rgba(255,255,255,.6);font-size:.95rem;margin-top:.5rem}
-@media(max-width:580px){.cta-form{grid-template-columns:1fr}}
+/* ── FORMULARIO FINAL ── */
+.sec-cta{padding:1rem 5% 3rem}
+.cta-card{position:relative;overflow:hidden;max-width:1120px;margin:0 auto;background:var(--ink);color:var(--white);border-radius:28px;padding:2.4rem 1.2rem}
+.cta-card::before{content:'';position:absolute;width:420px;height:420px;right:-160px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(157,174,106,.38),transparent 70%);pointer-events:none}
+.cta-card>*{position:relative}
+.cta-t{font-size:clamp(1.8rem,6.6vw,2.9rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;text-align:center;max-width:44rem;margin:0 auto}
+.cta-form{max-width:40rem;margin:1.8rem auto 0;display:grid;gap:.9rem;grid-template-columns:1fr}
+.cta-field{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.cta-label{font-size:1rem;font-weight:600;color:var(--white)}
+.cta-inp{width:100%;min-width:0;padding:.85rem 1rem;background:var(--sand);border:2px solid transparent;border-radius:12px;color:var(--ink);font-family:var(--sans);font-size:1.05rem;line-height:1.3;outline:none;-webkit-appearance:none;appearance:none}
+.cta-inp::placeholder{color:#7a766f}
+.cta-inp:focus{background:var(--white);border-color:var(--gold-bright)}
+.cta-select{padding-right:2.6rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(20,20,20,.6)' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer}
+.cta-check{display:flex;gap:.75rem;align-items:flex-start;cursor:pointer}
+.cta-check input{flex:0 0 22px;width:22px;height:22px;margin-top:.2rem;accent-color:var(--olive-bright)}
+.cta-check span{font-size:.88rem;line-height:1.5;color:rgba(255,255,255,.88)}
+.cta-check a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:2px}
+.cta-btn{width:100%;margin-top:.4rem;padding:1.05rem 1.5rem;background:var(--white);color:var(--ink);border:2px solid var(--white);border-radius:12px;font-family:var(--sans);font-size:1.1rem;font-weight:600;letter-spacing:.02em;transition:transform .2s var(--ease),opacity .2s}
+.cta-btn:hover{transform:translateY(-2px)}
+.cta-btn:disabled{opacity:.6;cursor:default;transform:none}
+.cta-success{display:none;text-align:center;max-width:36rem;margin:1.8rem auto 0}
+.cta-success h3{font-size:1.9rem;font-weight:600;line-height:1.2;color:var(--white)}
+.cta-success p{margin-top:.7rem;font-size:1.15rem;color:rgba(255,255,255,.9)}
+.cta-note{margin-top:1.4rem;text-align:center;font-size:1rem;color:rgba(255,255,255,.8)}
 
-/* ── FOOTER ── */
-footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);padding:3rem 5%}
-.foot-in{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
-.foot-logo{height:24px;filter:brightness(0) invert(1);opacity:.5}
-.foot-copy{font-size:.775rem;color:rgba(255,255,255,.3)}
-.foot-links{display:flex;gap:2rem;list-style:none}
-.foot-links a{font-size:.775rem;color:rgba(255,255,255,.28);transition:color .2s}
-.foot-links a:hover{color:rgba(255,255,255,.65)}
+/* ── PIE ── */
+footer{border-top:1px solid var(--border);padding:2.2rem 5% 2.5rem}
+.foot-in{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center}
+.foot-logo{height:62px;width:auto;mix-blend-mode:multiply}
+.foot-copy{font-size:.95rem;color:var(--ink3)}
+.foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.6rem;list-style:none}
+.foot-links a{font-size:.95rem;color:var(--ink3);text-decoration:underline;text-underline-offset:3px}
+.foot-links a:hover{color:var(--ink)}
 
-/* ── SCROLL REVEAL ── */
-[data-reveal]{opacity:0;transform:translateY(32px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+/* ── APARICIÓN AL HACER SCROLL ── */
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
 [data-reveal="fade"]{transform:none}
-[data-reveal="left"]{transform:translateX(-32px)}
-[data-reveal="right"]{transform:translateX(32px)}
 [data-reveal].on{opacity:1;transform:none}
 [data-d="1"]{transition-delay:.1s}[data-d="2"]{transition-delay:.2s}
 [data-d="3"]{transition-delay:.3s}[data-d="4"]{transition-delay:.4s}
-[data-d="5"]{transition-delay:.5s}
+@media(prefers-reduced-motion:reduce){
+  #rope-walker svg{animation:none}
+  [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+  .hero-words em{transition:opacity .2s linear;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ── TABLET ── */
+@media(min-width:680px){
+  .dif-table{display:table}
+  .dif-mobile{display:none}
+}
+@media(min-width:700px){
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .phases{grid-template-columns:repeat(3,1fr)}
+  .sec{padding:5rem 5%}
+  .cta-card{padding:3.5rem 3rem}
+  .cta-form{grid-template-columns:1fr 1fr;gap:1rem}
+  .cta-field.full,.cta-btn{grid-column:1/-1}
+  .inline-cta-in{padding:2.6rem 2rem}
+  .tc-single{padding:2.4rem 2.4rem}
+}
+/* ── ESCRITORIO ── */
+@media(min-width:900px){
+  .nav-links{display:flex}
+  .nav-logo{height:68px}
+  .hero{padding:calc(104px + 3rem) 5% 11rem;text-align:left}
+  .hero-h1{font-size:clamp(3.4rem,5.6vw,5.4rem)}
+  .hero-sub{margin-left:0}
+  .hero-wave{display:block;position:absolute;right:0;bottom:0;width:100%;height:300px;background:url(wave-hero.jpg) right bottom/cover no-repeat;opacity:.8;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 80%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 80%,transparent)}
+  .stats-bar{margin-top:-5.5rem;position:relative;z-index:3}
+  .prob-top{grid-template-columns:1.1fr 1fr;gap:3.5rem;align-items:start}
+  .about-v2{grid-template-columns:.9fr 1.1fr;gap:1.6rem 4rem;align-items:start}
+  .about-v2>.about-head{grid-column:2;grid-row:1}
+  .about-v2>.about-visual{grid-column:1;grid-row:1/span 2}
+  .about-v2>.about-body{grid-column:2;grid-row:2}
+  .about-photo{max-height:none}
+  .about-v2>.about-visual{align-self:start;position:sticky;top:130px}
+}
+@media(min-width:1100px){
+  .sec{padding:6.5rem 5%}
+}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -272,7 +261,7 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
 </head>
 <body>
 
-<!-- ══ TIGHTROPE PROGRESS ══ -->
+<!-- ══ BARRA DE CUERDA ══ -->
 <div id="rope-bar" aria-hidden="true">
   <div id="rope-line"></div>
   <div id="rope-fill"></div>
@@ -291,7 +280,6 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
   </div>
 </div>
 
-<!-- ══ NAV ══ -->
 <nav id="nav">
   <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="nav-logo" height="28">
   <ul class="nav-links">
@@ -303,36 +291,28 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
   <a href="#auditoria" class="nav-cta">Habla con nosotros</a>
 </nav>
 
-<!-- ══ HERO ══ -->
+<!-- ══ CABECERA ══ -->
 <section class="hero">
   <div class="hero-content">
     <span class="hero-eyebrow" data-reveal="fade">Método Vértigo</span>
     <h1 class="hero-h1" data-reveal data-d="1">
       Tu clínica puede<br>
       facturar más.<br>
-      <span class="hero-word-wrap"><em id="hero-word">Sin más caos.</em></span>
+      <span class="hero-words" id="hero-words"><em class="on">Sin más caos.</em><em>Con los mismos sistemas.</em><em>Sin depender de descuentos.</em></span>
     </h1>
-    <div class="hero-bottom">
-      <p class="hero-sub" data-reveal data-d="2">
-        Toda clínica tiene un sistema para atender pacientes. Muy pocas tienen un sistema para vender tratamientos.
-      </p>
-      <div class="hero-btns" data-reveal data-d="3">
-        <a href="#auditoria" class="btn-dark">Valoramos tu caso</a>
-      </div>
+    <p class="hero-sub" data-reveal data-d="2">
+      Toda clínica tiene un sistema para atender pacientes. Muy pocas tienen un sistema para vender tratamientos.
+    </p>
+    <div class="hero-btns" data-reveal data-d="3">
+      <a href="#auditoria" class="btn-dark">Valoramos tu caso</a>
     </div>
   </div>
-  <!-- Wave parallax image -->
-  <div class="hero-wave" id="heroWave" aria-hidden="true">
-    <img src="wave.jpg" alt="">
-    <div class="hero-wave-top"></div>
-    <div class="hero-wave-bot"></div>
-  </div>
-  <div class="hero-rule" aria-hidden="true"></div>
+  <div class="hero-wave" aria-hidden="true"></div>
 </section>
 
-<!-- ══ STATS ══ -->
+<!-- ══ CIFRAS ══ -->
 <div class="stats-bar">
-  <div class="stats-grid stats-grid-3">
+  <div class="stats-grid">
     <div class="stat-item" data-reveal data-d="1">
       <div class="stat-num" data-counter data-target="3" data-sfx=" fases">0 fases</div>
       <div class="stat-lbl">Un método para captar, convertir y crecer</div>
@@ -370,23 +350,23 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
       </div>
       <ul class="pain-list">
         <li data-reveal data-d="1">
-          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/><path d="M9 15l2 2 4-4"/></svg>
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/><path d="M9 15l2 2 4-4"/></svg>
           <span>Leads que llegan pero nunca concretan cita</span>
         </li>
         <li data-reveal data-d="2">
-          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/><line x1="9" y1="14" x2="15" y2="14" opacity=".4"/></svg>
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/><line x1="9" y1="14" x2="15" y2="14" opacity=".4"/></svg>
           <span>Presupuestos enviados que quedan sin respuesta</span>
         </li>
         <li data-reveal data-d="2">
-          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5" opacity=".5"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M15 17a4 4 0 014-4" opacity=".5"/></svg>
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5" opacity=".5"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M15 17a4 4 0 014-4" opacity=".5"/></svg>
           <span>Equipo sin proceso claro de seguimiento comercial</span>
         </li>
         <li data-reveal data-d="3">
-          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/><circle cx="18" cy="4" r="1.5" fill="currentColor" opacity=".3"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/><circle cx="18" cy="4" r="1.5" fill="currentColor" opacity=".3"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
           <span>Campañas activas pero sin estrategia real detrás</span>
         </li>
         <li data-reveal data-d="3">
-          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="12" y1="7" x2="12" y2="13" opacity=".5"/></svg>
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="12" y1="7" x2="12" y2="13" opacity=".5"/></svg>
           <span>Tratamientos rentables que no se comunican bien</span>
         </li>
       </ul>
@@ -399,14 +379,14 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
   <div class="sec-inner">
     <span class="eyebrow" data-reveal="fade">Nuestro método</span>
     <h2 class="sec-title" data-reveal data-d="1">El Método Vértigo</h2>
-    <p style="color:var(--ink3);font-size:1rem;margin-top:.875rem;max-width:480px" data-reveal data-d="2">
+    <p class="sec-lead" data-reveal data-d="2">
       Tres fases que actúan sobre todo el proceso de crecimiento, de la estrategia al cierre.
     </p>
     <div class="phases">
       <div class="phase" data-reveal data-d="2">
         <div class="phase-img-wrap">
           <span class="phase-n">01</span>
-          <img src="metodo-estrategia.png" alt="Estrategia — Método Vértigo">
+          <img src="metodo-estrategia-web.jpg" alt="Estrategia — Método Vértigo" loading="lazy">
         </div>
         <div class="phase-body">
           <h3 class="phase-t">Estrategia</h3>
@@ -422,7 +402,7 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
       <div class="phase" data-reveal data-d="3">
         <div class="phase-img-wrap">
           <span class="phase-n">02</span>
-          <img src="metodo-captacion.png" alt="Captación — Método Vértigo">
+          <img src="metodo-captacion-web.jpg" alt="Captación — Método Vértigo" loading="lazy">
         </div>
         <div class="phase-body">
           <h3 class="phase-t">Captación</h3>
@@ -438,7 +418,7 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
       <div class="phase" data-reveal data-d="4">
         <div class="phase-img-wrap">
           <span class="phase-n">03</span>
-          <img src="metodo-conversion.png" alt="Conversión — Método Vértigo">
+          <img src="metodo-conversion-web.jpg" alt="Conversión — Método Vértigo" loading="lazy">
         </div>
         <div class="phase-body">
           <h3 class="phase-t">Conversión</h3>
@@ -463,12 +443,12 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
       No somos una agencia más.<br>
       <em>Somos tu sistema de crecimiento.</em>
     </h2>
-    <div style="overflow-x:auto" data-reveal data-d="2">
+    <div class="dif-wrap" data-reveal data-d="2">
       <table class="dif-table">
         <thead>
           <tr>
             <th>Qué valoramos</th>
-            <th style="color:var(--ink3)">Agencia tradicional</th>
+            <th>Agencia tradicional</th>
             <th>Método Vértigo</th>
           </tr>
         </thead>
@@ -500,46 +480,48 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="dif-mobile" data-reveal data-d="2">
-      <div class="dif-mobile-item">
-        <div class="dif-mobile-label">Enfoque principal</div>
-        <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Más ingresos de tratamientos rentables</div>
-        <div class="dif-mobile-vs-label">Agencia tradicional</div>
-        <div class="dif-mobile-agencia">Más seguidores y alcance</div>
-      </div>
-      <div class="dif-mobile-item">
-        <div class="dif-mobile-label">Proceso de venta</div>
-        <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Lo optimizamos de raíz</div>
-        <div class="dif-mobile-vs-label">Agencia tradicional</div>
-        <div class="dif-mobile-agencia">No trabajan proceso de ventas</div>
-      </div>
-      <div class="dif-mobile-item">
-        <div class="dif-mobile-label">Estrategia de negocio</div>
-        <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Definimos qué hacer y por qué</div>
-        <div class="dif-mobile-vs-label">Agencia tradicional</div>
-        <div class="dif-mobile-agencia">Solo ejecutan</div>
-      </div>
-      <div class="dif-mobile-item">
-        <div class="dif-mobile-label">Métricas de éxito</div>
-        <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Tratamientos vendidos y facturación</div>
-        <div class="dif-mobile-vs-label">Agencia tradicional</div>
-        <div class="dif-mobile-agencia">Impresiones y coste por click</div>
-      </div>
-      <div class="dif-mobile-item">
-        <div class="dif-mobile-label">Equipo interno</div>
-        <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Formamos y potenciamos a tu equipo</div>
-        <div class="dif-mobile-vs-label">Agencia tradicional</div>
-        <div class="dif-mobile-agencia">No lo trabajan</div>
+      <div class="dif-mobile">
+        <div class="dif-mobile-item">
+          <div class="dif-mobile-label">Enfoque principal</div>
+          <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Más ingresos de tratamientos rentables</div>
+          <div class="dif-mobile-vs-label">Agencia tradicional</div>
+          <div class="dif-mobile-agencia">Más seguidores y alcance</div>
+        </div>
+        <div class="dif-mobile-item">
+          <div class="dif-mobile-label">Proceso de venta</div>
+          <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Lo optimizamos de raíz</div>
+          <div class="dif-mobile-vs-label">Agencia tradicional</div>
+          <div class="dif-mobile-agencia">No trabajan proceso de ventas</div>
+        </div>
+        <div class="dif-mobile-item">
+          <div class="dif-mobile-label">Estrategia de negocio</div>
+          <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Definimos qué hacer y por qué</div>
+          <div class="dif-mobile-vs-label">Agencia tradicional</div>
+          <div class="dif-mobile-agencia">Solo ejecutan</div>
+        </div>
+        <div class="dif-mobile-item">
+          <div class="dif-mobile-label">Métricas de éxito</div>
+          <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Tratamientos vendidos y facturación</div>
+          <div class="dif-mobile-vs-label">Agencia tradicional</div>
+          <div class="dif-mobile-agencia">Impresiones y coste por click</div>
+        </div>
+        <div class="dif-mobile-item">
+          <div class="dif-mobile-label">Equipo interno</div>
+          <div class="dif-mobile-vertigo"><span class="dif-ok">✓</span> Formamos y potenciamos a tu equipo</div>
+          <div class="dif-mobile-vs-label">Agencia tradicional</div>
+          <div class="dif-mobile-agencia">No lo trabajan</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ CTA INTERMEDIA ══ -->
-<div class="inline-cta" data-reveal="fade">
-  <p class="inline-cta-text">¿Hablamos de tu clínica?</p>
-  <a href="#auditoria" class="btn-dark">Analizamos tu caso</a>
+<!-- ══ LLAMADA INTERMEDIA ══ -->
+<div class="inline-cta inline-cta--first" data-reveal="fade">
+  <div class="inline-cta-in">
+    <p class="inline-cta-text">¿Hablamos de tu clínica?</p>
+    <a href="#auditoria" class="btn-dark">Analizamos tu caso</a>
+  </div>
 </div>
 
 <!-- ══ TESTIMONIOS ══ -->
@@ -554,7 +536,7 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
       <div class="tc-stars">★★★★★</div>
       <p class="tc-q">"Después de invertir mucho en marketing sin conseguir identificar qué estaba fallando, con Vértigo Labs todo empezó a tener sentido. Christian y Lorena se implicaron de verdad en entender la clínica, detectaron los problemas y ordenaron todo el proceso, desde la captación hasta el seguimiento de cada paciente. Ahora tenemos una estrategia clara, sabemos qué mejorar y cómo actuar con cada oportunidad."</p>
       <div class="tc-author">
-        <img class="tc-avatar" src="fatima-maldonado.jpg" alt="Fátima Maldonado">
+        <img class="tc-avatar" src="fatima-maldonado.jpg" alt="Fátima Maldonado" loading="lazy">
         <div><div class="tc-name">Fátima Maldonado</div><div class="tc-role">Directora — Metabólica, Córdoba</div></div>
       </div>
     </div>
@@ -564,15 +546,14 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
 <!-- ══ QUIÉNES SOMOS ══ -->
 <section class="sec sec-about" id="equipo">
   <div class="sec-inner about-v2">
-    <div>
+    <div class="about-head">
       <span class="about-pill" data-reveal="fade">Quiénes somos</span>
       <h2 class="about-huge" data-reveal data-d="1">Lorena <em>&amp; Christian</em></h2>
       <p class="about-role" data-reveal data-d="1">Fundadores de Vértigo Labs</p>
     </div>
     <div class="about-visual" data-reveal data-d="2">
-      <div class="about-circle" aria-hidden="true"></div>
       <div class="about-photo">
-        <img src="equipo.jpg" alt="Lorena y Christian, fundadores de Vértigo Labs">
+        <img src="equipo-web.jpg" alt="Lorena y Christian, fundadores de Vértigo Labs" loading="lazy">
       </div>
     </div>
     <div class="about-body" data-reveal data-d="3">
@@ -589,95 +570,99 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- ══ CTA INTERMEDIA ══ -->
-<div class="inline-cta" data-reveal="fade">
-  <p class="inline-cta-text">¿Te ayudamos a crecer?</p>
-  <a href="#auditoria" class="btn-dark">Habla con nosotros</a>
+<!-- ══ LLAMADA INTERMEDIA ══ -->
+<div class="inline-cta inline-cta--first" data-reveal="fade">
+  <div class="inline-cta-in">
+    <p class="inline-cta-text">¿Te ayudamos a crecer?</p>
+    <a href="#auditoria" class="btn-dark">Habla con nosotros</a>
+  </div>
 </div>
 
-<!-- ══ FAQs ══ -->
+<!-- ══ PREGUNTAS FRECUENTES ══ -->
 <section class="sec sec-faq" id="faqs">
   <div class="sec-inner">
     <span class="eyebrow" data-reveal="fade">Preguntas frecuentes</span>
     <h2 class="sec-title" data-reveal data-d="1">Todo lo que necesitas saber</h2>
     <div class="faq-wrap" data-reveal data-d="2">
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">¿En qué se diferencia del marketing tradicional?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="faq-q" aria-expanded="false">¿En qué se diferencia del marketing tradicional?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
         <div class="faq-ans"><div class="faq-ans-in">Una agencia de marketing se centra en generar visibilidad: seguidores, alcance, clics. Nosotros nos centramos en el resultado final: tratamientos vendidos y facturación. Actuamos sobre tres palancas simultáneamente (estrategia, captación y conversión interna) que una agencia tradicional nunca toca todas a la vez.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">¿Gestionáis las redes sociales?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="faq-q" aria-expanded="false">¿Gestionáis las redes sociales?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
         <div class="faq-ans"><div class="faq-ans-in">No. Consideramos que la gestión recurrente de redes sociales no genera el ROI que una clínica necesita. Lo que sí hacemos es diseñar la estrategia de qué comunicar y cómo, para que vuestro equipo pueda ejecutarlo con criterio.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">¿Cuánto tiempo tardamos en ver resultados?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="faq-q" aria-expanded="false">¿Cuánto tiempo tardamos en ver resultados?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
         <div class="faq-ans"><div class="faq-ans-in">Depende de muchos factores de cada clínica, así que no prometemos plazos exactos. Dicho esto, tenemos casos con resultados desde los primeros días.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">¿Necesitamos un equipo de ventas grande?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="faq-q" aria-expanded="false">¿Necesitamos un equipo de ventas grande?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
         <div class="faq-ans"><div class="faq-ans-in">No. Trabajamos con el equipo que ya tienes. Lo que hacemos es darle un sistema, un protocolo y las herramientas para que convierta más con el mismo esfuerzo.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">¿Qué incluye la auditoría estratégica gratuita?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="faq-q" aria-expanded="false">¿Qué incluye la auditoría estratégica gratuita?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
         <div class="faq-ans"><div class="faq-ans-in">Una llamada de 30-45 minutos donde analizamos tu clínica, tus tratamientos más rentables y tu proceso actual. Te damos un diagnóstico honesto del mayor potencial de crecimiento, y si tiene sentido trabajar juntos.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">¿Con qué tipos de clínica trabajáis?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <button class="faq-q" aria-expanded="false">¿Con qué tipos de clínica trabajáis?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
         <div class="faq-ans"><div class="faq-ans-in">Nos especializamos en clínicas privadas con tratamientos de alto ticket: dental, estética, capilar, medicina estética y cirugía. No trabajamos con clínicas de atención primaria ni centros de salud pública.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ CTA FINAL ══ -->
+<!-- ══ FORMULARIO FINAL ══ -->
 <section class="sec-cta" id="auditoria">
-  <h2 class="cta-t cta-t-sentence" data-reveal>Si quieres saber si podemos ayudarte, rellena el siguiente formulario</h2>
-  <form class="cta-form" id="ghl-form" data-reveal data-d="2" onsubmit="handleForm(event)">
-    <div class="cta-field">
-      <label class="cta-label" for="f-nombre">Nombre</label>
-      <input class="cta-inp" id="f-nombre" name="firstName" type="text" placeholder="Escribe tu nombre" required>
+  <div class="cta-card">
+    <h2 class="cta-t" data-reveal>Si quieres saber si podemos ayudarte, rellena el siguiente formulario</h2>
+    <form class="cta-form" id="ghl-form" data-reveal data-d="2" onsubmit="handleForm(event)">
+      <div class="cta-field">
+        <label class="cta-label" for="f-nombre">Nombre</label>
+        <input class="cta-inp" id="f-nombre" name="firstName" type="text" placeholder="Escribe tu nombre" required>
+      </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-apellido">Apellido</label>
+        <input class="cta-inp" id="f-apellido" name="lastName" type="text" placeholder="Escribe tu apellido" required>
+      </div>
+      <div class="cta-field full">
+        <label class="cta-label" for="f-email">Correo electrónico</label>
+        <input class="cta-inp" id="f-email" name="email" type="email" placeholder="Escribe tu correo electrónico" required>
+      </div>
+      <div class="cta-field full">
+        <label class="cta-label" for="f-clinica">Nombre de la clínica</label>
+        <input class="cta-inp" id="f-clinica" name="clinicName" type="text" placeholder="Escribe el nombre de tu clínica" required>
+      </div>
+      <div class="cta-field full">
+        <label class="cta-label" for="f-tel">Teléfono</label>
+        <input class="cta-inp" id="f-tel" name="phone" type="tel" placeholder="+34 600 000 000" required>
+      </div>
+      <div class="cta-field full">
+        <label class="cta-label" for="f-tipo">¿Cuál es tu situación actual?</label>
+        <select class="cta-select cta-inp" id="f-tipo" name="adsStatus" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="Hago campañas pero sin ventas">Hago campañas pero sin ventas</option>
+          <option value="No hago campañas">No hago campañas</option>
+          <option value="Hice campañas en el pasado pero no actualmente">Hice campañas en el pasado pero no actualmente</option>
+        </select>
+      </div>
+      <div class="cta-field full cta-consent">
+        <label class="cta-check">
+          <input type="checkbox" id="f-consent" name="consent" required>
+          <span>Sus datos se tratarán para atender su consulta y para enviarle información sobre nuestros productos y servicios, sobre la base de su consentimiento. No se cederán a terceros, salvo obligación legal. Podrá ejercer sus derechos de acceso, rectificación, supresión, portabilidad y oposición. Para más información, consulte nuestra <a href="privacidad.html" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
+        </label>
+      </div>
+      <button type="submit" class="cta-btn" id="form-btn">Enviar formulario</button>
+    </form>
+    <div class="cta-success" id="cta-success">
+      <h3>Perfecto, te contactamos pronto.</h3>
+      <p>Revisamos cada solicitud personalmente. En menos de 24h tendrás noticias nuestras.</p>
     </div>
-    <div class="cta-field">
-      <label class="cta-label" for="f-apellido">Apellido</label>
-      <input class="cta-inp" id="f-apellido" name="lastName" type="text" placeholder="Escribe tu apellido" required>
-    </div>
-    <div class="cta-field full">
-      <label class="cta-label" for="f-email">Correo electrónico</label>
-      <input class="cta-inp" id="f-email" name="email" type="email" placeholder="Escribe tu correo electrónico" required>
-    </div>
-    <div class="cta-field full">
-      <label class="cta-label" for="f-clinica">Nombre de la clínica</label>
-      <input class="cta-inp" id="f-clinica" name="clinicName" type="text" placeholder="Escribe el nombre de tu clínica" required>
-    </div>
-    <div class="cta-field full">
-      <label class="cta-label" for="f-tel">Teléfono</label>
-      <input class="cta-inp" id="f-tel" name="phone" type="tel" placeholder="+34 600 000 000" required>
-    </div>
-    <div class="cta-field full">
-      <label class="cta-label" for="f-tipo">¿Cuál es tu situación actual?</label>
-      <select class="cta-select cta-inp" id="f-tipo" name="adsStatus" required>
-        <option value="" disabled selected>Selecciona una opción</option>
-        <option value="Hago campañas pero sin ventas">Hago campañas pero sin ventas</option>
-        <option value="No hago campañas">No hago campañas</option>
-        <option value="Hice campañas en el pasado pero no actualmente">Hice campañas en el pasado pero no actualmente</option>
-      </select>
-    </div>
-    <div class="cta-field full cta-consent">
-      <label class="cta-check">
-        <input type="checkbox" id="f-consent" name="consent" required>
-        <span>Sus datos se tratarán para atender su consulta y para enviarle información sobre nuestros productos y servicios, sobre la base de su consentimiento. No se cederán a terceros, salvo obligación legal. Podrá ejercer sus derechos de acceso, rectificación, supresión, portabilidad y oposición. Para más información, consulte nuestra <a href="privacidad.html" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
-      </label>
-    </div>
-    <button type="submit" class="cta-btn" id="form-btn">Enviar formulario</button>
-  </form>
-  <div class="cta-success" id="cta-success">
-    <h3 style="font-family:var(--serif);font-size:1.75rem;font-weight:400;color:var(--white)">Perfecto, te contactamos pronto.</h3>
-    <p>Revisamos cada solicitud personalmente. En menos de 24h tendrás noticias nuestras.</p>
+    <p class="cta-note" data-reveal data-d="3">Solo contactamos clínicas con las que creemos que podemos ayudar. Sin spam.</p>
   </div>
-  <p class="cta-note" data-reveal data-d="3">Solo contactamos clínicas con las que creemos que podemos ayudar. Sin spam.</p>
 </section>
 
-<!-- ══ FOOTER ══ -->
+<!-- ══ PIE ══ -->
 <footer>
   <div class="foot-in">
     <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="foot-logo">
@@ -691,7 +676,7 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"
 </footer>
 
 <script>
-// ── TIGHTROPE ──
+// ── BARRA DE CUERDA ──
 const fill = document.getElementById('rope-fill');
 const walker = document.getElementById('rope-walker');
 function updateRope(){
@@ -704,14 +689,14 @@ function updateRope(){
 const nav = document.getElementById('nav');
 function updateNav(){ nav.classList.toggle('scrolled', window.scrollY > 50); }
 
-// ── REVEAL ──
+// ── APARICIÓN AL HACER SCROLL ──
 const revEls = document.querySelectorAll('[data-reveal]');
 const revObs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target);} });
 },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 revEls.forEach(el=>revObs.observe(el));
 
-// ── COUNTERS ──
+// ── CONTADORES ──
 const cntObs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){runCounter(e.target);cntObs.unobserve(e.target);} });
 },{threshold:.5});
@@ -772,69 +757,23 @@ async function handleForm(e){
     console.error('Webhook error:', err);
   }
 
+
   form.style.display = 'none';
   document.getElementById('cta-success').style.display = 'block';
 }
 
-// ── HERO WAVE PARALLAX ──
-const heroWave = document.getElementById('heroWave');
-const heroSection = document.querySelector('.hero');
+window.addEventListener('scroll', function(){ updateRope(); updateNav(); }, { passive: true });
+updateRope(); updateNav();
 
-let rafId = null;
-let lastScrollY = -1;
-
-function updateParallax() {
-  rafId = null;
-  const scrollY = window.scrollY;
-  if (scrollY === lastScrollY) return;
-  lastScrollY = scrollY;
-
-  if (!heroWave || !heroSection) return;
-  const heroH = heroSection.offsetHeight;
-  const progress = Math.min(scrollY / heroH, 1);
-
-  // Parallax suave sobre el img interior
-  const img = heroWave.querySelector('img');
-  if (img) {
-    const ty = -(scrollY * 0.22);
-    img.style.transform = `translateY(${ty}px) scale(${1 + progress * 0.08})`;
-  }
-  const fadeStart = 0.7;
-  const op = progress < fadeStart ? 1 : Math.max(1 - ((progress - fadeStart) / 0.3), 0);
-  heroWave.style.opacity = op;
-}
-
-function onScroll() {
-  updateRope();
-  updateNav();
-  if (!rafId) rafId = requestAnimationFrame(updateParallax);
-}
-
-window.addEventListener('scroll', onScroll, { passive: true });
-updateRope(); updateNav(); updateParallax();
-
-// ── ROTATING HERO WORD ──
+// ── PALABRA ROTATIVA DE LA CABECERA ──
 (function(){
-  const words = [
-    'Sin más caos.',
-    'Con los mismos sistemas.',
-    'Sin depender de descuentos.'
-  ];
-  const el = document.getElementById('hero-word');
-  if (!el) return;
+  const words = document.querySelectorAll('#hero-words em');
+  if (words.length < 2) return;
   let idx = 0;
-  setInterval(function() {
-    // Exit: slide up + fade
-    el.classList.add('exiting');
-    setTimeout(function() {
-      idx = (idx + 1) % words.length;
-      el.textContent = words[idx];
-      el.classList.remove('exiting');
-      el.classList.add('entering');
-      // Force reflow so transition fires
-      el.offsetHeight;
-      el.classList.remove('entering');
-    }, 290);
+  setInterval(function(){
+    words[idx].classList.remove('on');
+    idx = (idx + 1) % words.length;
+    words[idx].classList.add('on');
   }, 2800);
 })();
 </script>
