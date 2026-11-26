@@ -54,10 +54,12 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .hero{position:relative;overflow:hidden;padding:calc(40px + 2.25rem) 5% 3.5rem;text-align:center}
 .hero-wave{position:absolute;right:0;bottom:0;width:100%;height:min(55%,520px);background:url(wave-hero.jpg) right bottom/cover no-repeat;opacity:.7;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 78%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 78%,transparent)}
 .hero-in{position:relative;z-index:1;max-width:940px;margin:0 auto}
-.eyebrow{display:inline-block;font-size:.95rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
-.hero-h1{font-size:clamp(2.1rem,6.6vw,3.7rem);font-weight:600;line-height:1.1;letter-spacing:-.025em;text-wrap:balance}
+.eyebrow{display:inline-block;font-size:clamp(.74rem,3.4vw,.95rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.hero-logo{height:100px;width:auto;margin:-.6rem auto .2rem;mix-blend-mode:multiply}
+.hero-h1{font-size:clamp(2.45rem,9vw,4.6rem);font-weight:600;line-height:1.06;letter-spacing:-.03em;text-wrap:balance}
 .hero-h1 em{font-style:normal;color:var(--gold)}
-.hero-sub{font-size:1.2rem;line-height:1.6;color:var(--ink);margin:1.25rem auto 0;max-width:640px}
+.hero-h1 .h1-sub{display:block;margin-top:.7rem;font-size:.5em;font-weight:500;line-height:1.2;letter-spacing:-.01em;color:var(--ink2)}
+.hero-sub{font-size:1.2rem;line-height:1.5;color:var(--ink);margin:1.25rem auto 0;max-width:640px;text-wrap:balance}
 
 /* reproductor (maqueta del vídeo) */
 .player{position:relative;display:block;width:100%;max-width:760px;margin:2.25rem auto 0;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:var(--ink);color:var(--white);text-align:left;box-shadow:0 40px 80px -35px rgba(20,20,20,.6);cursor:pointer;transition:transform .3s var(--ease)}
@@ -137,8 +139,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── PRESENTADORES ── */
 .sec-about{background:var(--sand);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .about{display:grid;gap:2rem;align-items:center}
-.about-photo{border-radius:24px;overflow:hidden;border:1px solid var(--border);max-width:420px;margin:0 auto;width:100%}
-.about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top}
+.about-photo{border-radius:24px;overflow:hidden;border:1px solid var(--border);max-width:min(240px,62vw);margin:0 auto;width:100%}
+.about-photo img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top}
 .about-names{font-size:clamp(2rem,6vw,3.2rem);font-weight:600;line-height:1.05;letter-spacing:-.02em}
 .about-names em{font-style:normal;color:var(--gold)}
 .about-role{font-size:1.15rem;color:var(--ink3);margin:.4rem 0 1.2rem}
@@ -296,9 +298,10 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
 <!-- ══ HERO ══ -->
 <section class="hero">
   <div class="hero-in">
+    <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="hero-logo" data-reveal="fade">
     <span class="eyebrow" data-reveal="fade">Solo para clínicas de medicina estética</span>
-    <h1 class="hero-h1" data-reveal data-d="1">Llévate <em>más dinero al bolsillo</em> sin depender de promociones, descuentos ni de más pacientes</h1>
-    <p class="hero-sub" data-reveal data-d="2">Una clase gratuita de 5 minutos con las 3 claves para que tu clínica sea más rentable. Porque la clínica rentable no es la que más pacientes atiende, sino la que más gana.</p>
+    <h1 class="hero-h1" data-reveal data-d="1">Llévate <em>más dinero al bolsillo</em><span class="h1-sub">sin depender de promociones, descuentos ni de más pacientes</span></h1>
+    <p class="hero-sub" data-reveal data-d="2">Clase gratuita de 5 minutos: las 3 claves para que tu clínica sea más rentable.</p>
 
     <button type="button" class="player js-open-form" data-reveal data-d="2" aria-label="Ver la clase: déjanos tus datos para acceder">
       <img class="pl-cover" src="media/portada-clase.webp" alt="3 claves para que tu clínica gane más: clase gratuita de 5 minutos" width="1671" height="941">
@@ -366,13 +369,13 @@ src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></n
       <span class="kicker" data-reveal="fade">Quiénes somos</span>
       <h2 class="about-names" data-reveal data-d="1">Lorena <em>&amp; Christian</em></h2>
       <p class="about-role" data-reveal data-d="1">Fundadores de Vértigo Labs</p>
-      <p class="about-lead" data-reveal data-d="2">Más de 5 años dedicados al marketing para clínicas.</p>
+      <p class="about-lead" data-reveal data-d="2">Más de 5 años en el mundo del marketing.</p>
       <div class="about-text" data-reveal data-d="2">
-        <p>Llevamos más de 5 años dedicados por completo al marketing de clínicas privadas: ayudándolas a vender más sus tratamientos rentables, mejorar su captación y convertir más oportunidades en ventas.</p>
+        <p>Ahora nos hemos enfocado directamente en clínicas privadas: ayudándolas a vender más sus tratamientos rentables, mejorar su captación y convertir más oportunidades en ventas.</p>
         <p>Lo que nos diferencia es que unimos dos mundos: <strong>marketing</strong> y <strong>conocimiento del sector médico</strong>.</p>
       </div>
       <div class="about-two" data-reveal data-d="3">
-        <div><b>Marketing</b><span>Más de 5 años dedicados a captar y convertir pacientes para clínicas. Christian, además, pasó 10 años en Apple en ventas, atención al cliente y experiencia de compra.</span></div>
+        <div><b>Marketing</b><span>Años captando y convirtiendo clientes, ahora enfocados en clínicas. Christian, además, pasó 10 años en Apple en ventas, atención al cliente y experiencia de compra.</span></div>
         <div><b>Experiencia médica</b><span>Lorena es enfermera y ha trabajado con pacientes en clínicas privadas, compañías médicas y aseguradoras. Entiende los tratamientos y la confianza que necesita un paciente para decidir.</span></div>
       </div>
       <p class="about-promise" data-reveal data-d="3">Que todo el esfuerzo que dedicas a tu clínica termine dejando más dinero en tu bolsillo.</p>
