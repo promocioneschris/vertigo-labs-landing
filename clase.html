@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase gratuita: llévate más dinero al bolsillo | Vértigo Labs</title>
+<meta name="description" content="Clase gratuita de 5 minutos: las 3 claves para que tu clínica de medicina estética sea más rentable sin depender de promociones, descuentos ni de más pacientes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#141414;--ink2:#262523;--ink3:#4A4845;
+  --white:#FFFFFF;--sand:#F4EEE3;--border:#D9D5CE;
+  --gold:#8C6B3A;--gold-bright:#D2AE72;
+  --olive:#55632F;--olive-bright:#9DAE6A;
+  --red:#9A4A3A;
+  --sans:'Jost',system-ui,sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html{font-size:112.5%;scroll-behavior:smooth}
+body{font-family:var(--sans);font-size:1rem;line-height:1.6;color:var(--ink);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* ── BARRA DE CUERDA (marca) ── */
+#rope-bar{position:fixed;top:0;left:0;right:0;height:40px;background:var(--ink);z-index:1001;overflow:visible}
+#rope-line{position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,.15);transform:translateY(-50%)}
+#rope-fill{position:absolute;top:50%;left:0;width:2%;height:1px;background:rgba(255,255,255,.7);transform:translateY(-50%);transition:width .08s linear}
+#rope-walker{position:absolute;top:50%;left:2%;transform:translate(-50%,-88%);color:rgba(255,255,255,.9);transition:left .08s linear}
+@keyframes sway{0%,100%{transform:translate(-50%,-88%) rotate(-1.5deg)}50%{transform:translate(-50%,-88%) rotate(1.5deg)}}
+#rope-walker svg{animation:sway 2.6s ease-in-out infinite}
+
+/* ── BOTONES ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:1.1rem 2.1rem;background:var(--ink);color:var(--white);border-radius:12px;font-size:1.05rem;font-weight:600;letter-spacing:.02em;transition:transform .2s var(--ease),box-shadow .2s;box-shadow:0 10px 24px -12px rgba(20,20,20,.5)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 28px -12px rgba(20,20,20,.55)}
+.btn--light{background:var(--white);color:var(--ink)}
+.micro{display:block;margin-top:.8rem;font-size:.95rem;font-weight:500;color:var(--ink3)}
+.micro--light{color:rgba(255,255,255,.75)}
+
+/* ── ESTRUCTURA ── */
+.sec{padding:4.5rem 5%}
+.sec-inner{max-width:1120px;margin:0 auto}
+.kicker{display:block;font-size:.85rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.sec-h{font-size:clamp(1.8rem,5vw,2.9rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;max-width:760px;text-wrap:balance}
+.sec-h em{font-style:normal;color:var(--gold)}
+.sec-sub{font-size:1.15rem;color:var(--ink3);margin-top:.9rem;max-width:620px}
+.sec-cta{margin-top:2.25rem}
+
+/* ── HERO ── */
+.hero{position:relative;overflow:hidden;padding:calc(40px + 2.25rem) 5% 3.5rem;text-align:center}
+.hero-wave{position:absolute;right:0;bottom:0;width:100%;height:min(55%,520px);background:url(wave-hero.jpg) right bottom/cover no-repeat;opacity:.7;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 78%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 40%,#000 78%,transparent)}
+.hero-in{position:relative;z-index:1;max-width:940px;margin:0 auto}
+.eyebrow{display:inline-block;font-size:.95rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.hero-h1{font-size:clamp(2.1rem,6.6vw,3.7rem);font-weight:600;line-height:1.1;letter-spacing:-.025em;text-wrap:balance}
+.hero-h1 em{font-style:normal;color:var(--gold)}
+.hero-sub{font-size:1.2rem;line-height:1.6;color:var(--ink);margin:1.25rem auto 0;max-width:640px}
+
+/* reproductor (maqueta del vídeo) */
+.player{position:relative;display:block;width:100%;max-width:760px;margin:2.25rem auto 0;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:var(--ink);color:var(--white);text-align:left;box-shadow:0 40px 80px -35px rgba(20,20,20,.6);cursor:pointer;transition:transform .3s var(--ease)}
+.player:hover{transform:translateY(-3px)}
+.player::before{content:'';position:absolute;width:520px;height:520px;right:-180px;top:-240px;border-radius:50%;background:radial-gradient(circle,rgba(157,174,106,.4),transparent 70%)}
+.player::after{content:'';position:absolute;width:420px;height:420px;left:-200px;bottom:-260px;border-radius:50%;background:radial-gradient(circle,rgba(210,174,114,.28),transparent 70%)}
+.pl-badge{position:absolute;top:1rem;left:1rem;z-index:2;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--gold-bright);color:var(--ink);border-radius:999px;padding:.35rem .8rem}
+.pl-body{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:3.2rem 1.6rem 3rem}
+.pl-title{font-size:clamp(1.35rem,4.6vw,2.4rem);font-weight:600;line-height:1.12;letter-spacing:-.015em;max-width:80%}
+.pl-title em{font-style:normal;color:var(--gold-bright)}
+.pl-play{position:absolute;right:1.4rem;bottom:2.6rem;z-index:3;width:clamp(58px,13vw,84px);height:clamp(58px,13vw,84px);border-radius:50%;background:var(--white);color:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px rgba(255,255,255,.14);transition:transform .3s var(--ease)}
+.player:hover .pl-play{transform:scale(1.07)}
+.pl-play svg{width:38%;height:38%;margin-left:6%}
+.pl-bar{position:absolute;left:1.2rem;right:1.2rem;bottom:.9rem;z-index:2;display:flex;align-items:center;gap:.8rem;font-size:.85rem;font-weight:500;color:rgba(255,255,255,.85)}
+.pl-track{flex:1;height:3px;background:rgba(255,255,255,.25);border-radius:3px;position:relative}
+.pl-track::after{content:'';position:absolute;left:0;top:0;height:100%;width:3%;background:var(--gold-bright);border-radius:3px}
+.player::before,.player::after{display:none}
+.pl-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pl-play{right:auto;left:7%;bottom:9%;background:var(--ink);color:var(--white);box-shadow:0 0 0 10px rgba(20,20,20,.14),0 12px 30px -8px rgba(20,20,20,.5)}
+.hero-cta{margin-top:2rem}
+
+/* ── LO QUE VERÁS ── */
+.learn{display:grid;gap:1rem;margin-top:2.25rem}
+.learn-i{display:flex;gap:1.1rem;align-items:flex-start;background:var(--sand);border:1px solid var(--border);border-radius:22px;padding:1.5rem 1.4rem}
+.learn-ico{flex:0 0 52px;width:52px;height:52px;border-radius:14px;background:var(--ink);color:var(--gold-bright);display:flex;align-items:center;justify-content:center}
+.learn-ico svg{width:26px;height:26px}
+.learn-n{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem}
+.learn-i h3{font-size:1.4rem;font-weight:600;line-height:1.2;margin-bottom:.4rem}
+.learn-i p{font-size:1.08rem;line-height:1.55;color:var(--ink2)}
+
+/* ── GRÁFICA (oscuro) ── */
+.sec-dark{background:var(--ink);color:var(--white);position:relative;overflow:hidden}
+.sec-dark::before{content:'';position:absolute;width:520px;height:520px;right:-200px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(157,174,106,.3),transparent 70%);pointer-events:none}
+.sec-dark .sec-inner{position:relative;display:grid;gap:2.25rem;align-items:center}
+.sec-dark .kicker{color:var(--gold-bright)}
+.sec-dark .sec-h em{color:var(--gold-bright)}
+.sec-dark .sec-sub{color:rgba(255,255,255,.85)}
+.mini3{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem}
+.mini3 li{display:flex;align-items:center;gap:.55rem;font-size:1.02rem;font-weight:500;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.35rem .9rem .35rem .4rem}
+.mini3 b{width:26px;height:26px;border-radius:50%;background:var(--gold-bright);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:.85rem}
+@media(max-width:899px){.mini3{justify-content:center}}
+.chart{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:1.1rem 1.1rem 1.25rem}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart-note{font-size:.9rem;color:rgba(255,255,255,.65);margin-top:.8rem}
+.b-lbl{font:600 20px var(--sans);fill:#fff}
+.b-lbl--old{fill:rgba(255,255,255,.65);font-weight:500}
+.b-lbl--new{font-size:23px;fill:var(--gold-bright)}
+.b-in{font:600 17px var(--sans);fill:#fff}
+.b-gasto{fill:#4A4845}
+.b-queda{fill:var(--olive-bright)}
+.b-in--dark{fill:var(--ink)}
+.b-ring{fill:none;stroke:var(--gold-bright);stroke-width:3.5}
+.b-before{opacity:.8}
+.b-row{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);opacity:0}
+.b-txt{opacity:0}
+@keyframes grow{to{transform:scaleX(1);opacity:1}}
+@keyframes pop{to{opacity:1}}
+.chart.on .b-row--1{animation:grow 1s var(--ease) .2s forwards}
+.chart.on .b-row--2{animation:grow 1.2s var(--ease) 1.3s forwards}
+.chart.on .b-txt{animation:pop .5s ease 1.1s forwards}
+.chart.on .b-txt--2{animation:pop .5s ease 2.4s forwards}
+
+/* ── EMBUDO (dónde se pierde) ── */
+.leak{margin-top:2.25rem;display:grid;gap:.7rem}
+.leak-s{position:relative;display:flex;align-items:center;gap:1rem;border-radius:16px;padding:1.1rem 1.25rem;background:var(--sand);border:1px solid var(--border)}
+.leak-s:nth-child(1){width:100%}
+.leak-s:nth-child(2){width:94%}
+.leak-s:nth-child(3){width:88%}
+.leak-s:nth-child(4){width:82%;background:var(--ink);border-color:var(--ink);color:var(--white)}
+.leak-n{flex:0 0 38px;width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:600}
+.leak-s:nth-child(4) .leak-n{background:var(--gold-bright);color:var(--ink)}
+.leak-s b{display:block;font-size:1.2rem;font-weight:600;line-height:1.2}
+.leak-s span{font-size:1rem;color:var(--ink3)}
+.leak-s:nth-child(4) span{color:rgba(255,255,255,.8)}
+.leak-q{margin-top:1.25rem;font-size:1.15rem;color:var(--ink2);max-width:620px}
+
+/* ── PRESENTADORES ── */
+.sec-about{background:var(--sand);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about{display:grid;gap:2rem;align-items:center}
+.about-photo{border-radius:24px;overflow:hidden;border:1px solid var(--border);max-width:420px;margin:0 auto;width:100%}
+.about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top}
+.about-names{font-size:clamp(2rem,6vw,3.2rem);font-weight:600;line-height:1.05;letter-spacing:-.02em}
+.about-names em{font-style:normal;color:var(--gold)}
+.about-role{font-size:1.15rem;color:var(--ink3);margin:.4rem 0 1.2rem}
+.about-text p{font-size:1.1rem;line-height:1.6;color:var(--ink2);margin-bottom:.9rem}
+.about-lead{font-size:clamp(1.35rem,3.6vw,1.7rem);font-weight:600;line-height:1.25;color:var(--ink);margin-bottom:.9rem}
+.about-text strong{font-weight:600;color:var(--ink)}
+.about-two{display:grid;gap:.8rem;margin-top:1.1rem}
+.about-two>div{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:1.1rem 1.2rem}
+.about-two b{display:block;font-size:1.1rem;font-weight:600;color:var(--gold);margin-bottom:.25rem}
+.about-two span{font-size:1.02rem;line-height:1.5;color:var(--ink2)}
+@media(min-width:600px){.about-two{grid-template-columns:1fr 1fr}}
+.about-promise{margin-top:1.2rem;padding-left:1.1rem;border-left:3px solid var(--gold);font-size:1.25rem;font-weight:600;line-height:1.3;color:var(--ink)}
+
+/* ── PARA TI / NO PARA TI ── */
+.fit{display:grid;gap:1rem;margin-top:2.25rem}
+.fit-c{border-radius:22px;padding:1.6rem 1.4rem;border:1px solid var(--border)}
+.fit-c h3{font-size:1.35rem;font-weight:600;margin-bottom:1rem}
+.fit-c--yes{background:var(--white)}
+.fit-c--no{background:var(--sand)}
+.fit-c ul{list-style:none;display:grid;gap:.85rem}
+.fit-c li{display:flex;gap:.8rem;align-items:flex-start;font-size:1.08rem;line-height:1.45;color:var(--ink2)}
+.fit-c svg{flex:0 0 24px;width:24px;height:24px;margin-top:.1rem}
+.fit-c--yes svg{color:var(--olive)}
+.fit-c--no svg{color:var(--red)}
+
+/* ── CTA FINAL ── */
+.sec-final{padding:1rem 5% 4.5rem}
+.final{max-width:1120px;margin:0 auto;background:var(--ink);color:var(--white);border-radius:28px;padding:3rem 1.1rem;text-align:center;position:relative;overflow:hidden}
+.final::before{content:'';position:absolute;width:420px;height:420px;right:-160px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(157,174,106,.38),transparent 70%);pointer-events:none}
+.final>*{position:relative}
+.final-badge{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.35rem .9rem;margin-bottom:1.2rem}
+.final h2{font-size:clamp(1.9rem,5.4vw,3.2rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;max-width:720px;margin:0 auto;text-wrap:balance}
+.final h2 em{font-style:normal;color:var(--gold-bright)}
+.final p{font-size:1.15rem;color:rgba(255,255,255,.9);margin:1rem auto 2rem;max-width:520px}
+
+/* ── BARRA FIJA MÓVIL ── */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:900;padding:.75rem 5% calc(.75rem + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);transform:translateY(110%);transition:transform .35s var(--ease)}
+.sticky.show{transform:none}
+.sticky .btn{display:flex;width:calc(100% - 2rem);max-width:24rem;margin:0 auto}
+
+/* ── FOOTER ── */
+.legal{max-width:760px;margin:0 auto;padding:0 5% 2rem;font-size:.8rem;line-height:1.55;color:var(--ink3);text-align:center}
+footer{border-top:1px solid var(--border);padding:3rem 5% calc(3rem + 72px)}
+.foot-in{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:1.1rem;align-items:center;text-align:center}
+.foot-logo{height:56px;width:auto;mix-blend-mode:multiply}
+.foot-copy{font-size:.9rem;color:var(--ink3)}
+.foot-links{display:flex;gap:1.75rem;list-style:none}
+.foot-links a{font-size:.95rem;color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
+
+/* ── POPUP FORMULARIO ── */
+.modal-ov{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:.75rem;background:rgba(20,20,20,.55);backdrop-filter:blur(4px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s var(--ease),visibility .3s}
+.modal-ov.open{opacity:1;visibility:visible;pointer-events:auto}
+.modal{position:relative;width:100%;max-width:480px;max-height:calc(100vh - 1.5rem);max-height:calc(100dvh - 1.5rem);overflow-y:auto;background:var(--white);border-radius:16px;padding:1.3rem 1.15rem 1rem;box-shadow:0 40px 90px -20px rgba(0,0,0,.4);transform:translateY(18px) scale(.98);transition:transform .35s var(--ease)}
+.modal-ov.open .modal{transform:none}
+.modal-close{position:absolute;top:.6rem;right:.6rem;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink3);background:var(--sand);transition:background .2s}
+.modal-close:hover{background:var(--border)}
+.modal-close svg{width:16px;height:16px}
+.modal-t{font-size:1.4rem;font-weight:600;line-height:1.15;color:var(--ink);margin-bottom:.35rem;padding-right:2.6rem}
+.modal-t em{font-style:normal;color:var(--gold)}
+.modal-sub{font-size:.95rem;line-height:1.4;color:var(--ink2);margin-bottom:.8rem}
+.cta-form{display:grid;gap:.6rem}
+.cta-field{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.cta-label{font-size:.92rem;font-weight:600;color:var(--ink)}
+.cta-inp{width:100%;min-width:0;padding:.65rem .9rem;background:var(--sand);border:1.5px solid var(--border);border-radius:10px;color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.25;outline:none;-webkit-appearance:none;appearance:none}
+.cta-inp::placeholder{color:#6A6763}
+.cta-inp:focus{border-color:var(--ink);background:var(--white)}
+.cta-check{display:flex;align-items:flex-start;gap:.6rem;cursor:pointer;margin-top:.1rem}
+.cta-check input{margin-top:.15rem;width:20px;height:20px;flex-shrink:0;accent-color:var(--ink);cursor:pointer}
+.cta-check span{font-size:.78rem;line-height:1.4;color:var(--ink2)}
+.cta-check span a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.cta-btn{width:100%;padding:.9rem 1.25rem;background:var(--ink);color:var(--white);border-radius:12px;font-size:1.05rem;font-weight:600;letter-spacing:.02em;font-family:var(--sans);margin-top:.15rem}
+.cta-btn:disabled{opacity:.5;cursor:not-allowed}
+.cta-note{text-align:center;font-size:.85rem;color:var(--ink3);margin-top:.7rem}
+body.modal-lock{overflow:hidden}
+
+/* ── REVEAL ── */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-reveal].on{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.08s}[data-d="2"]{transition-delay:.16s}[data-d="3"]{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){
+  #rope-walker svg{animation:none}
+  [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+  .b-row{transform:none!important;opacity:1!important;animation:none!important}
+  .b-txt{opacity:1!important;animation:none!important}
+}
+
+/* ── ESCRITORIO ── */
+@media(min-width:600px){
+  .modal{padding:2rem 2rem 1.6rem}
+  .modal-t{font-size:1.8rem}
+  .pl-body{padding:3.5rem 2.6rem 3rem}
+}
+@media(min-width:900px){
+  .sec{padding:6rem 5%}
+  .hero{padding:calc(40px + 4rem) 5% 5rem}
+  .learn{grid-template-columns:repeat(3,1fr);gap:1.25rem}
+  .learn-i{flex-direction:column;padding:1.8rem 1.6rem 2rem}
+  .sec-dark .sec-inner{grid-template-columns:1fr 1fr;gap:3.5rem}
+  .about{grid-template-columns:.8fr 1.2fr;gap:3.5rem}
+  .fit{grid-template-columns:1fr 1fr;gap:1.25rem}
+  .final{padding:4.5rem 3rem}
+  .sticky{display:none}
+  footer{padding-bottom:3rem}
+  .foot-in{flex-direction:row;justify-content:space-between}
+}
+@media(max-width:899px){
+  .kicker,.sec-h,.sec-sub{text-align:center;margin-left:auto;margin-right:auto}
+  .sec-cta{text-align:center}
+  .leak-q{text-align:center;margin-left:auto;margin-right:auto}
+  .about-names,.about-role,.about-lead{text-align:center}
+}
+@media(max-width:600px){
+  .btn.hero-btn{display:flex;width:calc(100% - 2rem);max-width:24rem;margin-left:auto;margin-right:auto}
+  .leak-s:nth-child(n){width:100%}
+}
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '989764080521861');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=989764080521861&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- ══ BARRA DE CUERDA ══ -->
+<div id="rope-bar" aria-hidden="true">
+  <div id="rope-line"></div>
+  <div id="rope-fill"></div>
+  <div id="rope-walker">
+    <svg width="24" height="38" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="4" r="3" fill="currentColor"/>
+      <path d="M9.5 7 C9.5 7 8.5 13 8.5 18 L14.5 18 C14.5 13 13.5 7 12.5 7Z" fill="currentColor"/>
+      <line x1="0" y1="13.5" x2="24" y2="15" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.5" y1="10" x2="2" y2="13.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="13" y1="10" x2="21" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.5" y1="18" x2="5" y2="30" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="13.5" y1="18" x2="18" y2="29" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="5" y1="30" x2="0" y2="31" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="18" y1="29" x2="23" y2="29" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-in">
+    <span class="eyebrow" data-reveal="fade">Solo para clínicas de medicina estética</span>
+    <h1 class="hero-h1" data-reveal data-d="1">Llévate <em>más dinero al bolsillo</em> sin depender de promociones, descuentos ni de más pacientes</h1>
+    <p class="hero-sub" data-reveal data-d="2">Una clase gratuita de 5 minutos con las 3 claves para que tu clínica sea más rentable. Porque la clínica rentable no es la que más pacientes atiende, sino la que más gana.</p>
+
+    <button type="button" class="player js-open-form" data-reveal data-d="2" aria-label="Ver la clase: déjanos tus datos para acceder">
+      <img class="pl-cover" src="media/portada-clase.webp" alt="3 claves para que tu clínica gane más: clase gratuita de 5 minutos" width="1671" height="941">
+      <span class="pl-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
+    </button>
+
+    <div class="hero-cta" data-reveal data-d="3">
+      <button type="button" class="btn hero-btn js-open-form" id="hero-cta">Quiero ver la clase →</button>
+      <span class="micro">Gratis · 5 minutos · Acceso inmediato</span>
+    </div>
+  </div>
+  <div class="hero-wave" aria-hidden="true"></div>
+</section>
+
+<!-- ══ FACTURAR ≠ GANAR ══ -->
+<section class="sec sec-dark" id="ganar">
+  <div class="sec-inner">
+    <div>
+      <span class="kicker" data-reveal="fade">La idea de fondo</span>
+      <h2 class="sec-h" data-reveal data-d="1">Facturar más no es lo mismo que <em>ganar más.</em></h2>
+      <p class="sec-sub" data-reveal data-d="2">Hay clínicas que no paran de trabajar, tienen pacientes y facturan, pero siguen sin la rentabilidad que querrían. Muchas veces el error es intentar llenar todavía más la agenda.</p>
+      <ul class="mini3" data-reveal data-d="3">
+        <li><b>1</b>Qué vendes</li>
+        <li><b>2</b>Cómo lo vendes</li>
+        <li><b>3</b>Cómo conviertes</li>
+      </ul>
+      <p class="sec-sub" style="margin-top:1rem" data-reveal data-d="3">Estas son las 3 claves de la clase.</p>
+    </div>
+    <div class="chart" id="chart" data-reveal data-d="2" aria-hidden="true">
+      <svg viewBox="0 0 360 194" role="img">
+        <defs>
+          <clipPath id="cb1"><rect x="14" y="32" width="233" height="46" rx="13"/></clipPath>
+          <clipPath id="cb2"><rect x="14" y="128" width="332" height="50" rx="14"/></clipPath>
+        </defs>
+        <g class="b-before">
+          <text class="b-lbl b-lbl--old" x="14" y="22">Ahora</text>
+          <g class="b-row b-row--1" clip-path="url(#cb1)">
+            <rect class="b-gasto" x="14" y="32" width="215" height="46"/>
+            <rect class="b-queda" x="229" y="32" width="18" height="46"/>
+          </g>
+          <text class="b-in b-txt" x="30" y="61">Gastos</text>
+          <text class="b-in b-txt" x="257" y="61" style="fill:var(--olive-bright)">Beneficio</text>
+        </g>
+        <text class="b-lbl b-lbl--new b-txt b-txt--2" x="14" y="116">Con las 3 claves</text>
+        <g class="b-row b-row--2" clip-path="url(#cb2)">
+          <rect class="b-gasto" x="14" y="128" width="190" height="50"/>
+          <rect class="b-queda" x="204" y="128" width="142" height="50"/>
+        </g>
+        <rect class="b-ring b-txt b-txt--2" x="14" y="128" width="332" height="50" rx="14"/>
+        <text class="b-in b-txt b-txt--2" x="30" y="159">Gastos</text>
+        <text class="b-in b-in--dark b-txt b-txt--2" x="275" y="159" text-anchor="middle">Beneficio</text>
+      </svg>
+      <p class="chart-note">Ilustración orientativa de lo que queda en tu bolsillo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUIÉNES SOMOS ══ -->
+<section class="sec sec-about" id="equipo">
+  <div class="sec-inner about">
+    <div class="about-photo" data-reveal>
+      <img src="equipo-web.jpg" alt="Lorena y Christian, fundadores de Vértigo Labs" loading="lazy">
+    </div>
+    <div>
+      <span class="kicker" data-reveal="fade">Quiénes somos</span>
+      <h2 class="about-names" data-reveal data-d="1">Lorena <em>&amp; Christian</em></h2>
+      <p class="about-role" data-reveal data-d="1">Fundadores de Vértigo Labs</p>
+      <p class="about-lead" data-reveal data-d="2">Más de 5 años dedicados al marketing para clínicas.</p>
+      <div class="about-text" data-reveal data-d="2">
+        <p>Llevamos más de 5 años dedicados por completo al marketing de clínicas privadas: ayudándolas a vender más sus tratamientos rentables, mejorar su captación y convertir más oportunidades en ventas.</p>
+        <p>Lo que nos diferencia es que unimos dos mundos: <strong>marketing</strong> y <strong>conocimiento del sector médico</strong>.</p>
+      </div>
+      <div class="about-two" data-reveal data-d="3">
+        <div><b>Marketing</b><span>Más de 5 años dedicados a captar y convertir pacientes para clínicas. Christian, además, pasó 10 años en Apple en ventas, atención al cliente y experiencia de compra.</span></div>
+        <div><b>Experiencia médica</b><span>Lorena es enfermera y ha trabajado con pacientes en clínicas privadas, compañías médicas y aseguradoras. Entiende los tratamientos y la confianza que necesita un paciente para decidir.</span></div>
+      </div>
+      <p class="about-promise" data-reveal data-d="3">Que todo el esfuerzo que dedicas a tu clínica termine dejando más dinero en tu bolsillo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══ -->
+<section class="sec-final" id="acceder">
+  <div class="final" data-reveal>
+    <span class="final-badge">Clase gratuita · 5 minutos</span>
+    <h2>5 minutos para empezar a <em>llevarte más dinero al bolsillo.</em></h2>
+    <p>Mira la clase y descubre qué tratamientos potenciar, cómo venderlos y dónde se te escapan las ventas.</p>
+    <button type="button" class="btn btn--light js-open-form" id="final-cta">Quiero ver la clase →</button>
+    <span class="micro micro--light">Gratis · Acceso inmediato</span>
+  </div>
+</section>
+
+<!-- ══ BARRA FIJA MÓVIL ══ -->
+<div class="sticky" id="sticky"><button type="button" class="btn js-open-form">Quiero ver la clase →</button></div>
+
+<!-- ══ POPUP FORMULARIO ══ -->
+<div class="modal-ov" id="formModal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal">
+    <button type="button" class="modal-close" id="modal-close" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h3 class="modal-t" id="modal-title">Ve la clase y <em>llévate más dinero al bolsillo.</em></h3>
+    <p class="modal-sub">Déjame tus datos y accedes al vídeo al instante.</p>
+    <form class="cta-form" id="clase-form" onsubmit="handleForm(event)">
+      <div class="cta-field">
+        <label class="cta-label" for="f-nombre">Nombre y apellido</label>
+        <input class="cta-inp" id="f-nombre" name="firstName" type="text" autocomplete="name" placeholder="Nombre y apellido" pattern="(?=(?:.*[A-Za-zÀ-ÖØ-öø-ÿ]){3,})[A-Za-zÀ-ÖØ-öø-ÿ.\s]+" title="Escribe tu nombre" required>
+      </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-email">Email</label>
+        <input class="cta-inp" id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Tu correo electrónico" required>
+      </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-telefono">Teléfono / WhatsApp</label>
+        <input class="cta-inp" id="f-telefono" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+34 600 000 000" required>
+      </div>
+      <div class="cta-field">
+        <label class="cta-label" for="f-clinica">Nombre de tu clínica</label>
+        <input class="cta-inp" id="f-clinica" name="clinicName" type="text" autocomplete="organization" placeholder="Nombre de tu clínica" required>
+      </div>
+      <label class="cta-check">
+        <input type="checkbox" id="f-consent" name="consent" required>
+        <span>Acepto que Vértigo Labs trate mis datos para darme acceso a la clase e información sobre sus servicios, según la <a href="privacidad.html" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
+      </label>
+      <button type="submit" class="cta-btn" id="form-btn">Quiero ver la clase →</button>
+    </form>
+    <p class="cta-note">Gratis · Acceso inmediato</p>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<p class="legal">Este sitio no forma parte de Facebook, Meta, Google ni YouTube, ni está respaldado por ellos. Al rellenar el formulario aceptas recibir comunicaciones comerciales de Vértigo Labs.</p>
+<footer>
+  <div class="foot-in">
+    <img src="vertigo%20AGENCY.png" alt="Vértigo Labs" class="foot-logo">
+    <p class="foot-copy">© 2026 Vértigo Labs. Todos los derechos reservados.</p>
+    <ul class="foot-links">
+      <li><a href="privacidad.html">Privacidad</a></li>
+      <li><a href="mailto:hola@vertigolabs.es">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+// ══════════ HUECOS A RELLENAR ══════════
+// Webhook entrante de GHL para esta clase (créalo nuevo, distinto al de recursos).
+// Vacío = el formulario NO envía a GHL, pero sí redirige a la clase (útil para probar).
+const GHL_WEBHOOK_URL='';
+// Página de la clase a la que se redirige tras registrarse.
+const CLASE_URL='clase-video.html';
+// CRM propio (copia del lead, opcional). Vacío = desactivado.
+const CRM_LEADS_URL='https://vertigo-labs-crm.vercel.app/api/leads';
+// ═══════════════════════════════════════
+
+// ── CONJUNTO DE ANUNCIOS (?set=XXX) ──
+let adSet='';
+try{
+  const fromUrl=new URLSearchParams(location.search).get('set');
+  if(fromUrl) sessionStorage.setItem('vl_ad_set',fromUrl);
+  adSet=sessionStorage.getItem('vl_ad_set')||'';
+}catch(e){}
+
+// ── ATRIBUCIÓN (UTM e IDs de Meta) ──
+const ATTR_KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','ad_id','adset_id','campaign_id'];
+let attribution={};
+try{
+  const q=new URLSearchParams(location.search);
+  const saved=JSON.parse(sessionStorage.getItem('vl_attr')||'{}');
+  ATTR_KEYS.forEach(k=>{const v=q.get(k);if(v)saved[k]=v.slice(0,200);});
+  if(!saved.landing){saved.landing=location.pathname;saved.referrer=(document.referrer||'').slice(0,200);}
+  sessionStorage.setItem('vl_attr',JSON.stringify(saved));
+  attribution=saved;
+}catch(e){}
+const readCookie=n=>{try{const m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):'';}catch(e){return '';}};
+
+// ── CUERDA ──
+const fill=document.getElementById('rope-fill'),walker=document.getElementById('rope-walker');
+function updateRope(){
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  const p=max>0?Math.min(Math.max((window.scrollY/max)*100,1.5),96):1.5;
+  fill.style.width=p+'%';walker.style.left=p+'%';
+}
+window.addEventListener('scroll',updateRope,{passive:true});
+updateRope();
+
+// ── REVEAL (la gráfica se anima al entrar) ──
+const revObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el=>revObs.observe(el));
+
+// ── BARRA FIJA MÓVIL ──
+const sticky=document.getElementById('sticky');
+let heroOut=false,finalIn=false;
+function updSticky(){sticky.classList.toggle('show',heroOut&&!finalIn);}
+new IntersectionObserver(([e])=>{heroOut=!e.isIntersecting&&e.boundingClientRect.top<0;updSticky();}).observe(document.getElementById('hero-cta'));
+new IntersectionObserver(([e])=>{finalIn=e.isIntersecting;updSticky();}).observe(document.getElementById('final-cta'));
+
+// ── POPUP FORMULARIO ──
+const fModal=document.getElementById('formModal');
+function openModal(){
+  if(fModal.classList.contains('open'))return;
+  fModal.classList.add('open');
+  fModal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-lock');
+  if(window.fbq)fbq('trackCustom','FormModalOpen');
+  setTimeout(()=>{const i=fModal.querySelector('input');if(i)i.focus();},350);
+}
+function closeModal(){
+  fModal.classList.remove('open');
+  fModal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-lock');
+}
+document.getElementById('modal-close').addEventListener('click',closeModal);
+fModal.addEventListener('click',e=>{if(e.target===fModal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&fModal.classList.contains('open'))closeModal();});
+document.querySelectorAll('.js-open-form').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openModal();}));
+
+// Exige un nombre real
+const fNombre=document.getElementById('f-nombre');
+fNombre.addEventListener('invalid',()=>{fNombre.setCustomValidity(fNombre.validity.patternMismatch?'Escribe tu nombre':'');});
+fNombre.addEventListener('input',()=>fNombre.setCustomValidity(''));
+
+// ── ENVÍO ──
+function waitForPixel(ms){
+  return new Promise(res=>{
+    let done=false;const fin=()=>{if(!done){done=true;res();}};
+    try{
+      const po=new PerformanceObserver(l=>{if(l.getEntries().some(e=>/facebook\.com\/tr/.test(e.name)&&/ev=Lead/.test(e.name)))fin();});
+      po.observe({type:'resource'});
+    }catch(e){}
+    setTimeout(fin,ms);
+  });
+}
+async function handleForm(e){
+  e.preventDefault();
+  const form=e.target,btn=document.getElementById('form-btn');
+  btn.textContent='Enviando...';btn.disabled=true;
+  const data={
+    firstName:form.firstName.value.trim(),
+    clinicName:form.clinicName.value.trim(),
+    email:form.email.value.trim(),
+    phone:form.phone.value.trim(),
+    adSet:adSet,
+    source:'Clase 3 claves - Ads'+(adSet?' - '+adSet:'')
+  };
+  if(CRM_LEADS_URL){
+    try{
+      const crmData=Object.assign({},data,attribution,{fbp:readCookie('_fbp'),fbc:readCookie('_fbc')});
+      fetch(CRM_LEADS_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(crmData),keepalive:true}).catch(()=>{});
+    }catch(err){}
+  }
+  if(GHL_WEBHOOK_URL){
+    try{
+      await fetch(GHL_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true});
+    }catch(err){console.error('Webhook error:',err);}
+  }
+  try{sessionStorage.setItem('vl_lead',JSON.stringify({firstName:data.firstName,email:data.email,phone:data.phone,clinicName:data.clinicName}));}catch(err){}
+  if(window.fbq)fbq('track','Lead',{content_name:'Clase 3 claves rentabilidad'});
+  await waitForPixel(800);
+  window.location.href=CLASE_URL;
+}
+</script>
+</body>
+</html>
